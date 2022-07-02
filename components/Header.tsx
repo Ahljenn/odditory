@@ -7,8 +7,8 @@ import {
   StarIcon,
   CollectionIcon,
   SearchIcon,
-  CogIcon,
   UserIcon,
+  CogIcon,
 } from '@heroicons/react/outline';
 
 interface Props {}
@@ -22,8 +22,8 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
         <Badge Icon={StarIcon} title="FAVORITES" />
         <Badge Icon={CollectionIcon} title="COLLECTIONS" />
         <Badge Icon={SearchIcon} title="SEARCH" />
-        <Badge Icon={CogIcon} title="SETTINGS" />
         <Badge Icon={UserIcon} title="ACCOUNT" />
+        <Badge Icon={CogIcon} title="SETTINGS" />
       </div>
 
       <Image
