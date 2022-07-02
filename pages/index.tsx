@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Header from '../components/Header';
 
-const Home: NextPage = () => {
+const Home: NextPage = (): JSX.Element => {
   return (
     <div>
       <Head>
@@ -10,12 +10,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/logo.png" />
       </Head>
 
-      <Image
-        className="object-contain"
-        src="/logo.png"
-        width={200}
-        height={100}
-      />
+      <Header />
     </div>
   );
 };
