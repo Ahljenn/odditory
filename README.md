@@ -36,8 +36,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Packages
 
 - Tailwindcss
-- Heroicons/react
+- Heroicons
 - NextAuth
+- Spotify Web Api Node
 
 ## Misc
 
