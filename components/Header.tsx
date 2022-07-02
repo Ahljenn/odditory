@@ -26,7 +26,12 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
         <Badge Icon={UserIcon} title="ACCOUNT" />
       </div>
 
-      <Image className="object-contain" src="/logo.png" width={100} height={100} />
+      <Image
+        className="object-contain hover:animate-pulse"
+        src="/logo.png"
+        width={100}
+        height={100}
+      />
     </header>
   );
 };
