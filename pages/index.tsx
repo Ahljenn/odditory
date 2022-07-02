@@ -7,10 +7,10 @@ const Home: NextPage = () => {
         <div>
             <Head>
                 <title>Hilofy</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/logo.png" />
             </Head>
 
-            <h1>Test</h1>
+            <Image src="/logo.png" width={50} height={50} />
         </div>
     );
 };
