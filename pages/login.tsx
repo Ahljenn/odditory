@@ -5,7 +5,7 @@ import { getProviders, signIn } from 'next-auth/react';
 const Login = ({ providers }: any) => {
   return (
     <div>
-      <div className="text-center mt-20">
+      <div className="text-center mt-[20rem]">
         <Image
           className="object-contain"
           src="/white-spotify.png"
