@@ -5,18 +5,18 @@ import spotifyApi, { LOGIN_URL } from '../../../lib/spotify';
 
 const refreshAccessToken = async (token: any): Promise<any> => {
   try {
-    spotifyApi.setAccessToken(token.accessToken);
-    spotifyApi.setRefreshToken(token.refreshToken);
+    spotifyApi.setAccessToken(token.access_token);
+    spotifyApi.setRefreshToken(token.refresh_token);
 
-    // console.log(spotifyApi);
+    console.log(spotifyApi);
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
     console.log('Refreshed token:', refreshedToken);
 
     return {
       ...token,
-      accessToken: refreshedToken.access_token,
+      access_token: refreshedToken.access_token,
       accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, //1 hour expiration
-      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
+      refresh_token: refreshedToken.refresh_token ?? token.refresh_token,
     };
   } catch (error) {
     console.error(error);
@@ -47,8 +47,8 @@ export default NextAuth({
       if (account && user) {
         return {
           ...token,
-          accessToken: account.accessToken,
-          refreshToken: account.refreshToken,
+          access_token: account.access_token,
+          refresh_token: account.refresh_token,
           username: account.providerAccountId,
           accessTokenExpires: account.expires_at * 1000, //Convert to milliseconds
         };
@@ -66,10 +66,9 @@ export default NextAuth({
     },
 
     async session({ session, token }) {
-      session.user.accessToken = token.accessToken;
-      session.user.refreshToken = token.refreshToken;
+      session.user.access_token = token.access_token;
+      session.user.refresh_token = token.refresh_token;
       session.user.username = token.username;
-
       return session;
     },
   },
