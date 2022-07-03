@@ -9,7 +9,6 @@ const Dashboard: NextPage = (): JSX.Element => {
         <title>Hilofy</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-
       <Header />
     </div>
   );

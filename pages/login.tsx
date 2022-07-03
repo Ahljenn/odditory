@@ -5,7 +5,7 @@ import { getProviders, signIn } from 'next-auth/react';
 const Login = ({ providers }: any) => {
   return (
     <div>
-      <div className="text-center mt-20 animate-pulse">
+      <div className="text-center mt-20">
         <Image
           src="/white-spotify.png"
           alt="Spotify"
@@ -19,7 +19,7 @@ const Login = ({ providers }: any) => {
         Object.values(providers).map((provider: any) => (
           <div className="flex justify-center mt-10" key={provider.name}>
             <button
-              className="bg-white p-4 rounded-full"
+              className="bg-white p-4 rounded-full animate-pulse"
               onClick={() => {
                 signIn(provider.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
               }}
