@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "@types/spotify-web-api-node": "^5.0.7",
+    "framer-motion": "^6.3.16",
     "next": "12.2.0",
     "next-auth": "^4.8.0",
     "react": "18.2.0",

@@ -17,7 +17,7 @@ interface Props {}
 
 const Header: React.FC<Props> = ({}: Props): JSX.Element => {
   const { data: session, status } = useSession();
-  console.log(session);
+  // console.log(session);
 
   const handleSignOut = (): void => {
     console.log('Logged out of Hilofy');
@@ -28,13 +28,25 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
     Router.push('/dashboard/account');
   };
 
+  const handleCollection = (): void => {
+    Router.push('/dashboard/collections');
+  };
+
+  const handleFavorites = (): void => {
+    Router.push('/dashboard/favorites');
+  };
+
+  const handleTrending = (): void => {
+    Router.push('/dashboard/trending');
+  };
+
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
       <div className="flex items-center flex-grow justify-evenly max-w-2xl">
         <Badge Icon={HomeIcon} title="HOME" />
-        <Badge Icon={FireIcon} title="TRENDING" />
-        <Badge Icon={StarIcon} title="FAVORITES" />
-        <Badge Icon={CollectionIcon} title="COLLECTIONS" />
+        <Badge Icon={FireIcon} title="TRENDING" update={handleTrending} />
+        <Badge Icon={StarIcon} title="FAVORITES" update={handleFavorites} />
+        <Badge Icon={CollectionIcon} title="COLLECTIONS" update={handleCollection} />
         <Badge Icon={SearchIcon} title="SEARCH" />
         <Badge Icon={UserIcon} title="ACCOUNT" update={handleAccount} />
         <Badge Icon={LogoutIcon} title="LOG OUT" update={handleSignOut} />

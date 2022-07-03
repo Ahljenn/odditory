@@ -1,12 +1,27 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
+import { motion } from 'framer-motion';
 
-const MyApp = ({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element => {
+const MyApp = ({
+  Component,
+  router,
+  pageProps: { session, ...pageProps },
+}: AppProps): JSX.Element => {
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <motion.div
+      key={router.route}
+      initial="pageInitial"
+      animate="pageAnimate"
+      variants={{
+        pageInitial: { opacity: 0 },
+        pageAnimate: { opacity: 1 },
+      }}
+    >
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </motion.div>
   );
 };
 

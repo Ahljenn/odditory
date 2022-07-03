@@ -17,7 +17,7 @@ export const middleware = async (req: NextRequest) => {
 
     // Redirect to login if there is no token and are requesting a protected route
     if (!token && pathname !== '/login') {
-      console.log('You are not logged in.');
+      console.log('Nice try! You are not logged in.');
       return NextResponse.redirect(`${origin}/login`);
     }
   }
