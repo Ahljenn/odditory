@@ -8,12 +8,21 @@ import {
   CollectionIcon,
   SearchIcon,
   UserIcon,
-  CogIcon,
+  LogoutIcon,
 } from '@heroicons/react/outline';
+import { signOut, useSession } from 'next-auth/react';
 
 interface Props {}
 
 const Header: React.FC<Props> = ({}: Props): JSX.Element => {
+  const { data: session, status } = useSession();
+  console.log(session);
+
+  const handleSignOut = (): void => {
+    console.log('Logged out of Hilofy');
+    signOut();
+  };
+
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
       <div className="flex flex-grow justify-evenly max-w-2xl">
@@ -23,7 +32,7 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
         <Badge Icon={CollectionIcon} title="COLLECTIONS" />
         <Badge Icon={SearchIcon} title="SEARCH" />
         <Badge Icon={UserIcon} title="ACCOUNT" />
-        <Badge Icon={CogIcon} title="SETTINGS" />
+        <Badge Icon={LogoutIcon} title="LOG OUT" update={handleSignOut} />
       </div>
 
       <Image

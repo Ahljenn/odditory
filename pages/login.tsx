@@ -23,7 +23,7 @@ const Login = ({ providers }: any) => {
             <button
               className="bg-white p-4 rounded-full"
               onClick={() => {
-                signIn(provider.id, { callbackURL: '/' });
+                signIn(provider.id, { callbackUrl: '/' });
               }}
             >
               <p className="animate-pulse text-black">Login with {provider.name}</p>
@@ -38,7 +38,7 @@ export default Login;
 
 export const getServerSideProps = async () => {
   const providers = await getProviders();
-  console.log('Providers list:', providers);
+  // console.log('Providers list:', providers);
   return {
     props: {
       providers,
