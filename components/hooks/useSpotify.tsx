@@ -16,7 +16,7 @@ const useSpotify = (): any => {
       if (session.error === 'RefreshAccessTokenError') {
         signIn();
       }
-      spotifyApi.setAccessToken(session?.user?.access_token);
+      spotifyApi.setAccessToken(session?.user?.accessToken);
     }
   }, [session]);
 

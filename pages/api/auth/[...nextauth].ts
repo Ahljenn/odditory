@@ -5,21 +5,21 @@ import spotifyApi, { LOGIN_URL } from '../../../lib/spotify';
 
 const refreshAccessToken = async (token: any): Promise<any> => {
   try {
-    spotifyApi.setAccessToken(token.access_token);
-    spotifyApi.setRefreshToken(token.refresh_token);
+    spotifyApi.setAccessToken(token.accessToken);
+    spotifyApi.setRefreshToken(token.refreshToken);
 
-    console.log(spotifyApi);
+    // console.log(spotifyApi);
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
     console.log('Refreshed token:', refreshedToken);
 
     return {
       ...token,
-      access_token: refreshedToken.access_token,
-      accessTokenExpires: Date.now + refreshedToken.expires_in * 1000, //1 hour expiration
-      refresh_token: refreshedToken.refresh_token ?? token.refresh_token,
+      accessToken: refreshedToken.access_token,
+      accessTokenExpires: Date.now + refreshedToken.expires_in * 2000, //1 hour expiration
+      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
     };
   } catch (error) {
-    console.error(error);
+    // console.error(error);
 
     return {
       ...token,
@@ -47,10 +47,10 @@ export default NextAuth({
       if (account && user) {
         return {
           ...token,
-          access_token: account.access_token,
-          refresh_token: account.refresh_token,
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
           username: account.providerAccountId,
-          accessTokenExpires: account.expires_at * 1000, //Convert to milliseconds
+          accessTokenExpires: account.expires_at * 2000, //Convert to milliseconds
         };
       }
 
@@ -66,8 +66,8 @@ export default NextAuth({
     },
 
     async session({ session, token }) {
-      session.user.access_token = token.access_token;
-      session.user.refresh_token = token.refresh_token;
+      session.user.accessToken = token.accessToken;
+      session.user.refreshToken = token.refreshToken;
       session.user.username = token.username;
       return session;
     },

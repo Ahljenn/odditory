@@ -36,9 +36,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Packages
 
 - Tailwindcss
-- Heroicons
 - NextAuth
 - Spotify Web Api Node
+
+### UI Packages
+
+- Tailwind-scrollbar-hide
+- Heroicons
 - Framer Motion
 
 ## Misc

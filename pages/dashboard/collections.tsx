@@ -23,16 +23,23 @@ const Collections: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <SubpageHeader pagename="COLLECTIONS" />
-      <section className="flex space-x-7 bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
+      <SubpageHeader pageName="COLLECTIONS" />
+      <section className="flex bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         {isLoaded ? (
-          <div className="flex flex-col">
-            {playlists.map((playlist: any) => (
-              <div className="flex flex-col justify-center items-center" key={playlist.id}>
-                <img src={playlist.images[0].url} alt={playlist.name} />
-                <p className="text-center text-sm">{playlist.name}</p>
-              </div>
-            ))}
+          <div className="flex items-end whitespace-nowrap px-10 space-x-10 overflow-x-scroll scrollbar-hide sm:px-20 sm:space-x-20">
+            {playlists &&
+              playlists.map((playlist: any) => (
+                <div className="flex flex-col" key={playlist.id}>
+                  <img
+                    className="cursor-pointer hover:scale-110 hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[12.5rem]"
+                    src={playlist.images[0].url}
+                    alt={playlist.name}
+                  />
+                  <p className="mt-5 text-center text-sm mb-10 w-[9rem] font-bold sm:w-[12.5rem] ">
+                    {playlist.name}
+                  </p>
+                </div>
+              ))}
           </div>
         ) : (
           <Loading />
