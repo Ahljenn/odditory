@@ -8,7 +8,7 @@ interface PageData {
   pagename: string;
 }
 
-const SubpageHeader = ({ pagename }: PageData) => {
+const SubpageHeader: React.FC<PageData> = ({ pagename }: PageData): JSX.Element => {
   const handleHome = (): void => {
     Router.push('/dashboard');
   };
@@ -21,8 +21,8 @@ const SubpageHeader = ({ pagename }: PageData) => {
         <Image
           className="object-contain hover:animate-pulse"
           src="/logo.png"
-          width={150}
-          height={150}
+          width={140}
+          height={140}
           alt="Hilofy"
         />
       </div>
