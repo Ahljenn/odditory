@@ -2,12 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import { getProviders, signIn } from 'next-auth/react';
 
-interface Props {}
-
 const Login = ({ providers }: any) => {
   return (
     <div>
-      <div className="text-center mt-20">
+      <div className="text-center mt-20 animate-pulse">
         <Image
           src="/white-spotify.png"
           alt="Spotify"
@@ -18,15 +16,15 @@ const Login = ({ providers }: any) => {
       </div>
 
       {providers &&
-        Object.values(providers).map((provider) => (
+        Object.values(providers).map((provider: any) => (
           <div className="flex justify-center mt-10" key={provider.name}>
             <button
               className="bg-white p-4 rounded-full"
               onClick={() => {
-                signIn(provider.id, { callbackUrl: '/' });
+                signIn(provider.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
               }}
             >
-              <p className="animate-pulse text-black">Login with {provider.name}</p>
+              <p className="text-black">Login with {provider.name}</p>
             </button>
           </div>
         ))}
