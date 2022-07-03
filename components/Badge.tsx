@@ -13,7 +13,7 @@ const Badge: React.FC<BadgeItem> = ({ Icon, title, update }: BadgeItem): JSX.Ele
       onClick={update}
     >
       <Icon className="h-8 mb-1 group-hover:animate-bounce" />
-      <p className="opacity-0 group-hover:opacity-100 tracking widest">{title}</p>
+      <p className="opacity-0 whitespace-nowrap group-hover:opacity-100 tracking widest">{title}</p>
     </div>
   );
 };

@@ -3,11 +3,13 @@ import NextAuth from 'next-auth/next';
 import SpotifyProvider from 'next-auth/providers/spotify';
 import spotifyApi, { LOGIN_URL } from '../../../lib/spotify';
 
-const refreshAccessToken = async (token: any) => {
+const refreshAccessToken = async (token: any): Promise<any> => {
   try {
     spotifyApi.setAccessToken(token.accessToken);
     spotifyApi.setRefreshToken(token.refreshToken);
 
+    // console.log(spotifyApi);
+    //Breaks right here
     const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
     console.log('Refreshed token:', refreshedToken);
 
@@ -49,12 +51,13 @@ export default NextAuth({
           accessToken: account.accessToken,
           refreshToken: account.refreshToken,
           username: account.providerAccountId,
-          accessTokenExpires: account.expires_in * 1000, //Convert to milliseconds
+          accessTokenExpires: account.expires_at * 1000, //Convert to milliseconds
         };
       }
 
       //If access token has not expired
       if (Date.now() < token.accessTokenExpires) {
+        console.log('Existing token is still valid');
         return token; //return since token is still valid
       }
 

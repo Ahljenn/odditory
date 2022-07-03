@@ -11,6 +11,7 @@ import {
   LogoutIcon,
 } from '@heroicons/react/outline';
 import { signOut, useSession } from 'next-auth/react';
+import Router from 'next/router';
 
 interface Props {}
 
@@ -23,15 +24,19 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
     signOut();
   };
 
+  const handleAccount = (): void => {
+    Router.push('/dashboard/account');
+  };
+
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
-      <div className="flex flex-grow justify-evenly max-w-2xl">
+      <div className="flex items-center flex-grow justify-evenly max-w-2xl">
         <Badge Icon={HomeIcon} title="HOME" />
         <Badge Icon={FireIcon} title="TRENDING" />
         <Badge Icon={StarIcon} title="FAVORITES" />
         <Badge Icon={CollectionIcon} title="COLLECTIONS" />
         <Badge Icon={SearchIcon} title="SEARCH" />
-        <Badge Icon={UserIcon} title="ACCOUNT" />
+        <Badge Icon={UserIcon} title="ACCOUNT" update={handleAccount} />
         <Badge Icon={LogoutIcon} title="LOG OUT" update={handleSignOut} />
       </div>
 
