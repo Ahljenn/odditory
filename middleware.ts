@@ -29,4 +29,10 @@ export const middleware = async (req: NextRequest) => {
       return NextResponse.redirect(`${origin}/dashboard`);
     }
   }
+
+  if (req.nextUrl.pathname === '/') {
+    //If user attempts to access root page, redirect to dashboard (regardless of if they are logged in or not)
+    console.log(pathname);
+    return NextResponse.redirect(`${origin}/dashboard`);
+  }
 };
