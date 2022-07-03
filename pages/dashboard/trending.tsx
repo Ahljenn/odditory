@@ -1,5 +1,5 @@
 import React from 'react';
-import SubpageHeader from '../../components/SubpageHeader';
+import SubpageHeader from '../../components/ui/SubpageHeader';
 
 const Trending: React.FC = (): JSX.Element => {
   return (
