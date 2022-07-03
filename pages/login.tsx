@@ -7,8 +7,7 @@ interface Props {}
 const Login = ({ providers }: any) => {
   return (
     <div>
-      <h1 className="text-center mt-10 sm:text-3xl">Login</h1>
-      <div className="text-center mt-10 animate-pulse">
+      <div className="text-center mt-20">
         <Image
           src="/white-spotify.png"
           alt="Spotify"
@@ -21,7 +20,14 @@ const Login = ({ providers }: any) => {
       {providers &&
         Object.values(providers).map((provider) => (
           <div className="flex justify-center mt-10" key={provider.name}>
-            <button className="sm:text-3xl">Login with {provider.name}</button>
+            <button
+              className="bg-white p-4 rounded-full"
+              onClick={() => {
+                signIn(provider.id, { callbackURL: '/' });
+              }}
+            >
+              <p className="animate-pulse text-black">Login with {provider.name}</p>
+            </button>
           </div>
         ))}
     </div>
