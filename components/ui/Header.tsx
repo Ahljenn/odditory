@@ -17,7 +17,6 @@ interface Props {}
 
 const Header: React.FC<Props> = ({}: Props): JSX.Element => {
   const { data: session, status } = useSession();
-  // console.log(session);
 
   const handleSignOut = (): void => {
     console.log('Logged out of Hilofy');

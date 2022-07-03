@@ -10,19 +10,18 @@ const Collections: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      console.log(1111111111111111);
-      spotifyApi.getUserPlaylists().then((data) => {
+      spotifyApi.getUserPlaylists().then((data: any) => {
         setPlaylists(data.body.items);
       });
     }
   }, [session, spotifyApi]);
 
   console.log(playlists);
-  console.log(session);
 
   return (
     <>
       <SubpageHeader pagename="COLLECTIONS" />
+      <section className="flex space-x-7 bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full"></section>
     </>
   );
 };
