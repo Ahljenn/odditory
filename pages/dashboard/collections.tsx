@@ -21,7 +21,7 @@ const Collections: React.FC = (): JSX.Element => {
     }
   }, [session, spotifyApi, isLoaded]);
 
-  console.log(playlists);
+  // console.log(playlists);
 
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');

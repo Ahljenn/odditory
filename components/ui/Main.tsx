@@ -7,51 +7,88 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface Props {}
 
+interface Seeds {
+  seed: Array<string>;
+}
+
+const Recs: React.FC<Seeds> = ({ seed }: Seeds): JSX.Element => {
+  const spotifyApi = useSpotify();
+  const { data: session, status } = useSession();
+  const [recs, setRecs] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (spotifyApi.getAccessToken()) {
+      spotifyApi
+        .getRecommendations({
+          seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
+          seed_genres: ['pop'],
+          seed_tracks: [seed[0]],
+        })
+        .then((data: any) => {
+          setRecs(data.body.tracks);
+          console.log('CALL IN RECS');
+        });
+    }
+  }, []);
+
+  console.log(recs);
+
+  return <>test</>;
+};
+
 const Main: React.FC<Props> = (props: Props): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [tracks, setTracks] = useState<any[]>([]);
-  const [recs, setRecs] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState<boolean>(false);
+  const [seed, setSeed] = useState<string[]>([]);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getMyTopTracks().then((data: any) => {
         setTracks(data.body.items);
+        console.log('CALL IN TOP TRACKS');
         setLoaded(true);
+
+        let temp: any = new Set();
+        tracks
+          .filter((artist: any) => {
+            return artist.artists.length > 0;
+          })
+          .map((artist: any) => {
+            temp.add(artist.artists[0].id);
+          });
+        setSeed(Array.from(temp));
       });
-
-      spotifyApi.getMe().then((data: any) => {
-        console.log(data);
-      });
-
-      let seed: any = new Set();
-
-      tracks
-        .filter((artist: any) => {
-          return artist.artists.length > 0;
-        })
-        .map((artist: any) => {
-          seed.add(artist.artists[0].id);
-        });
-
-      seed = Array.from(seed);
-      // console.log('seeds:', [seed[0], seed[1], seed[2]]);
-
-      spotifyApi
-        .getRecommendations({
-          min_energy: 0.5,
-          seed_artists: [seed[0], seed[1], seed[2]],
-          seed_genres: ['pop'],
-          seed_tracks: [seed[1]],
-          min_popularity: 80,
-        })
-        .then((data: any) => {
-          setRecs(data.body.tracks);
-          console.log(data.body.tracks);
-        });
     }
   }, [session, spotifyApi, isLoaded]);
+
+  // useEffect(() => {
+  //   if (spotifyApi.getAccessToken()) {
+  //     let seed: any = new Set();
+  //     tracks
+  //       .filter((artist: any) => {
+  //         return artist.artists.length > 0;
+  //       })
+  //       .map((artist: any) => {
+  //         seed.add(artist.artists[0].id);
+  //       });
+  //     seed = Array.from(seed);
+
+  //     spotifyApi
+  //       .getRecommendations({
+  //         seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
+  //         seed_genres: ['pop'],
+  //         seed_tracks: [seed[0]],
+  //       })
+  //       .then((data: any) => {
+  //         console.log('CALL IN RECS');
+  //         setRecs(data.body.tracks);
+  //       });
+  //   }
+  // }, [tracks]);
+
+  // console.log('RECS:', recs);
 
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');
@@ -102,7 +139,7 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
           <Loading />
         )}
       </section>
-      <section></section>
+      <section>{isLoaded && tracks ? <Recs seed={seed} /> : <Loading />}</section>
     </>
   );
 };
