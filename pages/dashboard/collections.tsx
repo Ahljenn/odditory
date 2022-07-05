@@ -39,7 +39,11 @@ const Collections: React.FC = (): JSX.Element => {
       <section className="flex bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         {isLoaded ? (
           <div className="w-full flex flex-row">
-            <ChevronLeftIcon className="cursor-pointer" width={100} onClick={slideLeft} />
+            <ChevronLeftIcon
+              className="cursor-pointer opacity-50 hover:opacity-100"
+              width={120}
+              onClick={slideLeft}
+            />
             <div
               id="slider"
               className="pt-8 flex items-end whitespace-nowrap px-10 space-x-10 overflow-x-scroll scrollbar-hide scroll-smooth sm:px-15 sm:space-x-15 "
@@ -62,7 +66,11 @@ const Collections: React.FC = (): JSX.Element => {
                   </div>
                 ))}
             </div>
-            <ChevronRightIcon className="cursor-pointer" width={100} onClick={slideRight} />
+            <ChevronRightIcon
+              className="cursor-pointer opacity-50 hover:opacity-100"
+              width={120}
+              onClick={slideRight}
+            />
           </div>
         ) : (
           <Loading />

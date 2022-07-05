@@ -11,6 +11,7 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [tracks, setTracks] = useState<any[]>([]);
+  const [recs, setRecs] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,10 +20,38 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
         setTracks(data.body.items);
         setLoaded(true);
       });
+
+      spotifyApi.getMe().then((data: any) => {
+        console.log(data);
+      });
+
+      let seed: any = new Set();
+
+      tracks
+        .filter((artist: any) => {
+          return artist.artists.length > 0;
+        })
+        .map((artist: any) => {
+          seed.add(artist.artists[0].id);
+        });
+
+      seed = Array.from(seed);
+      // console.log('seeds:', [seed[0], seed[1], seed[2]]);
+
+      spotifyApi
+        .getRecommendations({
+          min_energy: 0.5,
+          seed_artists: [seed[0], seed[1], seed[2]],
+          seed_genres: ['pop'],
+          seed_tracks: [seed[1]],
+          min_popularity: 80,
+        })
+        .then((data: any) => {
+          setRecs(data.body.tracks);
+          console.log(data.body.tracks);
+        });
     }
   }, [session, spotifyApi, isLoaded]);
-
-  console.log(tracks);
 
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');
@@ -36,10 +65,15 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
 
   return (
     <>
-      <section className="flex items-end space-x-7 bg-gradient-to-b to-[#181b20] from-[#282b30] h-80 padding-8 w-full">
+      <h1 className="absolute left-0 right-0 text-center text-xl italic">MY TOP TRACKS</h1>
+      <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] h-80 padding-8 w-full">
         {isLoaded ? (
           <div className="w-full flex flex-row">
-            <ChevronLeftIcon className="cursor-pointer" width={100} onClick={slideLeft} />
+            <ChevronLeftIcon
+              className="cursor-pointer opacity-50 hover:opacity-100"
+              width={120}
+              onClick={slideLeft}
+            />
             <div
               id="slider"
               className="pt-8 flex items-end whitespace-nowrap px-10 space-x-10 overflow-x-scroll scrollbar-hide scroll-smooth sm:px-15 sm:space-x-15 "
@@ -58,12 +92,17 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
                   </div>
                 ))}
             </div>
-            <ChevronRightIcon className="cursor-pointer" width={100} onClick={slideRight} />
+            <ChevronRightIcon
+              className="cursor-pointer opacity-50 hover:opacity-100"
+              width={120}
+              onClick={slideRight}
+            />
           </div>
         ) : (
           <Loading />
         )}
       </section>
+      <section></section>
     </>
   );
 };
