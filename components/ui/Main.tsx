@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import useSpotify from '../hooks/useSpotify';
 import Loading from './Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-//Try https://css-tricks.com/pure-css-horizontal-scrolling/
 
 interface SessionData {
   spotifyApi: any;
@@ -23,25 +22,23 @@ const Recs: React.FC<SessionData> = ({ spotifyApi, seed }: SessionData): JSX.Ele
           seed_tracks: [seed[0]],
         });
         setRecs(data.body.tracks);
-        console.log('CALL IN RECS');
+        // console.log('CALL IN RECS');
       })();
     }
-  }, []);
-
-  // console.log(recs);
+  }, [spotifyApi]);
 
   return (
-    <section>
+    <section className="grid grid-cols-3 gap-4 sm:grid-cols-5">
       {recs &&
         recs.map((track: any) => (
           <div className="" key={track.id}>
             <img
               src={track.album.images[0].url}
-              className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem]"
+              className="cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem] 2xl:w-[35rem]"
             />
             <div className="flex flex-col justify-center">
-              <h1 className="">{track.name}</h1>
-              <h2 className="">{track.artists[0].name}</h2>
+              <h1 className="text-center">{track.name}</h1>
+              <h2 className="text-center font-bold">{track.artists[0].name}</h2>
             </div>
           </div>
         ))}
@@ -59,9 +56,9 @@ const Main: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
-        const data = await spotifyApi.getMyTopTracks({ limit: 50 });
+        const data = await spotifyApi.getMyTopTracks({ limit: 10 });
         setTracks(data.body.items);
-        console.log('CALL IN TOP TRACKS');
+        // console.log('CALL IN TOP TRACKS');
         let temp: any = new Set();
         tracks
           .filter((artist: any) => {
@@ -76,6 +73,7 @@ const Main: React.FC = (): JSX.Element => {
     }
   }, [session, spotifyApi]);
 
+  //Try https://css-tricks.com/pure-css-horizontal-scrolling/
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');
     slider!.scrollLeft -= 500;
@@ -105,7 +103,7 @@ const Main: React.FC = (): JSX.Element => {
                 tracks.map((track: any) => (
                   <div className="flex flex-col" key={track.id}>
                     <img
-                      className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
+                      className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem] "
                       src={track?.album?.images[0]?.url}
                       alt={track?.name}
                     />
@@ -125,7 +123,9 @@ const Main: React.FC = (): JSX.Element => {
           <Loading />
         )}
       </section>
-      <section>{isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <></>}</section>
+      <section>
+        {isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <>Placeholder grids</>}
+      </section>
     </>
   );
 };

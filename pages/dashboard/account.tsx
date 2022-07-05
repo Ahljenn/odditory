@@ -15,7 +15,7 @@ const Account: React.FC = (): JSX.Element => {
           alt="User Image"
         />
         <div className="flex gap-5 bg-slate-600 p-8 rounded-xl flex-col items-center sm:flex-row">
-          <img className="object-contain w-20 h-20" src={'/white-spotify.png'} />
+          <img className="object-contain w-20 h-20" src={'/white-spotify.png'} alt="Spotify" />
           <div>
             <h1 className="inline font-bold">Account type: </h1>
             <h1 className="inline text-cyan-100 text-sm sm:text-lg">Spotify</h1>
