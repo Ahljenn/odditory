@@ -2,7 +2,6 @@
 import NextAuth from 'next-auth/next';
 import SpotifyProvider from 'next-auth/providers/spotify';
 import spotifyApi, { LOGIN_URL } from '../../../lib/spotify';
-import { signOut } from 'next-auth/react';
 
 const refreshAccessToken = async (token) => {
   try {
@@ -20,7 +19,7 @@ const refreshAccessToken = async (token) => {
       refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
     };
   } catch (error) {
-    console.error(error);
+    console.error('Error in refreshing token:', error);
 
     return {
       ...token,
@@ -63,7 +62,6 @@ export default NextAuth({
 
       //If access token has expired, refresh token
       console.log('Access token has expired, refreshing token...');
-      signOut();
       return await refreshAccessToken(token);
     },
 

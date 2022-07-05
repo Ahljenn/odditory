@@ -5,38 +5,51 @@ import Loading from './Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 //Try https://css-tricks.com/pure-css-horizontal-scrolling/
 
-interface Props {}
-
-interface Seeds {
+interface SessionData {
+  spotifyApi: any;
   seed: Array<string>;
 }
 
-const Recs: React.FC<Seeds> = ({ seed }: Seeds): JSX.Element => {
-  const spotifyApi = useSpotify();
-  const { data: session, status } = useSession();
+//Try in a separate component / page
+const Recs: React.FC<SessionData> = ({ spotifyApi, seed }: SessionData): JSX.Element => {
   const [recs, setRecs] = useState<any[]>([]);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      spotifyApi
-        .getRecommendations({
+      (async () => {
+        const data = await spotifyApi.getRecommendations({
           seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
           seed_genres: ['pop'],
           seed_tracks: [seed[0]],
-        })
-        .then((data: any) => {
-          setRecs(data.body.tracks);
-          console.log('CALL IN RECS');
         });
+        setRecs(data.body.tracks);
+        console.log('CALL IN RECS');
+      })();
     }
   }, []);
 
-  console.log(recs);
+  // console.log(recs);
 
-  return <>test</>;
+  return (
+    <section>
+      {recs &&
+        recs.map((track: any) => (
+          <div className="" key={track.id}>
+            <img
+              src={track.album.images[0].url}
+              className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem]"
+            />
+            <div className="flex flex-col justify-center">
+              <h1 className="">{track.name}</h1>
+              <h2 className="">{track.artists[0].name}</h2>
+            </div>
+          </div>
+        ))}
+    </section>
+  );
 };
 
-const Main: React.FC<Props> = (props: Props): JSX.Element => {
+const Main: React.FC = (): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [tracks, setTracks] = useState<any[]>([]);
@@ -45,11 +58,10 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      spotifyApi.getMyTopTracks().then((data: any) => {
+      (async () => {
+        const data = await spotifyApi.getMyTopTracks({ limit: 50 });
         setTracks(data.body.items);
         console.log('CALL IN TOP TRACKS');
-        setLoaded(true);
-
         let temp: any = new Set();
         tracks
           .filter((artist: any) => {
@@ -59,36 +71,10 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
             temp.add(artist.artists[0].id);
           });
         setSeed(Array.from(temp));
-      });
+        setLoaded(true);
+      })();
     }
-  }, [session, spotifyApi, isLoaded]);
-
-  // useEffect(() => {
-  //   if (spotifyApi.getAccessToken()) {
-  //     let seed: any = new Set();
-  //     tracks
-  //       .filter((artist: any) => {
-  //         return artist.artists.length > 0;
-  //       })
-  //       .map((artist: any) => {
-  //         seed.add(artist.artists[0].id);
-  //       });
-  //     seed = Array.from(seed);
-
-  //     spotifyApi
-  //       .getRecommendations({
-  //         seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
-  //         seed_genres: ['pop'],
-  //         seed_tracks: [seed[0]],
-  //       })
-  //       .then((data: any) => {
-  //         console.log('CALL IN RECS');
-  //         setRecs(data.body.tracks);
-  //       });
-  //   }
-  // }, [tracks]);
-
-  // console.log('RECS:', recs);
+  }, [session, spotifyApi]);
 
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');
@@ -139,7 +125,7 @@ const Main: React.FC<Props> = (props: Props): JSX.Element => {
           <Loading />
         )}
       </section>
-      <section>{isLoaded && tracks ? <Recs seed={seed} /> : <Loading />}</section>
+      <section>{isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <></>}</section>
     </>
   );
 };
