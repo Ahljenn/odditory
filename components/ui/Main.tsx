@@ -28,24 +28,40 @@ const Recs: React.FC<SessionData> = ({ spotifyApi, seed }: SessionData): JSX.Ele
   }, [spotifyApi]);
 
   return (
-    <section className="grid grid-cols-3 gap-4 sm:grid-cols-4 max-w-screen-2xl justify-center">
+    <section className="mt-5 grid grid-cols-3 gap-4 sm:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
       {recs &&
         recs.map((track: any, index: number) => (
           <div
-            className={index === 4 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
-            key={track.id}
+            className={index === 4 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
+            key={index}
           >
             <img
               src={track.album.images[0].url}
               className={
-                index === 4
-                  ? 'cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[50.5rem] 2xl:w-[60rem]'
-                  : 'cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem] 2xl:w-[35rem]'
+                index === 4 || index == 15
+                  ? 'track-primary sm:w-[50.5rem] 2xl:w-[60rem]'
+                  : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem]'
               }
             />
             <div className="flex flex-col justify-center">
-              <h1 className="text-center">{track.name}</h1>
-              <h2 className="text-center font-bold">{track.artists[0].name}</h2>
+              <h1
+                className={
+                  index === 4 || index === 15
+                    ? 'text-center text-2xl whitespace-nowrap truncate'
+                    : 'text-center whitespace-nowrap truncate'
+                }
+              >
+                {track.name}
+              </h1>
+              <h2
+                className={
+                  index === 4 || index === 15
+                    ? 'text-center font-bold text-2xl whitespace-nowrap'
+                    : 'text-center font-bold whitespace-nowrap'
+                }
+              >
+                {track.artists[0].name}
+              </h2>
             </div>
           </div>
         ))}
@@ -93,7 +109,7 @@ const Main: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <h1 className="absolute left-0 right-0 text-center text-xl italic">MY TOP TRACKS</h1>
+      {/* <h1 className="absolute left-0 right-0 text-center text-xl italic">MY TOP TRACKS</h1> */}
       <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] h-80 padding-8 w-full">
         {isLoaded ? (
           <div className="w-full flex flex-row justify-center">
@@ -131,7 +147,7 @@ const Main: React.FC = (): JSX.Element => {
         )}
       </section>
       <section className="flex justify-center">
-        {isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <>Placeholder grids</>}
+        {isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <Loading />}
       </section>
     </>
   );
