@@ -21,8 +21,6 @@ const Collections: React.FC = (): JSX.Element => {
     }
   }, [session, spotifyApi, isLoaded]);
 
-  // console.log(playlists);
-
   const slideLeft = (): void => {
     const slider = document.getElementById('slider');
     slider!.scrollLeft -= 500;
@@ -38,7 +36,7 @@ const Collections: React.FC = (): JSX.Element => {
       <SubpageHeader pageName="COLLECTIONS" />
       <section className="flex bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         {isLoaded ? (
-          <div className="w-full flex flex-row justify-center">
+          <div className="w-full flex flex-row">
             <ChevronLeftIcon
               className="cursor-pointer opacity-50 hover:opacity-100"
               width={120}
