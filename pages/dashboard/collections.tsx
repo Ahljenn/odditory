@@ -38,7 +38,7 @@ const Collections: React.FC = (): JSX.Element => {
       <SubpageHeader pageName="COLLECTIONS" />
       <section className="flex bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         {isLoaded ? (
-          <div className="w-full flex flex-row">
+          <div className="w-full flex flex-row justify-center">
             <ChevronLeftIcon
               className="cursor-pointer opacity-50 hover:opacity-100"
               width={120}

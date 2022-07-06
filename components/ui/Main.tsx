@@ -28,13 +28,20 @@ const Recs: React.FC<SessionData> = ({ spotifyApi, seed }: SessionData): JSX.Ele
   }, [spotifyApi]);
 
   return (
-    <section className="grid grid-cols-3 gap-4 sm:grid-cols-5">
+    <section className="grid grid-cols-3 gap-4 sm:grid-cols-4 max-w-screen-2xl justify-center">
       {recs &&
-        recs.map((track: any) => (
-          <div className="" key={track.id}>
+        recs.map((track: any, index: number) => (
+          <div
+            className={index === 4 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
+            key={track.id}
+          >
             <img
               src={track.album.images[0].url}
-              className="cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem] 2xl:w-[35rem]"
+              className={
+                index === 4
+                  ? 'cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[50.5rem] 2xl:w-[60rem]'
+                  : 'cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[15rem] sm:w-[25.5rem] 2xl:w-[35rem]'
+              }
             />
             <div className="flex flex-col justify-center">
               <h1 className="text-center">{track.name}</h1>
@@ -89,7 +96,7 @@ const Main: React.FC = (): JSX.Element => {
       <h1 className="absolute left-0 right-0 text-center text-xl italic">MY TOP TRACKS</h1>
       <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] h-80 padding-8 w-full">
         {isLoaded ? (
-          <div className="w-full flex flex-row">
+          <div className="w-full flex flex-row justify-center">
             <ChevronLeftIcon
               className="cursor-pointer opacity-50 hover:opacity-100"
               width={120}
@@ -123,7 +130,7 @@ const Main: React.FC = (): JSX.Element => {
           <Loading />
         )}
       </section>
-      <section>
+      <section className="flex justify-center">
         {isLoaded ? <Recs spotifyApi={spotifyApi} seed={seed} /> : <>Placeholder grids</>}
       </section>
     </>
