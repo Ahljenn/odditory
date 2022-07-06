@@ -40,13 +40,13 @@ const Header: React.FC<Props> = ({}: Props): JSX.Element => {
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
       <div className="flex items-center flex-grow justify-evenly max-w-2xl">
-        <Badge Icon={HomeIcon} title="HOME" />
-        <Badge Icon={FireIcon} title="TRENDING" update={handleTrending} />
-        <Badge Icon={StarIcon} title="FAVORITES" update={handleFavorites} />
-        <Badge Icon={CollectionIcon} title="COLLECTIONS" update={handleCollection} />
-        <Badge Icon={SearchIcon} title="SEARCH" />
-        <Badge Icon={UserIcon} title="ACCOUNT" update={handleAccount} />
-        <Badge Icon={LogoutIcon} title="LOG OUT" update={handleSignOut} />
+        <Badge Icon={HomeIcon} title="Home" />
+        <Badge Icon={FireIcon} title="Trending" update={handleTrending} />
+        <Badge Icon={StarIcon} title="Favorites" update={handleFavorites} />
+        <Badge Icon={CollectionIcon} title="Collections" update={handleCollection} />
+        <Badge Icon={SearchIcon} title="Search" />
+        <Badge Icon={UserIcon} title="Account" update={handleAccount} />
+        <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
       </div>
 
       <Image

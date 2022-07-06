@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import useSpotify from '../hooks/useSpotify';
 import Loading from './Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import Playlist from './Playlist';
 
 interface SessionData {
   spotifyApi: any;
@@ -22,7 +21,7 @@ const Recs: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element =
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
-        const tracks = await spotifyApi.getMyTopTracks({ limit: 10 });
+        const tracks = await spotifyApi.getMyTopTracks({ limit: 10 }); //Get top tracks
         let temp: any = new Set();
         tracks.body.items
           .filter((artist: any) => {
@@ -31,12 +30,15 @@ const Recs: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element =
           .map((artist: any) => {
             temp.add(artist.artists[0].id);
           });
+        //Filter duplicate artists, convert to array
         let seed = Array.from(temp);
 
+        //Get recommendation based on your top seed tracks
         const data = await spotifyApi.getRecommendations({
           seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
           seed_genres: ['pop'],
           seed_tracks: [seed[0]],
+          limit: 22,
         });
         setRecs(data.body.tracks);
         setLoaded(true);
@@ -45,26 +47,26 @@ const Recs: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element =
   }, [spotifyApi]);
 
   return (
-    <section className="mt-5 grid grid-cols-3 gap-4 sm:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
+    <section className="mt-5 mx-5 grid grid-cols-3 gap-4 sm:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
       {isLoaded
         ? recs.map((track: any, index: number) => (
             <div
-              className={index === 4 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
+              className={index === 0 || index == 11 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
               key={index}
             >
               <img
                 src={track.album.images[0].url}
                 className={
-                  index === 4 || index == 15
-                    ? 'track-primary sm:w-[50.5rem] 2xl:w-[60rem]'
+                  index === 0 || index == 11
+                    ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%]'
                     : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem]'
                 }
               />
               <div className="flex flex-col justify-center">
                 <h1
                   className={
-                    index === 4 || index === 15
-                      ? 'text-center text-2xl whitespace-nowrap truncate'
+                    index === 0 || index === 15
+                      ? 'text-center 2xl:text-2xl whitespace-nowrap truncate'
                       : 'text-center whitespace-nowrap truncate'
                   }
                 >
@@ -72,8 +74,8 @@ const Recs: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element =
                 </h1>
                 <h2
                   className={
-                    index === 4 || index === 15
-                      ? 'text-center font-bold text-2xl whitespace-nowrap'
+                    index === 0 || index === 15
+                      ? 'text-center font-bold 2xl:text-2xl whitespace-nowrap'
                       : 'text-center font-bold whitespace-nowrap'
                   }
                 >
@@ -84,14 +86,14 @@ const Recs: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element =
           ))
         : tempGrid.map((temp, index) => (
             <div
-              className={index === 4 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
+              className={index === 0 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
               key={index}
             >
               <img
                 src="./logo.png"
                 className={
-                  index === 4 || index == 15
-                    ? 'track-primary sm:w-[50.5rem] 2xl:w-[60rem] opacity-5'
+                  index === 0 || index == 15
+                    ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%] opacity-5'
                     : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem] opacity-5'
                 }
               />
@@ -168,10 +170,22 @@ const Main: React.FC = (): JSX.Element => {
           <Loading />
         )}
       </section>
-      <section className="flex justify-center">
-        {isLoaded ? <Recs spotifyApi={spotifyApi} /> : <></>}
+      <section className="flex flex-col items-center">
+        {isLoaded ? (
+          <>
+            <h1 className="text-2xl m-5 self-center">Tracks For You</h1>
+            <Recs spotifyApi={spotifyApi} />
+            <h1 className="text-2xl m-5 self-center">Keep Listening</h1>
+            <section>Placeholder</section>
+            <h1 className="text-2xl m-5 self-center">Because You Listen To: [User Top Artist] </h1>
+            <section>Placeholder</section>
+            <h1 className="text-2xl m-5 self-center">New Releases</h1>
+            <section>Placeholder</section>
+          </>
+        ) : (
+          <></>
+        )}
       </section>
-      <Playlist />
     </>
   );
 };
