@@ -10,14 +10,12 @@ import {
   UserIcon,
   LogoutIcon,
 } from '@heroicons/react/outline';
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import Router from 'next/router';
 
 interface Props {}
 
 const Header: React.FC<Props> = ({}: Props): JSX.Element => {
-  const { data: session, status } = useSession();
-
   const handleSignOut = (): void => {
     console.log('Logged out of Hilofy');
     signOut();

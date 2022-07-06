@@ -9,7 +9,6 @@ interface SessionData {
   seed: Array<string>;
 }
 
-//Try in a separate component / page
 const Recs: React.FC<SessionData> = ({ spotifyApi, seed }: SessionData): JSX.Element => {
   const [recs, setRecs] = useState<any[]>([]);
 
