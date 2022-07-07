@@ -52,17 +52,18 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Elem
             >
               <img
                 src={track.album.images[0].url}
+                alt={track.name}
                 className={
                   index === 0 || index == 11
-                    ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%]'
-                    : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem]'
+                    ? 'track-primary sm:w-[50.5rem] xl:w-full xl:h-[94%]'
+                    : 'track-primary sm:w-[25.5rem] xl:w-[35rem]'
                 }
               />
               <div className="flex flex-col justify-center">
                 <h1
                   className={
                     index === 0 || index === 15
-                      ? 'text-center 2xl:text-2xl whitespace-nowrap truncate'
+                      ? 'text-center xl:text-2xl whitespace-nowrap truncate'
                       : 'text-center whitespace-nowrap truncate'
                   }
                 >
@@ -87,6 +88,7 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Elem
             >
               <img
                 src="./logo.png"
+                alt="loading"
                 className={
                   index === 0 || index == 15
                     ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%] opacity-5'

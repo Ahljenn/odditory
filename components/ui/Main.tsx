@@ -13,7 +13,7 @@ const Main: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
-        const data = await spotifyApi.getMyTopTracks({ limit: 10 });
+        const data = await spotifyApi.getMyTopTracks({ limit: 12 });
         setTracks(data.body.items);
         setLoaded(true);
       })();
