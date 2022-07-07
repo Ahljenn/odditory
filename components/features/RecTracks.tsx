@@ -32,8 +32,7 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Elem
         //Get recommendation based on your top seed tracks
         const data = await spotifyApi.getRecommendations({
           seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
-          seed_genres: ['pop'],
-          seed_tracks: [seed[0]],
+          seed_tracks: [seed[0], seed[seed.length - 1]],
           limit: 22,
         });
         setRecs(data.body.tracks);
