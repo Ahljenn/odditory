@@ -19,7 +19,7 @@ const TopTracks: React.FC<TrackData> = ({ tracks, isLoaded }: TrackData): JSX.El
   };
 
   return (
-    <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] xl:h-80 padding-8 w-full ">
+    <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full ">
       {isLoaded ? (
         <div className="w-full flex flex-row justify-center ">
           <ChevronLeftIcon

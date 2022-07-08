@@ -17,26 +17,30 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Elem
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
-        const tracks = await spotifyApi.getMyTopTracks({ limit: 10 }); //Get top tracks
-        let temp: any = new Set();
-        tracks.body.items
-          .filter((artist: any) => {
-            return artist.artists.length > 0;
-          })
-          .map((artist: any) => {
-            temp.add(artist.artists[0].id);
-          });
-        //Filter duplicate artists, convert to array
-        let seed = Array.from(temp);
+        try {
+          const tracks = await spotifyApi.getMyTopTracks({ limit: 10 }); //Get top tracks
+          let temp: any = new Set();
+          tracks.body.items
+            .filter((artist: any) => {
+              return artist.artists.length > 0;
+            })
+            .map((artist: any) => {
+              temp.add(artist.artists[0].id);
+            });
+          //Filter duplicate artists, convert to array
+          let seed = Array.from(temp);
 
-        //Get recommendation based on your top seed tracks
-        const data = await spotifyApi.getRecommendations({
-          seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
-          seed_tracks: [seed[0], seed[seed.length - 1]],
-          limit: 22,
-        });
-        setRecs(data.body.tracks);
-        setLoaded(true);
+          //Get recommendation based on your top seed tracks
+          const data = await spotifyApi.getRecommendations({
+            seed_artists: [seed[0], seed[Math.floor(seed.length / 2)], seed[seed.length - 1]],
+            seed_tracks: [seed[0], seed[seed.length - 1]],
+            limit: 22,
+          });
+          setRecs(data.body.tracks);
+          setLoaded(true);
+        } catch (error) {
+          console.log(error);
+        }
       })();
     }
   }, [spotifyApi]);
