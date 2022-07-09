@@ -7,12 +7,12 @@ interface SessionData {
 
 /**
  * This component is used to display the recommended tracks for the user.
- * Relies on top tracks to be loaded in the state
+ * Relies on top tracks to be loaded in the state.
  */
 const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): JSX.Element => {
   /**
-   * @param {SessionData} - props passed in from the parent component
-   * @returns JSX.Element
+   * @param {SessionData} - props passed in from the parent component.
+   * @returns JSX.Element.
    */
   const [recs, setRecs] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState(false);

@@ -13,9 +13,15 @@ import {
 import { signOut } from 'next-auth/react';
 import Router from 'next/router';
 
-interface Props {}
-
-const Header: React.FC<Props> = ({}: Props): JSX.Element => {
+/**
+ * This component is the main header component seen on the dashboard.
+ * Render's the main header containing site logo.
+ * Defines the routes for each button.
+ */
+const Header: React.FC = (): JSX.Element => {
+  /**
+   * @returns JSX.Element - renders the header component.
+   */
   const handleSignOut = (): void => {
     console.log('Logged out of Hilofy');
     signOut();

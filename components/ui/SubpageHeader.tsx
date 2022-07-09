@@ -8,7 +8,15 @@ interface PageData {
   pageName: string;
 }
 
+/**
+ * This component is used in each subroute not in the dashboard.
+ * Displays the home badge, current page name, and site logo.
+ */
 const SubpageHeader: React.FC<PageData> = ({ pageName }: PageData): JSX.Element => {
+  /**
+   * @param {PageData} - Props passed containing the current page name as a string.
+   * @returns JSX.Element - renders the subpage header.
+   */
   const handleHome = (): void => {
     Router.push('/dashboard');
   };

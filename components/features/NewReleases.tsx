@@ -6,12 +6,12 @@ interface SessionData {
 
 /**
  * This component is used to display new releases for the user.
- * Uses the spotifyApi from the parent component
+ * Uses the spotifyApi from the parent component.
  */
 const NewReleases: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element => {
   /**
-   * @param {SessionData} - props passed in from the parent component containing spotifyApi interface
-   * @returns JSX.Element
+   * @param {SessionData} - props passed in from the parent component containing spotifyApi interface.
+   * @returns JSX.Element.
    */
   const [newTracks, setTracks] = useState<any[]>([]);
 

@@ -12,8 +12,8 @@ const spotifyApi = new SpotifyWebApi({
  */
 const useSpotify = (): any => {
   /**
-   * @returns {string} - the user's access token
-   * @returns any - spotifyApi interface
+   * @returns {string} - the user's access token.
+   * @returns any - spotifyApi interface.
    */
   const { data: session, status } = useSession();
 

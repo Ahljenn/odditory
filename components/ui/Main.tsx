@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
  */
 const Main: React.FC = (): JSX.Element => {
   /**
-   * @returns {JSX.Element} - renders the main component
+   * @returns JSX.Element - renders the main component.
    */
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
