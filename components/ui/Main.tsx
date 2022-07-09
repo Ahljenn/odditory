@@ -4,6 +4,7 @@ import TopTracks from '../features/TopTracks';
 import RecTracks from '../features/RecTracks';
 import NewReleases from '../features/NewReleases';
 import { useSession } from 'next-auth/react';
+import HilofyPicks from '../features/HilofyPicks';
 
 /**
  * This component is used to display the user's top tracks, recommended tracks, and new releases.
@@ -41,6 +42,7 @@ const Main: React.FC = (): JSX.Element => {
         <section className="flex flex-col items-center">
           <RecTracks spotifyApi={spotifyApi} tracks={tracks} />
           <NewReleases spotifyApi={spotifyApi} />
+          <HilofyPicks />
         </section>
       ) : (
         <></>
