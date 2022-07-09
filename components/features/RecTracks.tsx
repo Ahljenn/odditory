@@ -54,61 +54,68 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
   }, [spotifyApi]);
 
   return (
-    <section className="mt-5 mx-5 grid grid-cols-3 gap-4 sm:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
-      {isLoaded
-        ? recs.map((track: any, index: number) => (
-            <div
-              className={index === 0 || index == 11 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
-              key={index}
-            >
-              <img
-                src={track.album.images[0].url}
-                alt={track.name}
+    <>
+      <h1 className="text-2xl m-5 mb-0 self-center">Tracks For You</h1>
+      <section className="mt-5 mx-5 grid grid-cols-3 gap-4 sm:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
+        {isLoaded
+          ? recs.map((track: any, index: number) => (
+              <div
                 className={
-                  index === 0 || index == 11
-                    ? 'track-primary sm:w-[50.5rem] xl:w-full xl:h-[94%]'
-                    : 'track-primary sm:w-[25.5rem] xl:w-[35rem]'
+                  index === 0 || index == 11 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''
                 }
-              />
-              <div className="flex flex-col justify-center">
-                <h1
+                key={index}
+              >
+                <img
+                  src={track.album.images[0].url}
+                  alt={track.name}
                   className={
-                    index === 0 || index === 15
-                      ? 'text-center xl:text-2xl whitespace-nowrap truncate'
-                      : 'text-center whitespace-nowrap truncate'
+                    index === 0 || index == 11
+                      ? 'track-primary sm:w-[50.5rem] xl:w-full xl:h-[94%]'
+                      : 'track-primary sm:w-[25.5rem] xl:w-[35rem]'
                   }
-                >
-                  {track.name}
-                </h1>
-                <h2
-                  className={
-                    index === 0 || index === 15
-                      ? 'text-center font-bold 2xl:text-2xl whitespace-nowrap'
-                      : 'text-center font-bold whitespace-nowrap'
-                  }
-                >
-                  {track.artists[0].name}
-                </h2>
+                />
+                <div className="flex flex-col justify-center">
+                  <h1
+                    className={
+                      index === 0 || index === 15
+                        ? 'text-center xl:text-2xl whitespace-nowrap truncate'
+                        : 'text-center whitespace-nowrap truncate'
+                    }
+                  >
+                    {track.name}
+                  </h1>
+                  <h2
+                    className={
+                      index === 0 || index === 15
+                        ? 'text-center font-bold 2xl:text-2xl whitespace-nowrap'
+                        : 'text-center font-bold whitespace-nowrap'
+                    }
+                  >
+                    {track.artists[0].name}
+                  </h2>
+                </div>
               </div>
-            </div>
-          ))
-        : tempGrid.map((temp, index) => (
-            <div
-              className={index === 0 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
-              key={index}
-            >
-              <img
-                src="./logo.png"
-                alt="loading"
+            ))
+          : tempGrid.map((temp, index) => (
+              <div
                 className={
-                  index === 0 || index == 15
-                    ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%] opacity-5'
-                    : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem] opacity-5'
+                  index === 0 || index == 15 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''
                 }
-              />
-            </div>
-          ))}
-    </section>
+                key={index}
+              >
+                <img
+                  src="./logo.png"
+                  alt="loading"
+                  className={
+                    index === 0 || index == 15
+                      ? 'track-primary sm:w-[50.5rem] 2xl:w-full 2xl:h-[95.5%] opacity-5'
+                      : 'track-primary sm:w-[25.5rem] 2xl:w-[35rem] opacity-5'
+                  }
+                />
+              </div>
+            ))}
+      </section>
+    </>
   );
 };
 

@@ -39,9 +39,7 @@ const Main: React.FC = (): JSX.Element => {
       <TopTracks tracks={tracks} isLoaded={isLoaded} />
       {isLoaded ? (
         <section className="flex flex-col items-center">
-          <h1 className="text-2xl m-5 self-center">Tracks For You</h1>
           <RecTracks spotifyApi={spotifyApi} tracks={tracks} />
-          <h1 className="text-2xl m-5 self-center">New Releases</h1>
           <NewReleases spotifyApi={spotifyApi} />
         </section>
       ) : (
