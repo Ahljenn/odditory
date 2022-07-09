@@ -22,7 +22,7 @@ const Main: React.FC = (): JSX.Element => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
         try {
-          const data = await spotifyApi.getMyTopTracks({ limit: 12 });
+          const data = await spotifyApi.getMyTopTracks({ limit: 11 });
           setLoaded(true);
           setTracks(data.body.items);
         } catch (error) {
