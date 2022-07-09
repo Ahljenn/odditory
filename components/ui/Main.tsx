@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useSpotify from '../hooks/useSpotify';
 import TopTracks from '../features/TopTracks';
 import RecTracks from '../features/RecTracks';
-import RecentTracks from '../features/RecentTracks';
+import NewReleases from '../features/NewReleases';
 import { useSession } from 'next-auth/react';
 
 const Main: React.FC = (): JSX.Element => {
@@ -16,8 +16,8 @@ const Main: React.FC = (): JSX.Element => {
       (async () => {
         try {
           const data = await spotifyApi.getMyTopTracks({ limit: 12 });
-          setTracks(data.body.items);
           setLoaded(true);
+          setTracks(data.body.items);
         } catch (error) {
           console.log(error);
         }
@@ -25,7 +25,7 @@ const Main: React.FC = (): JSX.Element => {
     }
   }, [session, spotifyApi]);
 
-  console.log(tracks);
+  // console.log(tracks);
 
   return (
     <>
@@ -33,15 +33,9 @@ const Main: React.FC = (): JSX.Element => {
       {isLoaded ? (
         <section className="flex flex-col items-center">
           <h1 className="text-2xl m-5 self-center">Tracks For You</h1>
-          <RecTracks spotifyApi={spotifyApi} />
-          <h1 className="text-2xl m-5 self-center">Keep Listening</h1>
-          <RecentTracks spotifyApi={spotifyApi} />
-          <h1 className="text-2xl m-5 self-center">
-            Because You Listen To: {tracks[0].artists[0].name}{' '}
-          </h1>
-          <section>Placeholder</section>
+          <RecTracks spotifyApi={spotifyApi} tracks={tracks} />
           <h1 className="text-2xl m-5 self-center">New Releases</h1>
-          <section>Placeholder</section>
+          <NewReleases spotifyApi={spotifyApi} />
         </section>
       ) : (
         <></>

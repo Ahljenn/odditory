@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 interface SessionData {
   spotifyApi: any;
+  tracks: any[];
 }
 
-const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Element => {
+const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): JSX.Element => {
   const [recs, setRecs] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState(false);
   let tempGrid: Array<any> = new Array(20);
@@ -18,9 +19,8 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.Elem
     if (spotifyApi.getAccessToken()) {
       (async () => {
         try {
-          const tracks = await spotifyApi.getMyTopTracks({ limit: 10 }); //Get top tracks
           let temp: any = new Set();
-          tracks.body.items
+          tracks
             .filter((artist: any) => {
               return artist.artists.length > 0;
             })
