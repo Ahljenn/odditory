@@ -7,7 +7,14 @@ const spotifyApi = new SpotifyWebApi({
   clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
 });
 
+/**
+ * This hook is used to get the user's access token.
+ */
 const useSpotify = (): any => {
+  /**
+   * @returns {string} - the user's access token
+   * @returns any - spotifyApi interface
+   */
   const { data: session, status } = useSession();
 
   useEffect(() => {

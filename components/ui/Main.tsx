@@ -5,7 +5,14 @@ import RecTracks from '../features/RecTracks';
 import NewReleases from '../features/NewReleases';
 import { useSession } from 'next-auth/react';
 
+/**
+ * This component is used to display the user's top tracks, recommended tracks, and new releases.
+ * Top tracks is loaded first and is used to get the user's top seed tracks.
+ */
 const Main: React.FC = (): JSX.Element => {
+  /**
+   * @returns {JSX.Element} - renders the main component
+   */
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [tracks, setTracks] = useState<any[]>([]);

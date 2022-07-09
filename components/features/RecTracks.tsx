@@ -5,7 +5,15 @@ interface SessionData {
   tracks: any[];
 }
 
+/**
+ * This component is used to display the recommended tracks for the user.
+ * Relies on top tracks to be loaded in the state
+ */
 const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): JSX.Element => {
+  /**
+   * @param {SessionData} - props passed in from the parent component
+   * @returns JSX.Element
+   */
   const [recs, setRecs] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState(false);
   let tempGrid: Array<any> = new Array(20);

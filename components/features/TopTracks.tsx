@@ -7,7 +7,15 @@ interface TrackData {
   isLoaded: boolean;
 }
 
+/**
+ * This component is used to display the top tracks for the user.
+ * Relies on top tracks to be loaded in the state
+ */
 const TopTracks: React.FC<TrackData> = ({ tracks, isLoaded }: TrackData): JSX.Element => {
+  /**
+   * @param {TrackData} - props passed in from the parent component containing tracks and load state
+   * @returns JSX.Element
+   */
   const slideLeft = (): void => {
     const slider = document.getElementById('slider-top');
     slider!.scrollLeft -= 500;
