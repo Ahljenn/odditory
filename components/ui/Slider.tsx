@@ -52,9 +52,12 @@ const Slider: React.FC<SliderData> = ({ tracks, id, typeTrack }: SliderData): JS
                   }
                   alt={track?.name}
                 />
-                <p className="mt-5 text-center text-sm mb-10 w-[9rem] font-bold sm:w-[11.5rem] truncate">
+                <p className="mt-5 text-center text-sm w-[9rem] sm:w-[11.5rem] truncate">
                   {track.name}
                 </p>
+                <h2 className="text-center font-bold whitespace-nowrap mb-5">
+                  {track.artists[0].name}
+                </h2>
               </div>
             ))}
         </div>
