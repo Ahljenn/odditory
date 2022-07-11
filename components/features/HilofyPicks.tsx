@@ -3,16 +3,16 @@ import { ArrowCircleRightIcon } from '@heroicons/react/outline';
 
 const tempData: any[] = [
   {
-    img: 'https://i.scdn.co/image/ab67616d0000b273e06efb1191c9c4e1c072c668',
+    img: 'https://i.scdn.co/image/ab67616d00001e02e9fb616403542596d3ede300',
   },
   {
-    img: 'https://i.scdn.co/image/ab67616d0000b273e06efb1191c9c4e1c072c668',
+    img: 'https://i.scdn.co/image/ab67616d0000b2730f36079f1801980c665989b1',
   },
   {
-    img: 'https://i.scdn.co/image/ab67616d0000b273e06efb1191c9c4e1c072c668',
+    img: 'https://i.scdn.co/image/ab67616d0000b27318974569625e8449a5497ef3',
   },
   {
-    img: 'https://i.scdn.co/image/ab67616d0000b273e06efb1191c9c4e1c072c668',
+    img: 'https://i.scdn.co/image/ab67616d00001e02db7edd97763bd68d265f432e',
   },
 ];
 
