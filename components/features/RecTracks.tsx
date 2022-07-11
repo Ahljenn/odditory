@@ -87,8 +87,8 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
                   <h2
                     className={
                       index === 0 || index === 15
-                        ? 'text-center font-bold 2xl:text-2xl whitespace-nowrap'
-                        : 'text-center font-bold whitespace-nowrap'
+                        ? 'text-center font-bold 2xl:text-2xl whitespace-nowrap truncate'
+                        : 'text-center font-bold whitespace-nowrap truncate'
                     }
                   >
                     {track.artists[0].name}
