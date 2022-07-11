@@ -3,10 +3,9 @@ import Image from 'next/image';
 import Badge from './Badge';
 import {
   HomeIcon,
-  FireIcon,
-  StarIcon,
   CollectionIcon,
   SearchIcon,
+  LibraryIcon,
   UserIcon,
   LogoutIcon,
 } from '@heroicons/react/outline';
@@ -31,28 +30,33 @@ const Header: React.FC = (): JSX.Element => {
     Router.push('/dashboard/account');
   };
 
-  const handleCollection = (): void => {
-    Router.push('/dashboard/collections');
+  const handlePlaylists = (): void => {
+    Router.push('/dashboard/playlists');
   };
 
-  const handleFavorites = (): void => {
-    Router.push('/dashboard/favorites');
+  const handleGenre = (): void => {
+    Router.push('/dashboard/genre');
   };
 
-  const handleTrending = (): void => {
-    Router.push('/dashboard/trending');
-  };
+  // const handleFavorites = (): void => {
+  //   Router.push('/dashboard/favorites');
+  // };
+
+  // const handleTrending = (): void => {
+  //   Router.push('/dashboard/trending');
+  // };
 
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
       <div className="flex items-center flex-grow justify-evenly max-w-2xl">
         <Badge Icon={HomeIcon} title="Home" />
-        <Badge Icon={FireIcon} title="Trending" update={handleTrending} />
-        <Badge Icon={StarIcon} title="Favorites" update={handleFavorites} />
-        <Badge Icon={CollectionIcon} title="Collections" update={handleCollection} />
+        <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />
+        <Badge Icon={LibraryIcon} title="Playlists" update={handlePlaylists} />
         <Badge Icon={SearchIcon} title="Search" />
         <Badge Icon={UserIcon} title="Account" update={handleAccount} />
         <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
+        {/* <Badge Icon={FireIcon} title="Trending" update={handleTrending} />
+        <Badge Icon={StarIcon} title="Favorites" update={handleFavorites} /> */}
       </div>
 
       <Image
