@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useRouter } from 'next/router';
 import { genres } from '../../lib/genres';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 
@@ -25,6 +26,9 @@ const genre: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the genre component.
    */
+
+  const router = useRouter();
+
   return (
     <>
       <SubpageHeader pageName="Genre" />
@@ -37,6 +41,9 @@ const genre: React.FC = (): JSX.Element => {
       <section className="grid grid-cols-2 sm:grid-cols-3 gap-3 2xl:gap-5 mx-5">
         {genres.map((genre: string) => (
           <div
+            onClick={() => {
+              router.push({ pathname: '/dashboard/[genreResult]', query: { genre: genre } });
+            }}
             className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${
               colors[Math.floor(Math.random() * colors.length)]
             }`}
