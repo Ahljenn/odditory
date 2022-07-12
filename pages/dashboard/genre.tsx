@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { genres } from '../../lib/genres';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 
-interface Props {}
-
 //Note - add API to fetch random image from genre
+//Dynamic routing to genre page
 
 const colors: string[] = [
   'bg-slate-500',
@@ -18,12 +17,22 @@ const colors: string[] = [
   'bg-indigo-500',
 ];
 
-const genre: React.FC = (props: Props): JSX.Element => {
+/**
+ * This component renders all the genres with a search bar functionality.
+ * Colors are generated randomly upon each render.
+ */
+const genre: React.FC = (): JSX.Element => {
+  /**
+   * @returns JSX.Element - renders the genre component.
+   */
   return (
     <>
       <SubpageHeader pageName="Genre" />
-      <div className="flex justify-center mb-5">
-        <input placeholder="Search"></input>
+      <div className="flex justify-center gap-5 mb-5">
+        <input
+          className="bg-gray-200 border-2 text-2xl border-gray-200 rounded w-[35rem] py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-pink-500"
+          placeholder="Search By Genre"
+        ></input>
       </div>
       <section className="grid grid-cols-2 sm:grid-cols-3 gap-3 2xl:gap-5 mx-5">
         {genres.map((genre: string) => (
