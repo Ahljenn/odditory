@@ -7,7 +7,7 @@ const Account: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <SubpageHeader pageName="ACCOUNT" />
+      <SubpageHeader pageName="Account" />
       <section className="flex justify-center gap-5 flex-col items-center bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         <img
           className="mt-[10rem] h-[15rem] w-[14rem] rounded-full sm:h-[25rem] sm:w-[24rem] sm:mt-[20rem]"

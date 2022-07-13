@@ -33,7 +33,7 @@ const Collections: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <SubpageHeader pageName="COLLECTIONS" />
+      <SubpageHeader pageName="Playlists" />
       <section className="flex bg-gradient-to-b to-secondary from-primary xl:h-80 padding-8 w-full">
         {isLoaded ? (
           <div className="w-full flex flex-row">

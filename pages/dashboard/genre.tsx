@@ -42,7 +42,10 @@ const genre: React.FC = (): JSX.Element => {
         {genres.map((genre: string) => (
           <div
             onClick={() => {
-              router.push({ pathname: '/dashboard/[genreResult]', query: { genre: genre } });
+              router.push({
+                pathname: '/dashboard/[genreResult]',
+                query: { genreId: genre, genreTitle: genre[0].toUpperCase() + genre.slice(1) },
+              });
             }}
             className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${
               colors[Math.floor(Math.random() * colors.length)]

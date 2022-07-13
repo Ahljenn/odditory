@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { HomeIcon } from '@heroicons/react/outline';
 
 interface PageData {
-  pageName: string;
+  pageName: string | string[] | undefined;
 }
 
 /**
@@ -25,7 +25,7 @@ const SubpageHeader: React.FC<PageData> = ({ pageName }: PageData): JSX.Element 
     <header className="flex flex-col items-center sm:justify-around sm:flex-row">
       <Badge Icon={HomeIcon} title="HOME" update={handleHome} />
       <div className="flex flex-row items-center">
-        <h1 className="">{pageName}</h1>
+        <h1 className="text-2xl">{pageName}</h1>
         <Image
           className="object-contain hover:animate-pulse"
           src="/logo.png"
