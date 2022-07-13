@@ -47,14 +47,12 @@ const genreResult: React.FC = (): JSX.Element => {
   return (
     <>
       <SubpageHeader pageName={genreTitle} />
-      <h1> Genre: {genreTitle} </h1>
-      <h1> Id: {genreId} </h1>
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 2xl:grid-cols-6 xl:gap-7 max-w-screen-4xl justify-center">
         {isLoaded
           ? tracks.map((track: any, index: number) => (
               <div key={index}>
                 <img
-                  src={track.album.images[0].url}
+                  src={track.album.images[0]?.url}
                   alt={track.name}
                   className="track-primary sm:w-[25.5rem] xl:w-[35rem]"
                 />
