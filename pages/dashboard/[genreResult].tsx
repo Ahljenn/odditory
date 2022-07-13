@@ -17,21 +17,24 @@ const genreResult: React.FC = (): JSX.Element => {
   const { genreId, genreTitle } = router.query;
   const [tracks, setTracks] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState(false);
-  let tempGrid: Array<any> = new Array(20);
+  const LIMIT: number = 24;
+  let tempGrid: Array<any> = new Array(LIMIT);
 
   //Initialize array for temporary grid when loading recs
   for (let i = 0; i < tempGrid.length; i++) {
     tempGrid[i] = {};
   }
 
+  //Load the tracks for the genre
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
       (async () => {
         try {
           const data = await spotifyApi.getRecommendations({
             seed_genres: [genreId],
-            limit: 24,
+            limit: LIMIT,
           });
+
           setTracks(data.body.tracks);
           setLoaded(true);
         } catch (error) {
@@ -39,27 +42,36 @@ const genreResult: React.FC = (): JSX.Element => {
         }
       })();
     }
-  }, [spotifyApi]);
+  }, [spotifyApi, genreId]);
 
-  console.log(tracks);
-  console.log(genreId);
+  //Prompt user a refresh may cause data to be lost
+  useEffect(() => {
+    const unload = (event: any): string => {
+      event.preventDefault();
+      event.returnValue = '';
+      return '';
+    };
+
+    window.addEventListener('beforeunload', unload);
+    return () => window.removeEventListener('beforeunload', unload);
+  }, []);
 
   return (
     <>
       <SubpageHeader pageName={genreTitle} />
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 2xl:grid-cols-6 xl:gap-7 max-w-screen-4xl justify-center">
-        {isLoaded
+        {isLoaded && tracks
           ? tracks.map((track: any, index: number) => (
               <div key={index}>
                 <img
                   src={track.album.images[0]?.url}
-                  alt={track.name}
+                  alt={track?.name}
                   className="track-primary sm:w-[25.5rem] xl:w-[35rem]"
                 />
                 <div className="flex flex-col justify-center">
-                  <h1 className="text-center whitespace-nowrap truncate">{track.name}</h1>
+                  <h1 className="text-center whitespace-nowrap truncate">{track?.name}</h1>
                   <h2 className="text-center font-bold whitespace-nowrap truncate">
-                    {track.artists[0].name}
+                    {track.artists[0]?.name}
                   </h2>
                 </div>
               </div>
