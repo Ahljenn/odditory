@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 import useSpotify from '../../components/hooks/useSpotify';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 /**
  * This component renders the dynamic page depending on the user's genre selection.
@@ -12,7 +11,6 @@ const genreResult: React.FC = (): JSX.Element => {
    */
 
   const spotifyApi = useSpotify();
-  const { data: session, status } = useSession();
   const router = useRouter();
   const { genreId, genreTitle } = router.query;
   const [tracks, setTracks] = useState<any[]>([]);
@@ -42,7 +40,7 @@ const genreResult: React.FC = (): JSX.Element => {
         }
       })();
     }
-  }, [spotifyApi, genreId, session]);
+  }, [genreId]);
 
   //Prompt user a refresh may cause data to be lost
   useEffect(() => {
@@ -64,7 +62,7 @@ const genreResult: React.FC = (): JSX.Element => {
           ? tracks.map((track: any, index: number) => (
               <div key={index}>
                 <img
-                  src={track.album.images[0]?.url}
+                  src={track.album.images[0]?.url ?? '/logo.png'}
                   alt={track?.name}
                   className="track-primary sm:w-[25.5rem] xl:w-[35rem]"
                 />

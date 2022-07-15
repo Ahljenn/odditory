@@ -41,9 +41,9 @@ const playlistResult: React.FC = (): JSX.Element => {
           <h1 className="text-xl font-bold py-5 truncate">{playlistTitle}</h1>
         </div>
       </section>
-      <div>
+      <div className="flex justify-center flex-col">
         {tracks &&
-          tracks.map((track: any) => {
+          tracks.map((track: any, index: number) => {
             return (
               <div className="flex items-center gap-5 mb-5">
                 <img
@@ -51,7 +51,9 @@ const playlistResult: React.FC = (): JSX.Element => {
                   src={track.track.album.images[0].url}
                 />
                 <div className="flex flex-col">
-                  <h1 className="text-xl truncate">{track.track.name}</h1>
+                  <h1 className="text-xl truncate">
+                    {index + 1}. {track.track.name}
+                  </h1>
                   <h1 className="text-xl truncate">{track.track.artists[0].name}</h1>
                 </div>
               </div>
