@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 /**
  * This component renders the dynamic page depending on the user's playlist selection.
  */
-const playlistResult: React.FC = (): JSX.Element => {
+const PlaylistResult: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the playlist result component.
    */
@@ -66,4 +66,4 @@ const playlistResult: React.FC = (): JSX.Element => {
   );
 };
 
-export default playlistResult;
+export default PlaylistResult;

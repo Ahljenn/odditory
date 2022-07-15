@@ -22,7 +22,7 @@ const colors: string[] = [
  * This component renders all the genres with a search bar functionality.
  * Colors are generated randomly upon each render.
  */
-const genre: React.FC = (): JSX.Element => {
+const Genre: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the genre component.
    */
@@ -60,4 +60,4 @@ const genre: React.FC = (): JSX.Element => {
   );
 };
 
-export default genre;
+export default Genre;

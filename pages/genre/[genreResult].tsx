@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 /**
  * This component renders the dynamic page depending on the user's genre selection.
  */
-const genreResult: React.FC = (): JSX.Element => {
+const GenreResult: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the genre result component.
    */
@@ -88,4 +88,4 @@ const genreResult: React.FC = (): JSX.Element => {
   );
 };
 
-export default genreResult;
+export default GenreResult;

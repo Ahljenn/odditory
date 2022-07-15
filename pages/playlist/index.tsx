@@ -54,9 +54,9 @@ const Collections: React.FC = (): JSX.Element => {
                         Router.push({
                           pathname: '/playlist/[playlistResult]',
                           query: {
-                            playlistImg: playlist.images[0].url,
-                            playlistId: playlist.id,
-                            playlistTitle: playlist.name,
+                            playlistImg: playlist.images[0].url as string,
+                            playlistId: playlist.id as string,
+                            playlistTitle: playlist.name as string,
                           },
                         });
                       }}
