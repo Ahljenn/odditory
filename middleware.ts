@@ -1,16 +1,19 @@
-import { request } from 'http';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
 
 export const middleware = async (req: NextRequest): Promise<NextResponse | undefined> => {
   //Token exists if user is logged in
   const token = await getToken({ req, secret: process.env.JWT_SECRET });
   const { pathname, origin } = req.nextUrl; //Destructure pathname in request
 
-  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+  const containsProtectedPath = (): boolean => {
+    const paths = ['/dashboard', '/playlist', 'genre'];
+    return paths.some((path) => pathname.includes(path));
+  };
+
+  if (containsProtectedPath()) {
     //If requests for next-auth session or if token exists
-    if (pathname.includes('/api/auth') || token) {
+    if (pathname.includes('/api/auth') && token) {
       console.log('You are logged in.');
       return NextResponse.next(); //Allow request to continue
     }

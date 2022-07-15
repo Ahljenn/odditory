@@ -30,8 +30,6 @@ const playlistResult: React.FC = (): JSX.Element => {
     }
   }, [spotifyApi, playlistId, session]);
 
-  console.log('1', playlistImg, playlistId);
-
   return (
     <>
       <SubpageHeader pageName="Playlist" />
