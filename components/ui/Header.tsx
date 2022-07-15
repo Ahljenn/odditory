@@ -39,7 +39,7 @@ const Header: React.FC = (): JSX.Element => {
   };
 
   return (
-    <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
+    <header className="flex flex-col sm:flex-row m-5 justify-between items-center ">
       <div className="flex items-center flex-grow justify-evenly max-w-2xl">
         <Badge Icon={HomeIcon} title="Home" />
         <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />

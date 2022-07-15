@@ -66,8 +66,8 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
                 key={index}
               >
                 <img
-                  src={track.album.images[0].url}
-                  alt={track.name}
+                  src={track.album.images[0].url ?? './logo.png'}
+                  alt={track.name ?? 'Track'}
                   className={
                     index === 0 || index == 11
                       ? 'track-primary sm:w-[50.5rem] xl:w-full xl:h-[94%]'
@@ -91,7 +91,7 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
                         : 'text-center font-bold whitespace-nowrap truncate'
                     }
                   >
-                    {track.artists[0].name}
+                    {track.artists[0].name ?? 'Artist'}
                   </h2>
                 </div>
               </div>

@@ -29,7 +29,7 @@ const playlistResult: React.FC = (): JSX.Element => {
       })();
     }
   }, [spotifyApi, playlistId, session]);
-
+  //transition delay-1000 duration-1000 ease-in-out
   return (
     <>
       <SubpageHeader pageName="Playlist" />
@@ -39,15 +39,18 @@ const playlistResult: React.FC = (): JSX.Element => {
           <h1 className="text-xl font-bold py-5 truncate">{playlistTitle}</h1>
         </div>
       </section>
-      <div className="flex justify-center flex-col max-w-xl mx-auto">
+      <div className="flex justify-center flex-col max-w-2xl mx-auto mb-5">
         {tracks &&
           tracks.map((track: any, index: number) => {
             return (
-              <div className="flex items-center gap-5 mt-5" key={index}>
-                <img
-                  className="w-[5rem] bg-slate-600 rounded-lg p-1"
-                  src={track.track.album.images[0].url}
-                />
+              <div
+                className="cursor-pointer flex items-center gap-5 mt-5 rounded-lg p-3 bg-gradient-to-r 
+                hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500
+                transition ease-in-out delay-150
+              from-slate-600 via-slate-500 to-slate-500 duration-500"
+                key={index}
+              >
+                <img className="w-[5rem] 2xl:w-[7rem]" src={track.track.album.images[0].url} />
 
                 <div className="flex flex-col truncate">
                   <h1 className="text-xl truncate">

@@ -17,15 +17,22 @@ const Login = ({ providers }: any) => {
 
       {providers &&
         Object.values(providers).map((provider: any) => (
-          <div className="flex justify-center mt-10" key={provider.name}>
-            <button
-              className="bg-white p-4 rounded-full hover:scale-[0.9] font-semibold transition-transform duration-200"
-              onClick={() => {
-                signIn(provider.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
-              }}
-            >
-              <p className="text-black">Login with {provider.name}</p>
-            </button>
+          <div className="flex flex-col gap-[15rem] items-center mt-10" key={provider.name}>
+            <div>
+              <button
+                className="bg-white p-4 rounded-xl hover:scale-[0.9] transition-transform duration-200"
+                onClick={() => {
+                  signIn(provider.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
+                }}
+              >
+                <p className="text-black">Login with {provider.name}</p>
+              </button>
+            </div>
+            <div>
+              <button className="bg-slate-600 p-4 mb-10 rounded-xl hover:scale-[0.9] transition-transform duration-20 cursor-not-allowed">
+                <p className="text-white">Enter as Guest</p>
+              </button>
+            </div>
           </div>
         ))}
     </div>

@@ -81,41 +81,49 @@ const Collections: React.FC = (): JSX.Element => {
         )}
       </section>
       {isLoaded ? (
-        <div className="flex flex-row justify-center gap-5 mt-20 items-center text-right sm:text-xl">
-          <div>
-            <h1>
-              Total playlist count:{' '}
-              <b className="inline text-cyan-100">{playlists && playlists.length}</b>
-            </h1>
-            <h1>
-              Total playlists created:{' '}
-              <b className="inline text-cyan-100">
-                {playlists &&
-                  playlists
-                    .filter((playlist: any) => playlist.owner.display_name === session?.user?.name)
-                    .reduce((total: number) => total + 1, 0)}
-              </b>
-            </h1>
-            <h1>
-              Total number of tracks:{' '}
-              <b className="inline text-cyan-100">
-                {playlists &&
-                  playlists.reduce(
-                    (total: number, playlist: any) => total + playlist.tracks.total,
-                    0
-                  )}
-              </b>
-            </h1>
-          </div>
+        <div className="text-center">
+          <input
+            className="mt-5 bg-gray-200 border-2 sm:text-2xl border-gray-200 rounded w-[15rem] sm:w-[35rem] py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-pink-500"
+            placeholder="Search Playlist By Name"
+          />
+          <div className="flex flex-col sm:flex-row justify-center gap-5 my-5 items-center sm:text-right sm:text-2xl">
+            <div>
+              <h1>
+                <span>Total playlist count: </span>
+                <b className="inline text-cyan-100">{playlists && playlists.length}</b>
+              </h1>
+              <h1>
+                <span>Total playlist created: </span>
+                <b className="inline text-cyan-100">
+                  {playlists &&
+                    playlists
+                      .filter(
+                        (playlist: any) => playlist.owner.display_name === session?.user?.name
+                      )
+                      .reduce((total: number) => total + 1, 0)}
+                </b>
+              </h1>
+              <h1>
+                <span>Total number of tracks: </span>
+                <b className="inline text-cyan-100">
+                  {playlists &&
+                    playlists.reduce(
+                      (total: number, playlist: any) => total + playlist.tracks.total,
+                      0
+                    )}
+                </b>
+              </h1>
+            </div>
 
-          <button
-            className="w-[7rem] cursor-pointer hover:scale-[0.9] font-semibold transition-transform duration-300 bg-slate-600 rounded-xl p-2"
-            onClick={() => {
-              setLoaded(false);
-            }}
-          >
-            RESYNC
-          </button>
+            <button
+              className="w-[7rem] cursor-pointer hover:scale-[0.9] font-semibold transition-transform duration-300 bg-slate-600 rounded-xl p-2"
+              onClick={() => {
+                setLoaded(false);
+              }}
+            >
+              Resync
+            </button>
+          </div>
         </div>
       ) : (
         <h1 className="mt-5 text-center text-xl">Nothing loaded (yet)!</h1>
