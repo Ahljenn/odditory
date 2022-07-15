@@ -33,23 +33,23 @@ const playlistResult: React.FC = (): JSX.Element => {
   return (
     <>
       <SubpageHeader pageName="Playlist" />
-      <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full">
+      <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full ">
         <div className="flex flex-col items-center">
           <img className="w-[20rem] sm:w-[30rem] bg-slate-600 rounded-lg p-3" src={playlistImg} />
           <h1 className="text-xl font-bold py-5 truncate">{playlistTitle}</h1>
         </div>
       </section>
-      <div className="flex justify-center flex-col">
+      <div className="flex justify-center flex-col max-w-xl mx-auto">
         {tracks &&
           tracks.map((track: any, index: number) => {
             return (
-              <div className="flex items-center gap-5 mb-5" key={index}>
+              <div className="flex items-center gap-5 mt-5" key={index}>
                 <img
                   className="w-[5rem] bg-slate-600 rounded-lg p-1"
                   src={track.track.album.images[0].url}
                 />
 
-                <div className="flex flex-col">
+                <div className="flex flex-col truncate">
                   <h1 className="text-xl truncate">
                     {index + 1}. {track.track.name}
                   </h1>
