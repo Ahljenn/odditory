@@ -14,7 +14,7 @@ const Collections: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
-      spotifyApi.getUserPlaylists().then((data: any) => {
+      spotifyApi.getUserPlaylists({ limit: 50 }).then((data: any) => {
         setPlaylists(data.body.items);
         setLoaded(true);
       });
@@ -53,7 +53,11 @@ const Collections: React.FC = (): JSX.Element => {
                       onClick={(): void => {
                         Router.push({
                           pathname: '/playlist/[playlistResult]',
-                          query: { playlist: playlist },
+                          query: {
+                            playlistImg: playlist.images[0].url,
+                            playlistId: playlist.id,
+                            playlistTitle: playlist.name,
+                          },
                         });
                       }}
                       className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"

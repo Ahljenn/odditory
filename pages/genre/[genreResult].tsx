@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import SubpageHeader from '../../components/ui/SubpageHeader';
-import { useSession } from 'next-auth/react';
 import useSpotify from '../../components/hooks/useSpotify';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 /**
  * This component renders the dynamic page depending on the user's genre selection.
  */
