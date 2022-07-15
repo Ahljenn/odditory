@@ -43,11 +43,12 @@ const playlistResult: React.FC = (): JSX.Element => {
         {tracks &&
           tracks.map((track: any, index: number) => {
             return (
-              <div className="flex items-center gap-5 mb-5">
+              <div className="flex items-center gap-5 mb-5" key={index}>
                 <img
                   className="w-[5rem] bg-slate-600 rounded-lg p-1"
                   src={track.track.album.images[0].url}
                 />
+
                 <div className="flex flex-col">
                   <h1 className="text-xl truncate">
                     {index + 1}. {track.track.name}

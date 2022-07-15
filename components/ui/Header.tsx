@@ -47,8 +47,6 @@ const Header: React.FC = (): JSX.Element => {
         <Badge Icon={SearchIcon} title="Search" />
         <Badge Icon={UserIcon} title="Account" update={handleAccount} />
         <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
-        {/* <Badge Icon={FireIcon} title="Trending" update={handleTrending} />
-        <Badge Icon={StarIcon} title="Favorites" update={handleFavorites} /> */}
       </div>
 
       <Image
