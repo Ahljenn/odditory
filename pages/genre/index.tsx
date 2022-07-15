@@ -34,16 +34,16 @@ const genre: React.FC = (): JSX.Element => {
       <SubpageHeader pageName="Genre" />
       <div className="flex justify-center gap-5 mb-5">
         <input
-          className="bg-gray-200 border-2 text-2xl border-gray-200 rounded w-[35rem] py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-pink-500"
+          className="bg-gray-200 border-2 text-2xl border-gray-200 rounded w-[20rem] sm:w-[35rem] py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-pink-500"
           placeholder="Search By Genre"
         ></input>
       </div>
-      <section className="grid grid-cols-2 sm:grid-cols-3 gap-3 2xl:gap-5 mx-5">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:gap-5 mx-5 gap-3">
         {genres.map((genre: string) => (
           <div
             onClick={() => {
               router.push({
-                pathname: '/dashboard/[genreResult]',
+                pathname: '/genre/[genreResult]',
                 query: { genreId: genre, genreTitle: genre[0].toUpperCase() + genre.slice(1) },
               });
             }}

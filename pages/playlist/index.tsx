@@ -51,8 +51,10 @@ const Collections: React.FC = (): JSX.Element => {
                   <div className="flex flex-col" key={playlist.id}>
                     <img
                       onClick={(): void => {
-                        //For now... dynamic page later
-                        Router.push(playlist.external_urls.spotify);
+                        Router.push({
+                          pathname: '/playlist/[playlistResult]',
+                          query: { playlist: playlist },
+                        });
                       }}
                       className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
                       src={playlist.images[0].url}

@@ -42,7 +42,7 @@ const genreResult: React.FC = (): JSX.Element => {
         }
       })();
     }
-  }, [spotifyApi, genreId]);
+  }, [spotifyApi, genreId, session]);
 
   //Prompt user a refresh may cause data to be lost
   useEffect(() => {

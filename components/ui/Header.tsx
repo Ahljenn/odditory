@@ -31,20 +31,12 @@ const Header: React.FC = (): JSX.Element => {
   };
 
   const handlePlaylists = (): void => {
-    Router.push('/dashboard/playlists');
+    Router.push('/playlist');
   };
 
   const handleGenre = (): void => {
-    Router.push('/dashboard/genre');
+    Router.push('/genre');
   };
-
-  // const handleFavorites = (): void => {
-  //   Router.push('/dashboard/favorites');
-  // };
-
-  // const handleTrending = (): void => {
-  //   Router.push('/dashboard/trending');
-  // };
 
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center">
