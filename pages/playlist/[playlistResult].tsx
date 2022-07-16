@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 import useSpotify from '../../components/hooks/useSpotify';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
@@ -14,7 +15,7 @@ const PlaylistResult: React.FC = (): JSX.Element => {
   const router = useRouter();
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
-  const { playlistImg, playlistId, playlistTitle } = router.query;
+  const { playlistImg, playlistId, playlistTitle, playlistOwner } = router.query;
   const [tracks, setTracks] = useState<any[]>([]);
 
   useEffect(() => {
@@ -29,14 +30,24 @@ const PlaylistResult: React.FC = (): JSX.Element => {
       })();
     }
   }, [spotifyApi, playlistId, session]);
-  //transition delay-1000 duration-1000 ease-in-out
+
   return (
     <>
       <SubpageHeader pageName="Playlist" />
       <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full ">
         <div className="flex flex-col items-center">
-          <img className="w-[20rem] sm:w-[30rem] bg-slate-600 rounded-lg p-3" src={playlistImg} />
-          <h1 className="text-xl font-bold py-5 truncate">{playlistTitle}</h1>
+          <div className="relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]">
+            <Image
+              className="rounded-lg"
+              src={String(playlistImg)}
+              layout="fill"
+              objectFit="fill"
+              quality={100}
+            />
+          </div>
+
+          <h1 className="text-xl font-bold pt-5 truncate">{playlistTitle}</h1>
+          <h1 className="text-xl italic pb-5 truncate">{playlistOwner}</h1>
         </div>
       </section>
       <div className="flex justify-center flex-col max-w-2xl mx-auto mb-5">
@@ -50,8 +61,14 @@ const PlaylistResult: React.FC = (): JSX.Element => {
               from-slate-600 via-slate-500 to-slate-500 duration-500"
                 key={index}
               >
-                <img className="w-[5rem] 2xl:w-[7rem]" src={track.track.album.images[0].url} />
-
+                <div className="relative h-[5rem] w-[5rem] 2xl:w-[7rem] 2xl:h-[7rem]">
+                  <Image
+                    className="rounded-lg"
+                    src={track.track.album.images[0].url}
+                    layout="fill"
+                    objectFit="fill"
+                  />
+                </div>
                 <div className="flex flex-col truncate">
                   <h1 className="text-xl truncate">
                     {index + 1}. {track.track.name}

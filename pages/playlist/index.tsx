@@ -57,6 +57,7 @@ const Collections: React.FC = (): JSX.Element => {
                             playlistImg: playlist.images[0].url as string,
                             playlistId: playlist.id as string,
                             playlistTitle: playlist.name as string,
+                            playlistOwner: playlist.owner.display_name as string,
                           },
                         });
                       }}
