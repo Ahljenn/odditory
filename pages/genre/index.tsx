@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { genres } from '../../lib/genres';
 import SubpageHeader from '../../components/ui/SubpageHeader';
@@ -28,6 +28,7 @@ const Genre: React.FC = (): JSX.Element => {
    */
 
   const router = useRouter();
+  const [searchGenre, setSearchGenre] = useState<String>('');
 
   return (
     <>
