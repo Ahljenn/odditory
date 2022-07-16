@@ -6,18 +6,6 @@ import SubpageHeader from '../../components/ui/SubpageHeader';
 //Note - add API to fetch random image from genre
 //Dynamic routing to genre page
 
-const colors: string[] = [
-  'bg-slate-500',
-  'bg-blue-500',
-  'bg-green-500',
-  'bg-orange-500',
-  'bg-red-500',
-  'bg-purple-500',
-  'bg-pink-500',
-  'bg-teal-500',
-  'bg-indigo-500',
-];
-
 /**
  * This component renders all the genres with a search bar functionality.
  * Colors are generated randomly upon each render.
@@ -54,7 +42,7 @@ const Genre: React.FC = (): JSX.Element => {
             return (
               <div
                 className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${
-                  colors[Math.floor(Math.random() * colors.length)]
+                  genre.split('~')[1]
                 }`}
                 key={key}
                 onClick={() => {
@@ -64,7 +52,9 @@ const Genre: React.FC = (): JSX.Element => {
                   });
                 }}
               >
-                <p className="sm:text-2xl m-5">{genre[0].toUpperCase() + genre.slice(1)}</p>
+                <p className="sm:text-2xl m-5">
+                  {genre.split('~')[0][0].toUpperCase() + genre.split('~')[0].slice(1)}
+                </p>
               </div>
             );
           })}
