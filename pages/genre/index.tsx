@@ -39,6 +39,8 @@ const Genre: React.FC = (): JSX.Element => {
             }
           })
           .map((genre: string, key: number) => {
+            const genreName = genre.split('~')[0];
+
             return (
               <div
                 className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${
@@ -48,13 +50,14 @@ const Genre: React.FC = (): JSX.Element => {
                 onClick={() => {
                   router.push({
                     pathname: '/genre/[genreResult]',
-                    query: { genreId: genre, genreTitle: genre[0].toUpperCase() + genre.slice(1) },
+                    query: {
+                      genreId: genreName,
+                      genreTitle: genreName[0].toUpperCase() + genreName.slice(1),
+                    },
                   });
                 }}
               >
-                <p className="sm:text-2xl m-5">
-                  {genre.split('~')[0][0].toUpperCase() + genre.split('~')[0].slice(1)}
-                </p>
+                <p className="sm:text-2xl m-5">{genreName[0].toUpperCase() + genreName.slice(1)}</p>
               </div>
             );
           })}
