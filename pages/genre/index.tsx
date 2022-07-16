@@ -40,12 +40,10 @@ const Genre: React.FC = (): JSX.Element => {
           })
           .map((genre: string, key: number) => {
             const genreName = genre.split('~')[0];
-
+            let genreColor = genre.split('~')[1];
             return (
               <div
-                className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${
-                  genre.split('~')[1]
-                }`}
+                className={`cursor-pointer hover:bg-slate-300 hover:text-slate-600 rounded-xl align-start gap-1 h-60 ${genreColor}`}
                 key={key}
                 onClick={() => {
                   router.push({

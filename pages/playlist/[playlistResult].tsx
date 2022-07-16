@@ -31,6 +31,8 @@ const PlaylistResult: React.FC = (): JSX.Element => {
     }
   }, [spotifyApi, playlistId, session]);
 
+  console.log('1', playlistImg);
+
   return (
     <>
       <SubpageHeader pageName="Playlist" />
@@ -39,7 +41,7 @@ const PlaylistResult: React.FC = (): JSX.Element => {
           <div className="relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]">
             <Image
               className="rounded-lg"
-              src={String(playlistImg)}
+              src={playlistImg}
               layout="fill"
               objectFit="fill"
               quality={100}
