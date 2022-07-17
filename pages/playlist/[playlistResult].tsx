@@ -15,8 +15,9 @@ const PlaylistResult: React.FC = (): JSX.Element => {
   const router = useRouter();
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
-  const { playlistImg, playlistId, playlistTitle, playlistOwner } = router.query;
+  const { playlistId, playlistTitle, playlistOwner } = router.query;
   const [tracks, setTracks] = useState<any[]>([]);
+  const [cover, setCover] = useState('/logo.png');
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -28,20 +29,32 @@ const PlaylistResult: React.FC = (): JSX.Element => {
           console.log(error);
         }
       })();
+      (async () => {
+        try {
+          const data = await spotifyApi.getPlaylist(playlistId);
+          setCover(data.body.images[0].url);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
     }
   }, [spotifyApi, playlistId, session]);
-
-  console.log('1', playlistImg);
 
   return (
     <>
       <SubpageHeader pageName="Playlist" />
       <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full ">
         <div className="flex flex-col items-center">
-          <div className="relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]">
+          <div
+            className={
+              cover === '/logo.png'
+                ? 'animate-pulse relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem] bg-slate-700 rounded-lg'
+                : 'relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]'
+            }
+          >
             <Image
-              className="rounded-lg"
-              src={String(playlistImg) ?? '/logo.png'}
+              className={'rounded-lg'}
+              src={cover}
               layout="fill"
               objectFit="fill"
               quality={100}
@@ -59,8 +72,7 @@ const PlaylistResult: React.FC = (): JSX.Element => {
               <div
                 className="cursor-pointer flex items-center gap-5 mt-5 rounded-lg p-3 bg-gradient-to-r 
                 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500
-                transition ease-in-out delay-150
-              from-slate-600 via-slate-500 to-slate-500 duration-500"
+                from-slate-600 via-slate-500 to-slate-500"
                 key={index}
               >
                 <div className="relative h-[5rem] w-[5rem] 2xl:w-[7rem] 2xl:h-[7rem]">

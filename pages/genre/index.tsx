@@ -44,9 +44,9 @@ const Genre: React.FC = (): JSX.Element => {
 
             return (
               <div
-                className={`cursor-pointer bg-gradient-to-r 
+                className="cursor-pointer rounded-xl align-start gap-1 h-60 font-bold bg-gradient-to-r 
                 hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500
-               hover:text-slate-300 rounded-xl align-start gap-1 h-60 bg-slate-600`}
+                bg-slate-600"
                 key={key}
                 onClick={() => {
                   router.push({
