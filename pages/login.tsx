@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { getProviders, signIn } from 'next-auth/react';
+import Router from 'next/router';
 
 const Login = ({ providers }: any) => {
   return (
@@ -29,7 +30,12 @@ const Login = ({ providers }: any) => {
               </button>
             </div>
             <div>
-              <button className="bg-slate-600 p-4 mb-10 rounded-xl hover:scale-[0.9] transition-transform duration-20 cursor-not-allowed">
+              <button
+                className="bg-slate-600 p-4 mb-10 rounded-xl hover:scale-[0.9] transition-transform duration-20"
+                onClick={() => {
+                  Router.push('/guest');
+                }}
+              >
                 <p className="text-white">Enter as Guest</p>
               </button>
             </div>
