@@ -13,7 +13,7 @@ export const middleware = async (req: NextRequest): Promise<NextResponse | undef
 
   if (containsProtectedPath()) {
     //If requests for next-auth session or if token exists
-    if (pathname.includes('/api/auth') && token) {
+    if (pathname.includes('/api/auth') || token) {
       console.log('You are logged in.');
       return NextResponse.next(); //Allow request to continue
     }
