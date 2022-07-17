@@ -48,28 +48,38 @@ const Playlists: React.FC = (): JSX.Element => {
               className="pt-8 flex items-end whitespace-nowrap px-10 space-x-10 overflow-x-scroll scrollbar-hide scroll-smooth sm:px-15 sm:space-x-15 "
             >
               {playlists &&
-                playlists.map((playlist: any) => (
-                  <div className="flex flex-col" key={playlist.id}>
-                    <img
-                      onClick={(): void => {
-                        Router.push({
-                          pathname: '/playlist/[playlistResult]',
-                          query: {
-                            playlistId: playlist.id as string,
-                            playlistTitle: playlist.name as string,
-                            playlistOwner: playlist.owner.display_name as string,
-                          },
-                        });
-                      }}
-                      className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
-                      src={playlist.images[0].url}
-                      alt={playlist.name}
-                    />
-                    <p className="mt-5 text-center text-sm mb-10 w-[9rem] font-bold  sm:w-[11.5rem] truncate">
-                      {playlist.name}
-                    </p>
-                  </div>
-                ))}
+                playlists
+                  .filter((playlist: any) => {
+                    if (searchPlaylist === '') {
+                      return playlist;
+                    } else {
+                      return playlist.name.toLowerCase().includes(searchPlaylist.toLowerCase());
+                    }
+                  })
+                  .map((playlist: any, key: number) => {
+                    return (
+                      <div className="flex flex-col" key={playlist.id}>
+                        <img
+                          onClick={(): void => {
+                            Router.push({
+                              pathname: '/playlist/[playlistResult]',
+                              query: {
+                                playlistId: playlist.id as string,
+                                playlistTitle: playlist.name as string,
+                                playlistOwner: playlist.owner.display_name as string,
+                              },
+                            });
+                          }}
+                          className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
+                          src={playlist.images[0].url}
+                          alt={playlist.name}
+                        />
+                        <p className="mt-5 text-center text-sm mb-10 w-[9rem] font-bold  sm:w-[11.5rem] truncate">
+                          {playlist.name}
+                        </p>
+                      </div>
+                    );
+                  })}
             </div>
             <ChevronRightIcon
               className="cursor-pointer opacity-50 hover:opacity-100"
