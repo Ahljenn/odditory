@@ -16,7 +16,7 @@ const Genre: React.FC = (): JSX.Element => {
    */
 
   const router = useRouter();
-  const [searchGenre, setSearchGenre] = useState<String>('');
+  const [searchGenre, setSearchGenre] = useState<string>('');
 
   return (
     <>

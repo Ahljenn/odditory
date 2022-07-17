@@ -25,8 +25,9 @@ const LOGIN_URL: string = `https://accounts.spotify.com/authorize?${queryParamSt
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
   clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-  redirectUri: 'http://localhost:3000/auth/spotify/success',
 });
+
+//  redirectUri: 'http://localhost:3000/auth/spotify/success'
 
 export default spotifyApi;
 

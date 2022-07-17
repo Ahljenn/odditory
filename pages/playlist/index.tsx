@@ -6,11 +6,12 @@ import useSpotify from '../../components/hooks/useSpotify';
 import Loading from '../../components/ui/Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
-const Collections: React.FC = (): JSX.Element => {
+const Playlists: React.FC = (): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState<any[]>([]);
   const [isLoaded, setLoaded] = useState<boolean>(false);
+  const [searchPlaylist, setSearchPlaylist] = useState<string>('');
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
@@ -83,8 +84,10 @@ const Collections: React.FC = (): JSX.Element => {
       {isLoaded ? (
         <div className="text-center">
           <input
+            type="text"
             className="mt-5 bg-gray-200 border-2 sm:text-2xl border-gray-200 rounded w-[15rem] sm:w-[35rem] py-2 px-4 text-gray-700 focus:outline-none focus:bg-white focus:border-pink-500"
             placeholder="Search Playlist By Name"
+            onChange={(e) => setSearchPlaylist(e.target.value)}
           />
           <div className="flex flex-col sm:flex-row justify-center gap-5 my-5 items-center sm:text-right sm:text-2xl">
             <div>
@@ -132,4 +135,4 @@ const Collections: React.FC = (): JSX.Element => {
   );
 };
 
-export default Collections;
+export default Playlists;
