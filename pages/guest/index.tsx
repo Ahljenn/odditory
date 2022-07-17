@@ -1,4 +1,3 @@
-import { Main } from 'next/document';
 import Head from 'next/head';
 import React from 'react';
 import Header from '../../components/ui/Header';
