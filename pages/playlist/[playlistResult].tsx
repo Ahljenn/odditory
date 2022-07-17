@@ -41,7 +41,7 @@ const PlaylistResult: React.FC = (): JSX.Element => {
           <div className="relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]">
             <Image
               className="rounded-lg"
-              src={playlistImg}
+              src={String(playlistImg) ?? '/logo.png'}
               layout="fill"
               objectFit="fill"
               quality={100}
