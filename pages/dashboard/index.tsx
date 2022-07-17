@@ -10,7 +10,7 @@ const Dashboard: NextPage = (): JSX.Element => {
         <title>Hilofy</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Header />
+      <Header pageType="user" />
       <h1 className="text-2xl m-5 mb-0 text-center">Your Top Tracks</h1>
       <Main />
     </div>

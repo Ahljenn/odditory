@@ -8,6 +8,7 @@ import {
   LibraryIcon,
   UserIcon,
   LogoutIcon,
+  LoginIcon,
 } from '@heroicons/react/outline';
 import { signOut } from 'next-auth/react';
 import Router from 'next/router';
@@ -17,7 +18,11 @@ import Router from 'next/router';
  * Render's the main header containing site logo.
  * Defines the routes for each button.
  */
-const Header: React.FC = (): JSX.Element => {
+interface HeaderData {
+  pageType?: string;
+}
+
+const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => {
   /**
    * @returns JSX.Element - renders the header component.
    */
@@ -38,15 +43,33 @@ const Header: React.FC = (): JSX.Element => {
     Router.push('/genre');
   };
 
+  const handleSignIn = (): void => {
+    Router.push('/login');
+  };
+
   return (
     <header className="flex flex-col sm:flex-row m-5 justify-between items-center ">
       <div className="flex items-center flex-grow justify-evenly max-w-2xl">
-        <Badge Icon={HomeIcon} title="Home" />
-        <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />
-        <Badge Icon={LibraryIcon} title="Playlists" update={handlePlaylists} />
-        <Badge Icon={SearchIcon} title="Search" />
-        <Badge Icon={UserIcon} title="Account" update={handleAccount} />
-        <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
+        {pageType === 'guest' ? (
+          <>
+            <Badge Icon={HomeIcon} title="Home" />
+            <Badge Icon={CollectionIcon} title="Genre" />
+            <Badge Icon={LibraryIcon} title="Playlists" />
+            <Badge Icon={SearchIcon} title="Search" />
+            <Badge Icon={UserIcon} title="Account" />
+            <Badge Icon={LoginIcon} title="Log In" update={handleSignIn} />
+          </>
+        ) : (
+          <>
+            {' '}
+            <Badge Icon={HomeIcon} title="Home" />
+            <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />
+            <Badge Icon={LibraryIcon} title="Playlists" update={handlePlaylists} />
+            <Badge Icon={SearchIcon} title="Search" />
+            <Badge Icon={UserIcon} title="Account" update={handleAccount} />
+            <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
+          </>
+        )}
       </div>
 
       <Image
