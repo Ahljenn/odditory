@@ -1,5 +1,7 @@
 import React from 'react';
-import { staticRecTracks } from '../../lib/staticRecTracks';
+import Slider from './Slider';
+import { staticRecTracks } from '../static_data/staticRecTracks';
+import { staticNewReleases } from '../static_data/staticNewReleases';
 
 /**
  * This component is used to display the guest view
@@ -12,7 +14,7 @@ const GuestMain: React.FC = (): JSX.Element => {
   return (
     <>
       <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full ">
-        {/* <Slider tracks={staticRecTracks} id="top-tracks-slider-guest" typeTrack="rec-tracks" /> */}
+        <Slider tracks={staticNewReleases} id="top-slider-guest" typeTrack="new-release" />
       </section>
       <GuestRecs />
     </>

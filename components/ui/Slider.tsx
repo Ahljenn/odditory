@@ -28,6 +28,8 @@ const Slider: React.FC<SliderData> = ({ tracks, id, typeTrack }: SliderData): JS
     slider!.scrollLeft += 500;
   };
 
+  console.log(tracks);
+
   return (
     <>
       <div className="w-full flex flex-row justify-center ">
