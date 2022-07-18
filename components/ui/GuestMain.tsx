@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from './Slider';
 import { staticRecTracks } from '../static_data/staticRecTracks';
 import { staticNewReleases } from '../static_data/staticNewReleases';
+import HilofyPicks from '../features/HilofyPicks';
 
 /**
  * This component is used to display the guest view
@@ -31,7 +32,7 @@ const GuestRecs: React.FC = (): JSX.Element => {
    * @returns JSX.Element - renders the recommended tracks component.
    */
   return (
-    <>
+    <section className="flex flex-col items-center">
       <h1 className="text-2xl m-5 mb-0 text-center">Tracks For You</h1>
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
         {staticRecTracks.map((track: any, index: number) => (
@@ -71,6 +72,7 @@ const GuestRecs: React.FC = (): JSX.Element => {
           </div>
         ))}
       </section>
-    </>
+      <HilofyPicks />
+    </section>
   );
 };
