@@ -53,6 +53,8 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
     }
   }, [spotifyApi]);
 
+  console.log(recs);
+
   return (
     <>
       <h1 className="text-2xl m-5 mb-0 self-center">Tracks For You</h1>
