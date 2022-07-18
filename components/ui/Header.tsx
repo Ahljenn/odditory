@@ -53,15 +53,14 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
         {pageType === 'guest' ? (
           <>
             <Badge Icon={HomeIcon} title="Home" />
-            <Badge Icon={CollectionIcon} title="Genre" />
-            <Badge Icon={LibraryIcon} title="Playlists" />
-            <Badge Icon={SearchIcon} title="Search" />
-            <Badge Icon={UserIcon} title="Account" />
+            <Badge Icon={CollectionIcon} title="Genre" pointerType={'cursor-not-allowed'} />
+            <Badge Icon={LibraryIcon} title="Playlists" pointerType={'cursor-not-allowed'} />
+            <Badge Icon={SearchIcon} title="Search" pointerType={'cursor-not-allowed'} />
+            <Badge Icon={UserIcon} title="Account" pointerType={'cursor-not-allowed'} />
             <Badge Icon={LoginIcon} title="Log In" update={handleSignIn} />
           </>
         ) : (
           <>
-            {' '}
             <Badge Icon={HomeIcon} title="Home" />
             <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />
             <Badge Icon={LibraryIcon} title="Playlists" update={handlePlaylists} />
