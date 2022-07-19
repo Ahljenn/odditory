@@ -42,7 +42,7 @@ const NewReleases: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.El
   return (
     <>
       <h1 className="text-2xl m-5 mb-0 self-center">New Releases</h1>
-      <section className="flex bg-gradient-to-b to-secondary from-primary padding-8 w-full">
+      <section className="flex">
         <Slider tracks={newTracks} id="new-releases-slider" typeTrack="new-release" />
       </section>
     </>
