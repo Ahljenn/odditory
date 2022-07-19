@@ -51,7 +51,7 @@ const Login = ({ providers }: any) => {
         </div>
       </section>
 
-      <div className="flex flex-row justify-center items-center gap-5 mt-5">
+      <div className="flex flex-row justify-center items-center gap-5 mt-5 ">
         <a
           href="https://github.com/Ahljenn/Odditory/issues"
           rel="noopener noreferrer"
@@ -68,6 +68,8 @@ const Login = ({ providers }: any) => {
           />
         </a>
       </div>
+
+      <div className="absolute bottom-0 z-[-100] bg-gradient-to-b to-slate-700 from-primary padding-8 h-[20rem] w-full" />
     </>
   );
 };
