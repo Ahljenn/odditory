@@ -18,17 +18,28 @@ const Login = ({ providers }: any) => {
         <div className="bg-secondary p-10 rounded-xl">
           <h1 className="font-bold">Welcome!</h1>
           <div className="w-[12rem] sm:w-[20rem]">
-            <p className="w-full">
-              Hilofy is a simple music web app incorporating Spotify with a Hulu inspired interface.
+            <p className="w-full text-sm">
+              Hilofy is a simple music web app integrating Spotify data to help you discover new
+              music and analyze your listening patterns.
             </p>
           </div>
 
-          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
+          <div
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out"
+            onClick={() => {
+              signIn(providers.spotify.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
+            }}
+          >
             <img className="w-[1rem] h-[1rem]" src="/white-spotify.png" alt="Spotify" />
             <div>Login with Spotify</div>
           </div>
 
-          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
+          <div
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out"
+            onClick={() => {
+              Router.push('/guest');
+            }}
+          >
             <UserIcon className="w-[1rem] h-[1rem]" />
             <div>Continue as Guest</div>
           </div>
