@@ -4,6 +4,7 @@ import useSpotify from '../../components/hooks/useSpotify';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
 
 /**
  * This component renders the dynamic page depending on the user's playlist selection.
@@ -42,6 +43,10 @@ const PlaylistResult: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Head>
+        <title>Odditory | {playlistTitle}</title>
+        <link rel="icon" href="/logofav.png" />
+      </Head>
       <SubpageHeader pageName="Playlist" />
       <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full ">
         <div className="flex flex-col items-center">
