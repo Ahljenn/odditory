@@ -6,33 +6,53 @@ import Router from 'next/router';
 
 const Login = ({ providers }: any) => {
   return (
-    <section className="flex flex-col items-center">
-      <div className="flex flex-row items-center">
-        <div className="relative w-[5rem] h-[5rem]">
-          <Image src="/logo.png" alt="logo" layout="fill" objectFit="fill" quality={100} />
+    <>
+      <section className="flex flex-col items-center">
+        <div className="flex flex-row items-center">
+          <div className="relative w-[5rem] h-[5rem]">
+            <Image src="/logo.png" alt="logo" layout="fill" objectFit="fill" quality={100} />
+          </div>
+          <h1>Hilofy</h1>
         </div>
-        <h1>Hilofy</h1>
+
+        <div className="bg-secondary p-10 rounded-xl">
+          <h1 className="font-bold">Welcome!</h1>
+          <div className="w-[12rem] sm:w-[20rem]">
+            <p className="w-full">
+              Hilofy is a simple music web app incorporating Spotify with a Hulu inspired interface.
+            </p>
+          </div>
+
+          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
+            <img className="w-[1rem] h-[1rem]" src="/white-spotify.png" alt="Spotify" />
+            <div>Login with Spotify</div>
+          </div>
+
+          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
+            <UserIcon className="w-[1rem] h-[1rem]" />
+            <div>Continue as Guest</div>
+          </div>
+        </div>
+      </section>
+
+      <div className="flex flex-row justify-center items-center gap-5 mt-5">
+        <a
+          href="https://github.com/Ahljenn/Hilofy/issues"
+          rel="noopener noreferrer"
+          target="_blank"
+          className="text-sm cursor-pointer"
+        >
+          Report a bug
+        </a>
+        <a href="https://github.com/Ahljenn/Hilofy" rel="noopener noreferrer" target="_blank">
+          <img
+            className="w-[2rem] cursor-pointer opacity-[0.3] hover:opacity-[1]"
+            src="/github.png"
+            alt="Github"
+          />
+        </a>
       </div>
-
-      <div className="bg-secondary p-10 rounded-xl">
-        <h1 className="font-bold">Welcome!</h1>
-        <div className="w-[12rem] sm:w-[20rem]">
-          <p className="w-full">
-            Hilofy is a music web app incorporating Spotify with a Hulu-like interface.
-          </p>
-        </div>
-
-        <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition delay-100 duration-100 ease-in-out">
-          <img className="w-[1rem] h-[1rem]" src="/white-spotify.png" alt="Spotify" />
-          <div>Login with Spotify</div>
-        </div>
-
-        <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition delay-100 duration-100 ease-in-out">
-          <UserIcon className="w-[1rem] h-[1rem]" />
-          <div>Continue as Guest</div>
-        </div>
-      </div>
-    </section>
+    </>
   );
 };
 
@@ -40,7 +60,6 @@ export default Login;
 
 export const getServerSideProps = async () => {
   const providers = await getProviders();
-  // console.log('Providers list:', providers);
   return {
     props: {
       providers,
