@@ -11,6 +11,19 @@ import Head from 'next/head';
  * This component renders all the genres with a search bar functionality.
  * Colors are generated randomly upon each render.
  */
+
+const colors: string[] = [
+  'bg-rose-500',
+  'bg-blue-500',
+  'bg-green-500',
+  'bg-orange-500',
+  'bg-red-500',
+  'bg-purple-500',
+  'bg-pink-500',
+  'bg-teal-500',
+  'bg-indigo-500',
+];
+
 const Genre: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the genre component.
@@ -49,9 +62,8 @@ const Genre: React.FC = (): JSX.Element => {
 
             return (
               <div
-                className="cursor-pointer rounded-xl align-start gap-1 h-60 font-bold bg-gradient-to-r 
-                hover:from-indigo-500 hover:via-purple-500 hover:to-pink-500
-                bg-slate-600"
+                className={`cursor-pointer rounded-xl align-start gap-1 h-[12rem] font-bold hover:bg-slate-600
+                ${colors[Math.floor(Math.random() * colors.length)]}`}
                 key={key}
                 onClick={() => {
                   router.push({

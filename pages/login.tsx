@@ -30,7 +30,7 @@ const Login = ({ providers }: any) => {
           </div>
 
           <div
-            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out"
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-[#1DB954] transition duration-100 ease-in-out"
             onClick={() => {
               signIn(providers.spotify.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
             }}
@@ -40,7 +40,7 @@ const Login = ({ providers }: any) => {
           </div>
 
           <div
-            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out"
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-indigo-600 transition duration-100 ease-in-out"
             onClick={() => {
               Router.push('/guest');
             }}
