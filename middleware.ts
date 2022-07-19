@@ -33,6 +33,12 @@ export const middleware = async (req: NextRequest): Promise<NextResponse | undef
     }
   }
 
+  if (req.nextUrl.pathname.startsWith('/guest') && token) {
+    //If user is already logged in, take them to dashboard if they try to access guest page
+    console.log('You are already logged in, cannot access guest page');
+    return NextResponse.redirect(`${origin}/dashboard`);
+  }
+
   if (req.nextUrl.pathname === '/') {
     //If user attempts to access root page, redirect to dashboard (regardless of if they are logged in or not)
     console.log(pathname);
