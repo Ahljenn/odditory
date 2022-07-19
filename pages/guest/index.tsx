@@ -8,7 +8,7 @@ const GuestDashboard: React.FC = (): JSX.Element => {
     <div>
       <Head>
         <title>Odditory | Guest</title>
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/logofav.png" />
       </Head>
       <Header pageType="guest" />
       <h1 className="text-2xl m-5 mb-0 text-center">New Releases</h1>

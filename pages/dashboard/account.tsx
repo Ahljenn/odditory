@@ -1,12 +1,16 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
 import SubpageHeader from '../../components/ui/SubpageHeader';
+import Head from 'next/head';
 
 const Account: React.FC = (): JSX.Element => {
   const { data: session } = useSession();
 
   return (
     <>
+      <Head>
+        <title>Odditory | Account</title>
+      </Head>
       <SubpageHeader pageName="Account" />
       <section className="flex justify-center gap-5 flex-col items-center bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">
         <img
