@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from './Slider';
 import { staticRecTracks } from '../static_data/staticRecTracks';
 import { staticNewReleases } from '../static_data/staticNewReleases';
-import HilofyPicks from '../features/HilofyPicks';
+import OddPicks from '../features/OddPicks';
 
 /**
  * This component is used to display the guest view
@@ -72,7 +72,7 @@ const GuestRecs: React.FC = (): JSX.Element => {
           </div>
         ))}
       </section>
-      <HilofyPicks />
+      <OddPicks />
     </section>
   );
 };

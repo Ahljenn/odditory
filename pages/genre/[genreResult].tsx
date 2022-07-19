@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 import useSpotify from '../../components/hooks/useSpotify';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 /**
  * This component renders the dynamic page depending on the user's genre selection.
  */
@@ -56,6 +57,10 @@ const GenreResult: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Head>
+        <title>Odditory | {genreTitle}</title>
+        <link rel="icon" href="/logofav.png" />
+      </Head>
       <SubpageHeader pageName={genreTitle} />
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 2xl:grid-cols-6 xl:gap-7 max-w-screen-4xl justify-center">
         {isLoaded && tracks

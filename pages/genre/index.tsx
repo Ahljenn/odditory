@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { genres } from '../../lib/genres';
 import SubpageHeader from '../../components/ui/SubpageHeader';
+import Head from 'next/head';
 
 //Note - add API to fetch random image from genre
 //Dynamic routing to genre page
@@ -20,6 +21,10 @@ const Genre: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Head>
+        <title>Odditory | Genre</title>
+        <link rel="icon" href="/logofav.png" />
+      </Head>
       <SubpageHeader pageName="Genre" />
       <div className="flex justify-center gap-5 mb-5">
         <input

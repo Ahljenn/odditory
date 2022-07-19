@@ -7,8 +7,8 @@ const Dashboard: NextPage = (): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>Hilofy</title>
-        <link rel="icon" href="/logo.png" />
+        <title>Odditory | Dashboard</title>
+        <link rel="icon" href="/logofav.png" />
       </Head>
       <Header pageType="user" />
       <h1 className="text-2xl m-5 mb-0 text-center">Your Top Tracks</h1>

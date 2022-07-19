@@ -4,7 +4,7 @@ import TopTracks from '../features/TopTracks';
 import RecTracks from '../features/RecTracks';
 import NewReleases from '../features/NewReleases';
 import { useSession } from 'next-auth/react';
-import HilofyPicks from '../features/HilofyPicks';
+import HilofyPicks from '../features/OddPicks';
 
 /**
  * This component is used to display the user's top tracks, recommended tracks, and new releases.

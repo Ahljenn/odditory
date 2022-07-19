@@ -7,14 +7,12 @@ const GuestDashboard: React.FC = (): JSX.Element => {
   return (
     <div>
       <Head>
-        <title>Hilofy | Guest</title>
+        <title>Odditory | Guest</title>
         <link rel="icon" href="/logo.png" />
       </Head>
       <Header pageType="guest" />
       <h1 className="text-2xl m-5 mb-0 text-center">New Releases</h1>
       <GuestMain />
-      {/* <h1 className="text-2xl m-5 mb-0 text-center">Your Top Tracks</h1>
-      <Main /> */}
     </div>
   );
 };

@@ -27,7 +27,7 @@ const HilofyPicks: React.FC = (props: Props): JSX.Element => {
    */
   return (
     <>
-      <h1 className="text-2xl m-5 self-center">Hilofy Picks</h1>
+      <h1 className="text-2xl m-5 self-center">Odd Picks</h1>
       <section className="flex justify-center bg-gradient-to-b to-slate-700 from-primary padding-8 h-[40rem] w-full">
         <div className="grid grid-cols-2 sm:grid-cols-4 sm:mx-4 sm:gap-4">
           {tempData.map((track: any, index: number) => {

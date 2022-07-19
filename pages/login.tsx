@@ -3,23 +3,28 @@ import Image from 'next/image';
 import { getProviders, signIn } from 'next-auth/react';
 import { UserIcon } from '@heroicons/react/outline';
 import Router from 'next/router';
+import Head from 'next/head';
 
 const Login = ({ providers }: any) => {
   return (
     <>
+      <Head>
+        <title>Odditory | Welcome</title>
+        <link rel="icon" href="/logofav.png" />
+      </Head>
       <section className="flex flex-col items-center">
         <div className="flex flex-row items-center">
           <div className="relative w-[5rem] h-[5rem]">
             <Image src="/logo.png" alt="logo" layout="fill" objectFit="fill" quality={100} />
           </div>
-          <h1>Hilofy</h1>
+          <h1>Odditory</h1>
         </div>
 
         <div className="bg-secondary p-10 rounded-xl">
           <h1 className="font-bold">Welcome!</h1>
-          <div className="w-[12rem] sm:w-[20rem]">
+          <div className="w-[15rem] sm:w-[20rem]">
             <p className="w-full text-sm">
-              Hilofy is a simple music web app integrating Spotify data to help you discover new
+              Odditory is a simple music web app integrating Spotify data to help you discover new
               music and analyze your listening patterns.
             </p>
           </div>
@@ -48,14 +53,14 @@ const Login = ({ providers }: any) => {
 
       <div className="flex flex-row justify-center items-center gap-5 mt-5">
         <a
-          href="https://github.com/Ahljenn/Hilofy/issues"
+          href="https://github.com/Ahljenn/Odditory/issues"
           rel="noopener noreferrer"
           target="_blank"
           className="text-sm cursor-pointer"
         >
           Report a bug
         </a>
-        <a href="https://github.com/Ahljenn/Hilofy" rel="noopener noreferrer" target="_blank">
+        <a href="https://github.com/Ahljenn/Odditory" rel="noopener noreferrer" target="_blank">
           <img
             className="w-[2rem] cursor-pointer opacity-[0.3] hover:opacity-[1]"
             src="/github.png"
@@ -77,41 +82,3 @@ export const getServerSideProps = async () => {
     },
   };
 };
-
-// <div>
-//   <div className="text-center mt-[15rem]">
-//     <Image
-//       className="object-contain"
-//       src="/white-spotify.png"
-//       alt="Spotify"
-//       height={300}
-//       width={300}
-//     />
-//   </div>
-
-//   {providers &&
-//     Object.values(providers).map((provider: any) => (
-//       <div className="flex flex-col gap-[15rem] items-center mt-10" key={provider.name}>
-//         <div>
-//           <button
-//             className="bg-white p-4 rounded-xl hover:scale-[0.9] transition-transform duration-200"
-//             onClick={() => {
-//               signIn(provider.id, { callbackUrl: '/dashboard' }); //Take user to dashboard
-//             }}
-//           >
-//             <p className="text-black">Login with {provider.name}</p>
-//           </button>
-//         </div>
-//         <div>
-//           <button
-//             className="bg-slate-600 p-4 mb-10 rounded-xl hover:scale-[0.9] transition-transform duration-20"
-//             onClick={() => {
-//               Router.push('/guest');
-//             }}
-//           >
-//             <p className="text-white">Enter as Guest</p>
-//           </button>
-//         </div>
-//       </div>
-//     ))}
-// </div>

@@ -5,6 +5,7 @@ import SubpageHeader from '../../components/ui/SubpageHeader';
 import useSpotify from '../../components/hooks/useSpotify';
 import Loading from '../../components/ui/Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import Head from 'next/head';
 
 const Playlists: React.FC = (): JSX.Element => {
   const spotifyApi = useSpotify();
@@ -34,6 +35,10 @@ const Playlists: React.FC = (): JSX.Element => {
 
   return (
     <>
+      <Head>
+        <title>Odditory | Playlists</title>
+        <link rel="icon" href="/logofav.png" />
+      </Head>
       <SubpageHeader pageName="Playlists" />
       <section className="flex bg-gradient-to-b to-secondary from-primary xl:h-80 padding-8 w-full">
         {isLoaded ? (
