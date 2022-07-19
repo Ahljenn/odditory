@@ -27,7 +27,7 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
    * @returns JSX.Element - renders the header component.
    */
   const handleSignOut = (): void => {
-    console.log('Logged out of Hilofy');
+    console.log('Logged out of Odditory');
     signOut();
   };
 
@@ -76,7 +76,7 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
         src="/logo.png"
         width={100}
         height={100}
-        alt="Hilofy"
+        alt="Odditory"
       />
     </header>
   );

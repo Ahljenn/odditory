@@ -39,7 +39,7 @@ const SubpageHeader: React.FC<PageData> = ({ pageName }: PageData): JSX.Element 
           src="/logo.png"
           width={140}
           height={140}
-          alt="Hilofy"
+          alt="Odditory"
         />
       </div>
     </header>

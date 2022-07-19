@@ -18,10 +18,10 @@ const tempData: any[] = [
 
 interface Props {}
 /**
- * This component is used to render Hilofy top picks to the user
+ * This component is used to render Odditory top picks to the user
  * Displays a card for each track
  */
-const HilofyPicks: React.FC = (props: Props): JSX.Element => {
+const OddPicks: React.FC = (props: Props): JSX.Element => {
   /**
    * @returns JSX.Element - renders the top picks component.
    */
@@ -49,4 +49,4 @@ const HilofyPicks: React.FC = (props: Props): JSX.Element => {
   );
 };
 
-export default HilofyPicks;
+export default OddPicks;
