@@ -28,3 +28,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 ## Misc
 
 - Created custom logo with [Pixlr](https://pixlr.com/)
+
+## Future Work
+
+- Analytics for music - separate page
+- Odd picks for under-the-radar songs for user's most listened to genres
