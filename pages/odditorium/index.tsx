@@ -14,13 +14,16 @@ const Odditorium: React.FC = (): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [topTracks, setTopTracks] = useState<any[]>([]);
+  const [loadedTracks, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     if (spotifyApi.getAccessToken()) {
+      // Fetch data on page load
       (async () => {
         try {
           const data = await spotifyApi.getMyTopTracks({ limit: 50 });
           setTopTracks(data.body.items);
+          setLoaded(true);
         } catch (error) {
           console.log(error);
         }
@@ -28,7 +31,38 @@ const Odditorium: React.FC = (): JSX.Element => {
     }
   }, [session, spotifyApi]);
 
-  console.log(topTracks);
+  useEffect(() => {
+    if (loadedTracks) {
+      // Fetch genres after tracks are loaded
+      (async () => {
+        try {
+          const artistId: any[] = topTracks.map((track: any) => track.artists[0].id);
+          const artistData: any = await spotifyApi.getArtists(artistId);
+
+          let genres = new Map<string, number>();
+
+          artistData.body.artists.forEach((artist: any) => {
+            artist.genres.forEach((genre: string) => {
+              if (typeof genres.get(genre) !== 'undefined') {
+                if (genres.has(genre)) {
+                  // @ts-ignore
+                  genres.set(genre, genres.get(genre) + 1); // Increment genre count
+                } else {
+                  genres.set(genre, 1); // Set genre count to 1
+                }
+              }
+            });
+          });
+
+          console.log(genres);
+
+          console.log('genres', genres);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [loadedTracks]);
 
   return (
     <>
