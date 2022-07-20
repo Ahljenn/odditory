@@ -18,7 +18,7 @@ const Login = ({ providers }: any) => {
             <div className="relative w-[5rem] h-[5rem]">
               <Image src="/logo.png" alt="logo" layout="fill" objectFit="fill" quality={100} />
             </div>
-            <h1>Odditory</h1>
+            <h1 className="font-semibold">Odditory</h1>
           </div>
         </div>
 
@@ -26,8 +26,8 @@ const Login = ({ providers }: any) => {
           <h1 className="font-bold">Welcome!</h1>
           <div className="w-full sm:w-[20rem]">
             <p className="w-full text-sm">
-              Odditory is a simple music web app integrating Spotify data to help you discover new
-              music and analyze your listening patterns.
+              <b className="text-odd">Odditory</b> is a simple music web app integrating Spotify
+              data to help you discover new music and analyze your listening patterns.
             </p>
           </div>
 
@@ -42,7 +42,7 @@ const Login = ({ providers }: any) => {
           </div>
 
           <div
-            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-indigo-600 transition duration-100 ease-in-out"
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-odd transition duration-100 ease-in-out"
             onClick={() => {
               Router.push('/guest');
             }}
@@ -79,7 +79,7 @@ const Login = ({ providers }: any) => {
             <div className="relative w-[5rem] h-[5rem]">
               <Image src="/logo.png" alt="logo" layout="fill" objectFit="fill" quality={100} />
             </div>
-            <h1>Odditory</h1>
+            <h1 className="font-semibold">Odditory</h1>
           </div>
 
           <div className="flex flex-row justify-center items-center gap-5">

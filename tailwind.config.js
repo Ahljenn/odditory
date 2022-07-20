@@ -8,6 +8,7 @@ module.exports = {
         current: 'currentColor',
         primary: '#282b30',
         secondary: '#181b20',
+        odd: '#7c3aed',
       },
     },
   },
