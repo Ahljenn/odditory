@@ -10,6 +10,7 @@ const Account: React.FC = (): JSX.Element => {
     <>
       <Head>
         <title>Odditory | Account</title>
+        <link rel="icon" href="/logofav.png" />
       </Head>
       <SubpageHeader pageName="Account" />
       <section className="flex justify-center gap-5 flex-col items-center bg-gradient-to-b to-secondary from-primary h-80 padding-8 w-full">

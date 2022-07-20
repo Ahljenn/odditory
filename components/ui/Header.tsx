@@ -77,6 +77,7 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
         width={100}
         height={100}
         alt="Odditory"
+        quality={100}
       />
     </header>
   );
