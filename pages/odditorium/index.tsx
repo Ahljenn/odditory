@@ -22,7 +22,7 @@ const Odditorium: React.FC = (): JSX.Element => {
       </Head>
       <SubpageHeader pageName="Odditorium" />
 
-      <div className="flex justify-center ">
+      <div className="flex justify-center">
         <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8">
           <p>
             What is the <b className="text-odd">Odditorium?</b>
@@ -33,7 +33,7 @@ const Odditorium: React.FC = (): JSX.Element => {
           </p>
 
           <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-not-allowed mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
-            Let's go
+            Let&apos;s go
           </div>
         </div>
       </div>
