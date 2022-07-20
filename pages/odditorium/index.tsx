@@ -13,6 +13,22 @@ const Odditorium: React.FC = (): JSX.Element => {
    */
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
+  const [topTracks, setTopTracks] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (spotifyApi.getAccessToken()) {
+      (async () => {
+        try {
+          const data = await spotifyApi.getMyTopTracks({ limit: 50 });
+          setTopTracks(data.body.items);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [session, spotifyApi]);
+
+  console.log(topTracks);
 
   return (
     <>
@@ -32,8 +48,8 @@ const Odditorium: React.FC = (): JSX.Element => {
             your Spotify activity to analyze the music you love the most.
           </p>
 
-          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-not-allowed mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
-            Let's go
+          <div className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out">
+            Let&apos;s go
           </div>
         </div>
       </div>
