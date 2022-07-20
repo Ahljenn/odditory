@@ -6,6 +6,7 @@ import {
   CollectionIcon,
   SearchIcon,
   LibraryIcon,
+  ViewBoardsIcon,
   UserIcon,
   LogoutIcon,
   LoginIcon,
@@ -43,6 +44,10 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
     Router.push('/genre');
   };
 
+  const handleOdditorium = (): void => {
+    Router.push('/odditorium');
+  };
+
   const handleSignIn = (): void => {
     Router.push('/login');
   };
@@ -54,8 +59,8 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
           <>
             <Badge Icon={HomeIcon} title="Home" />
             <Badge Icon={CollectionIcon} title="Genre" pointerType={'cursor-not-allowed'} />
-            <Badge Icon={LibraryIcon} title="Playlists" pointerType={'cursor-not-allowed'} />
-            <Badge Icon={SearchIcon} title="Search" pointerType={'cursor-not-allowed'} />
+            <Badge Icon={ViewBoardsIcon} title="Playlists" pointerType={'cursor-not-allowed'} />
+            <Badge Icon={LibraryIcon} title="Odditorium" pointerType={'cursor-not-allowed'} />
             <Badge Icon={UserIcon} title="Account" pointerType={'cursor-not-allowed'} />
             <Badge Icon={LoginIcon} title="Log In" update={handleSignIn} />
           </>
@@ -63,8 +68,8 @@ const Header: React.FC<HeaderData> = ({ pageType }: HeaderData): JSX.Element => 
           <>
             <Badge Icon={HomeIcon} title="Home" />
             <Badge Icon={CollectionIcon} title="Genre" update={handleGenre} />
-            <Badge Icon={LibraryIcon} title="Playlists" update={handlePlaylists} />
-            <Badge Icon={SearchIcon} title="Search" />
+            <Badge Icon={ViewBoardsIcon} title="Playlists" update={handlePlaylists} />
+            <Badge Icon={LibraryIcon} title="Odditorium" update={handleOdditorium} />
             <Badge Icon={UserIcon} title="Account" update={handleAccount} />
             <Badge Icon={LogoutIcon} title="Log Out" update={handleSignOut} />
           </>
