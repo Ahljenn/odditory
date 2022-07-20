@@ -50,21 +50,7 @@ const PlaylistResult: React.FC = (): JSX.Element => {
       <SubpageHeader pageName="Playlist" />
       <section className="flex justify-center bg-gradient-to-b to-secondary from-primary padding-8 w-full ">
         <div className="flex flex-col items-center">
-          <div
-            className={
-              cover === '/logo.png'
-                ? 'animate-pulse relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem] bg-slate-700 rounded-lg'
-                : 'relative h-[20rem] w-[20rem] sm:h-[30rem] sm:w-[30rem]'
-            }
-          >
-            <Image
-              className={'rounded-lg'}
-              src={cover}
-              layout="fill"
-              objectFit="fill"
-              quality={100}
-            />
-          </div>
+          <img className="text-center rounded-xl w-[25rem]" src={cover} alt="Playlist Cover" />
 
           <h1 className="text-xl font-bold pt-5 truncate">{playlistTitle}</h1>
           <h1 className="text-xl italic pb-5 truncate">{playlistOwner}</h1>

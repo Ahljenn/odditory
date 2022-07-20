@@ -22,7 +22,7 @@ const Login = ({ providers }: any) => {
           </div>
         </div>
 
-        <div className="bg-secondary p-10 rounded-xl">
+        <div className="bg-secondary p-10 sm:rounded-xl">
           <h1 className="font-bold">Welcome!</h1>
           <div className="w-full sm:w-[20rem]">
             <p className="w-full text-sm">
