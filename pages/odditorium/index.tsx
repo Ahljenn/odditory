@@ -14,7 +14,7 @@ const Odditorium: React.FC = (): JSX.Element => {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [topTracks, setTopTracks] = useState<any[]>([]);
-  const [genres, setGenres] = useState<Map<string, number>>([]);
+  const [genres, setGenres] = useState<Map<string, number>>(new Map());
 
   const [loadedTracks, setLoaded] = useState<boolean>(false);
   const [isClicked, setClicked] = useState<boolean>(false);
@@ -100,7 +100,7 @@ const Odditorium: React.FC = (): JSX.Element => {
       {isClicked &&
         loadedTracks &&
         genres &&
-        Array.from(genres.entries()).map((result: string, index: number) => {
+        Array.from(genres.entries()).map((result: [string, number], index: number) => {
           return (
             <div className="flex justify-center" key={index}>
               <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8 mt-5">
