@@ -28,7 +28,7 @@ const SubpageHeader: React.FC<PageData> = ({ pageName }: PageData): JSX.Element 
   return (
     <header className="flex flex-col items-center sm:justify-around sm:flex-row">
       <div className="flex flex-row">
-        <Badge Icon={HomeIcon} title="HOME" update={handleHome} />
+        <Badge Icon={HomeIcon} title="Home" update={handleHome} />
         <Badge Icon={ReplyIcon} title="Back" update={handleBack} />
       </div>
 
