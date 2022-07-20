@@ -12,7 +12,7 @@ const Login = ({ providers }: any) => {
         <title>Odditory | Welcome</title>
         <link rel="icon" href="/logofav.png" />
       </Head>
-      <section className="flex flex-col items-center mt-[6rem] sm:mt-[10rem]">
+      <section className="flex flex-col items-center">
         <div className="visible: sm:invisible">
           <div className="flex flex-row items-center">
             <div className="relative w-[5rem] h-[5rem]">
@@ -24,10 +24,14 @@ const Login = ({ providers }: any) => {
 
         <div className="bg-secondary p-10 sm:rounded-xl">
           <h1 className="font-bold">Welcome!</h1>
-          <div className="w-full sm:w-[20rem]">
+          <div className="w-full sm:w-[22rem]">
             <p className="w-full text-sm">
               <b className="text-odd">Odditory</b> is a simple music web app integrating Spotify
               data to help you discover new music and analyze your listening patterns.
+            </p>
+            <p className="w-full text-sm mt-5">
+              By logging in with Spotify you agree to allow <b className="text-odd">Odditory</b> to
+              view your music activity to help provide you with the best experience.
             </p>
           </div>
 
@@ -42,7 +46,7 @@ const Login = ({ providers }: any) => {
           </div>
 
           <div
-            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-odd transition duration-100 ease-in-out"
+            className="bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out"
             onClick={() => {
               Router.push('/guest');
             }}
@@ -55,6 +59,14 @@ const Login = ({ providers }: any) => {
 
       <div className="visible sm:invisible">
         <div className="flex flex-row justify-center items-center gap-5 mt-5 ">
+          <a
+            href="https://github.com/Ahljenn/Odditory/labels/enhancement"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="text-sm cursor-pointer opacity-[0.3] hover:opacity-[1]"
+          >
+            Suggest a feature
+          </a>
           <a
             href="https://github.com/Ahljenn/Odditory/issues"
             rel="noopener noreferrer"
@@ -83,6 +95,14 @@ const Login = ({ providers }: any) => {
           </div>
 
           <div className="flex flex-row justify-center items-center gap-5">
+            <a
+              href="https://github.com/Ahljenn/Odditory/labels/enhancement"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-sm cursor-pointer opacity-[0.3] hover:opacity-[1]"
+            >
+              Suggest a feature
+            </a>
             <a
               href="https://github.com/Ahljenn/Odditory/issues"
               rel="noopener noreferrer"

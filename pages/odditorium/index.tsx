@@ -16,8 +16,9 @@ const Odditorium: React.FC = (): JSX.Element => {
         <link rel="icon" href="/logofav.png" />
       </Head>
       <SubpageHeader pageName="Odditorium" />
+
       <section className="flex justify-center">
-        <div className="w-[30rem] bg-secondary rounded-xl p-8">
+        <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8">
           <p>
             What is the <b className="text-odd">Odditorium?</b>
           </p>
