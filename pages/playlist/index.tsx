@@ -108,11 +108,11 @@ const Playlists: React.FC = (): JSX.Element => {
             <div>
               <h1>
                 <span>Total playlist count: </span>
-                <b className="inline text-cyan-100">{playlists && playlists.length}</b>
+                <b className="inline text-odd">{playlists && playlists.length}</b>
               </h1>
               <h1>
                 <span>Total playlist created: </span>
-                <b className="inline text-cyan-100">
+                <b className="inline text-odd">
                   {playlists &&
                     playlists
                       .filter(
@@ -123,7 +123,7 @@ const Playlists: React.FC = (): JSX.Element => {
               </h1>
               <h1>
                 <span>Total number of tracks: </span>
-                <b className="inline text-cyan-100">
+                <b className="inline text-odd">
                   {playlists &&
                     playlists.reduce(
                       (total: number, playlist: any) => total + playlist.tracks.total,
@@ -134,7 +134,7 @@ const Playlists: React.FC = (): JSX.Element => {
             </div>
 
             <button
-              className="w-[7rem] cursor-pointer hover:scale-[0.9] font-semibold transition-transform duration-300 bg-slate-600 rounded-xl p-2"
+              className="w-[7rem] cursor-pointer font-semibold transition duration-300 hover:bg-secondary bg-slate-600 rounded-xl p-2"
               onClick={() => {
                 setLoaded(false);
               }}
