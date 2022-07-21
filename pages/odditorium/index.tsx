@@ -62,7 +62,7 @@ const Odditorium: React.FC = (): JSX.Element => {
           });
 
           // console.log(genres);
-          setGenres(tempGenre);
+          setGenres(new Map([...tempGenre.entries()].sort((a: any, b: any) => b[1] - a[1])));
         } catch (error) {
           console.log(error);
         }
@@ -105,6 +105,9 @@ const Odditorium: React.FC = (): JSX.Element => {
         <>
           {/* Genre analysis */}
           <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
+          <p className="text-center">
+            It seems that your most listened to genre is <b className="text-odd">{}</b>!
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-10 gap-5">
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
               return (

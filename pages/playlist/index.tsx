@@ -44,7 +44,7 @@ const Playlists: React.FC = (): JSX.Element => {
         {isLoaded ? (
           <div className="w-full flex flex-row">
             <ChevronLeftIcon
-              className="cursor-pointer hover:opacity-100 bg-black rounded-full absolute left-0 mt-[8rem] z-100"
+              className="cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full absolute left-0 mt-[8rem] z-100"
               width={50}
               onClick={slideLeft}
             />
@@ -87,7 +87,7 @@ const Playlists: React.FC = (): JSX.Element => {
                   })}
             </div>
             <ChevronRightIcon
-              className="cursor-pointer bg-black rounded-full absolute right-0 mt-[8rem] z-100"
+              className="cursor-pointer bg-black hover:bg-slate-400 rounded-full absolute right-0 mt-[8rem] z-100"
               width={50}
               onClick={slideRight}
             />
