@@ -67,7 +67,7 @@ const Odditorium: React.FC = (): JSX.Element => {
   }, [loadedTracks]);
 
   return (
-    <>
+    <div>
       <Head>
         <title>Odditory | Odditorium</title>
         <link rel="icon" href="/logofav.png" />
@@ -97,24 +97,27 @@ const Odditorium: React.FC = (): JSX.Element => {
         </div>
       </div>
 
-      {isClicked &&
-        loadedTracks &&
-        genres &&
-        Array.from(genres.entries()).map((result: [string, number], index: number) => {
-          return (
-            <div className="flex justify-center" key={index}>
-              <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8 mt-5">
-                <p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mt-5 mx-5 gap-5">
+        {isClicked &&
+          loadedTracks &&
+          genres &&
+          Array.from(genres.entries()).map((result: [string, number], index: number) => {
+            return (
+              <div className="bg-slate-600 rounded-xl p-5">
+                <p key={index}>
                   <b className="text-odd">{result[0]}</b>
                 </p>
                 <p>
-                  {result[1]} track(s) containing {result[0]} music.
+                  <b>
+                    {result[1]} {result[1] > 1 ? 'tracks' : 'track'}
+                  </b>{' '}
+                  containing {result[0]} music.
                 </p>
               </div>
-            </div>
-          );
-        })}
-    </>
+            );
+          })}
+      </div>
+    </div>
   );
 };
 
