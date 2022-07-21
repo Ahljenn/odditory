@@ -77,7 +77,7 @@ const Odditorium: React.FC = (): JSX.Element => {
       </Head>
       <SubpageHeader pageName="Odditorium" />
 
-      <div className="flex justify-center ">
+      <div className="flex justify-center">
         <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8">
           <p>
             What is the <b className="text-odd">Odditorium?</b>
@@ -167,10 +167,18 @@ const Odditorium: React.FC = (): JSX.Element => {
 
             <div className="flex justify-center">
               <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
-                <button className="default-button bg-red-800">Discover new music.</button>
-                <button className="default-button bg-blue-800">More of what I like.</button>
-                <button className="default-button bg-indigo-800">A little bit of both.</button>
-                <button className="default-button bg-secondary">Suprise me!</button>
+                <button className="default-button bg-secondary border-double border-2 border-red-600">
+                  Discover new music.
+                </button>
+                <button className="default-button bg-secondary border-double border-2 border-blue-800">
+                  More of what I like.
+                </button>
+                <button className="default-button bg-secondary border-double border-2 border-purple-800">
+                  A little bit of both.
+                </button>
+                <button className="default-button bg-secondary border-double border-2">
+                  Suprise me!
+                </button>
               </div>
             </div>
           </section>
