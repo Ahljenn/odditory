@@ -15,6 +15,7 @@ const Odditorium: React.FC = (): JSX.Element => {
   const { data: session, status } = useSession();
   const [topTracks, setTopTracks] = useState<any[]>([]);
   const [genres, setGenres] = useState<Map<string, number>>(new Map());
+  const [playlists, setPlaylists] = useState<any[]>([]);
 
   const [loadedTracks, setLoaded] = useState<boolean>(false);
   const [isClicked, setClicked] = useState<boolean>(false);
@@ -39,26 +40,28 @@ const Odditorium: React.FC = (): JSX.Element => {
     if (loadedTracks) {
       (async () => {
         try {
+          // Try next API calls when user clicks on the button
+          let fetchedPlaylists = await spotifyApi.getUserPlaylists({ limit: 50 });
+          setPlaylists(fetchedPlaylists.body.items);
+
           const artistId: any[] = topTracks.map((track: any) => track.artists[0].id);
-          const artistData: any = await spotifyApi.getArtists(artistId);
+          const fetchedArtist: any = await spotifyApi.getArtists(artistId);
 
-          let genres = new Map<string, number>();
+          let tempGenre = new Map<string, number>();
 
-          artistData.body.artists.forEach((artist: any) => {
+          fetchedArtist.body.artists.forEach((artist: any) => {
             artist.genres.forEach((genre: string) => {
-              if (genres.has(genre)) {
+              if (tempGenre.has(genre)) {
                 // @ts-ignore - since we deal with the case that the object does not exist in the else block, we can safely ignore the error
-                genres.set(genre, genres.get(genre) + 1); // Increment genre count
+                tempGenre.set(genre, tempGenre.get(genre) + 1); // Increment genre count
               } else {
-                genres.set(genre, 1); // Set genre count to 1
+                tempGenre.set(genre, 1); // Set genre count to 1
               }
             });
           });
 
           // console.log(genres);
-          setGenres(genres);
-
-          console.log('genres', genres);
+          setGenres(tempGenre);
         } catch (error) {
           console.log(error);
         }
@@ -97,26 +100,66 @@ const Odditorium: React.FC = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 mt-5 mx-5 gap-5">
-        {isClicked &&
-          loadedTracks &&
-          genres &&
-          Array.from(genres.entries()).map((result: [string, number], index: number) => {
-            return (
-              <div className="bg-slate-600 rounded-xl p-5">
-                <p key={index}>
-                  <b className="text-odd">{result[0]}</b>
-                </p>
-                <p>
-                  <b>
-                    {result[1]} {result[1] > 1 ? 'tracks' : 'track'}
-                  </b>{' '}
-                  containing {result[0]} music.
-                </p>
+      {isClicked && loadedTracks && genres ? (
+        <>
+          {/* Genre analysis */}
+          <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-5 gap-5">
+            {Array.from(genres.entries()).map((result: [string, number], index: number) => {
+              return (
+                <div className="bg-secondary sm:rounded-xl p-5">
+                  <p key={index}>
+                    <b className="text-odd">{result[0]}</b>
+                  </p>
+                  <p>
+                    <b>
+                      {result[1]} {result[1] > 1 ? 'tracks ' : 'track '}
+                    </b>
+                    containing {result[0]} music.
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Playlist analysis */}
+
+          <section className="flex justify-center my-5">
+            <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5">
+              <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
+              <div>
+                <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
+                <p>Total playlists</p>
               </div>
-            );
-          })}
-      </div>
+
+              <div>
+                <b className="inline text-odd text-xl">
+                  {playlists &&
+                    playlists
+                      .filter(
+                        (playlist: any) => playlist.owner.display_name === session?.user?.name
+                      )
+                      .reduce((total: number) => total + 1, 0)}
+                </b>
+                <p>Total playlist created</p>
+              </div>
+
+              <div>
+                <b className="inline text-odd text-xl">
+                  {playlists &&
+                    playlists.reduce(
+                      (total: number, playlist: any) => total + playlist.tracks.total,
+                      0
+                    )}
+                </b>
+                <p>Total number of tracks</p>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
