@@ -27,7 +27,6 @@ const Odditorium: React.FC = (): JSX.Element => {
         try {
           const data = await spotifyApi.getMyTopTracks({ limit: 50 });
           setTopTracks(data.body.items);
-          console.log(topTracks);
           setLoaded(true);
         } catch (error) {
           console.log(error);
