@@ -112,8 +112,8 @@ const Odditorium: React.FC = (): JSX.Element => {
           <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-10 gap-5">
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
               return (
-                <div className="bg-secondary sm:rounded-xl p-5">
-                  <p key={index}>
+                <div className="bg-secondary sm:rounded-xl p-5" key={index}>
+                  <p>
                     <b className="text-odd">{result[0]}</b>
                   </p>
                   <p>
@@ -129,7 +129,7 @@ const Odditorium: React.FC = (): JSX.Element => {
           {/* Playlist analysis */}
           <section className="flex justify-center my-5 flex-col">
             <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
-            <p className="text-center">So far here's what we have for your playlists...</p>
+            <p className="text-center">So far here&apos;s what we have for your playlists...</p>
             <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5">
               <div>
                 <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
@@ -164,7 +164,7 @@ const Odditorium: React.FC = (): JSX.Element => {
           {/* Next steps */}
           <section>
             <h1 className="text-center font-bold text-xl">Next steps</h1>
-            <p className="text-center">Let's make a playlist catered for you.</p>
+            <p className="text-center">Let&apos;s make a playlist catered for you.</p>
 
             <div className="flex justify-center">
               <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
