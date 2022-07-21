@@ -92,7 +92,7 @@ const Odditorium: React.FC = (): JSX.Element => {
             className={
               isClicked
                 ? 'bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 mt-2 sm:px-[4rem] cursor-not-allowed'
-                : 'bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out'
+                : 'default-button'
             }
             onClick={() => setClicked(true)}
           >
@@ -106,7 +106,8 @@ const Odditorium: React.FC = (): JSX.Element => {
           {/* Genre analysis */}
           <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
           <p className="text-center">
-            It seems that your most listened to genre is <b className="text-odd">{}</b>!
+            It seems that your most listened to genre is{' '}
+            <b className="text-odd">{genres.entries().next().value[0]}</b>!
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-10 gap-5">
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
@@ -126,10 +127,10 @@ const Odditorium: React.FC = (): JSX.Element => {
           </div>
 
           {/* Playlist analysis */}
-
-          <section className="flex justify-center my-5 flex-col gap-5">
-            <h1 className="text-center font-bold text-xl ">Playlist Analysis</h1>
-            <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5">
+          <section className="flex justify-center my-5 flex-col">
+            <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
+            <p className="text-center">So far here's what we have for your playlists...</p>
+            <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5">
               <div>
                 <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
                 <p>Total playlists</p>
@@ -156,6 +157,21 @@ const Odditorium: React.FC = (): JSX.Element => {
                     )}
                 </b>
                 <p>Total number of tracks</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Next steps */}
+          <section>
+            <h1 className="text-center font-bold text-xl">Next steps</h1>
+            <p className="text-center">Let's make a playlist catered for you.</p>
+
+            <div className="flex justify-center">
+              <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
+                <button className="default-button bg-red-800">Discover new music.</button>
+                <button className="default-button bg-blue-800">More of what I like.</button>
+                <button className="default-button bg-indigo-800">A little bit of both.</button>
+                <button className="default-button bg-secondary">Suprise me!</button>
               </div>
             </div>
           </section>
