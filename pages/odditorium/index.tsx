@@ -27,6 +27,7 @@ const Odditorium: React.FC = (): JSX.Element => {
         try {
           const data = await spotifyApi.getMyTopTracks({ limit: 50 });
           setTopTracks(data.body.items);
+          console.log(topTracks);
           setLoaded(true);
         } catch (error) {
           console.log(error);
@@ -104,7 +105,7 @@ const Odditorium: React.FC = (): JSX.Element => {
         <>
           {/* Genre analysis */}
           <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-10 gap-5">
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
               return (
                 <div className="bg-secondary sm:rounded-xl p-5">
@@ -112,10 +113,9 @@ const Odditorium: React.FC = (): JSX.Element => {
                     <b className="text-odd">{result[0]}</b>
                   </p>
                   <p>
-                    <b>
-                      {result[1]} {result[1] > 1 ? 'tracks ' : 'track '}
-                    </b>
-                    containing {result[0]} music.
+                    <b>{result[1]}</b>
+                    {result[1] > 1 ? ' of your top tracks ' : ' track '}
+                    is {result[0]} music.
                   </p>
                 </div>
               );
@@ -124,9 +124,9 @@ const Odditorium: React.FC = (): JSX.Element => {
 
           {/* Playlist analysis */}
 
-          <section className="flex justify-center my-5">
+          <section className="flex justify-center my-5 flex-col gap-5">
+            <h1 className="text-center font-bold text-xl ">Playlist Analysis</h1>
             <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5">
-              <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
               <div>
                 <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
                 <p>Total playlists</p>
