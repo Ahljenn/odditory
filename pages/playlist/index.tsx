@@ -44,8 +44,8 @@ const Playlists: React.FC = (): JSX.Element => {
         {isLoaded ? (
           <div className="w-full flex flex-row">
             <ChevronLeftIcon
-              className="cursor-pointer opacity-50 hover:opacity-100"
-              width={120}
+              className="cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full absolute left-0 mt-[8rem] z-100"
+              width={50}
               onClick={slideLeft}
             />
             <div
@@ -75,7 +75,7 @@ const Playlists: React.FC = (): JSX.Element => {
                               },
                             });
                           }}
-                          className="cursor-pointer hover:scale-[1.15] hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
+                          className="cursor-pointer hover:bg-slate-400 transition-transform duration-300 bg-slate-600 rounded-lg p-1 w-[9rem] sm:w-[11.5rem]"
                           src={playlist.images[0].url}
                           alt={playlist.name}
                         />
@@ -87,8 +87,8 @@ const Playlists: React.FC = (): JSX.Element => {
                   })}
             </div>
             <ChevronRightIcon
-              className="cursor-pointer opacity-50 hover:opacity-100"
-              width={120}
+              className="cursor-pointer bg-black hover:bg-slate-400 rounded-full absolute right-0 mt-[8rem] z-100"
+              width={50}
               onClick={slideRight}
             />
           </div>
@@ -105,7 +105,7 @@ const Playlists: React.FC = (): JSX.Element => {
             onChange={(e) => setSearchPlaylist(e.target.value)}
           />
           <div className="flex flex-col sm:flex-row justify-center gap-5 my-5 items-center sm:text-right sm:text-2xl">
-            <div>
+            {/* <div>
               <h1>
                 <span>Total playlist count: </span>
                 <b className="inline text-odd">{playlists && playlists.length}</b>
@@ -131,7 +131,7 @@ const Playlists: React.FC = (): JSX.Element => {
                     )}
                 </b>
               </h1>
-            </div>
+            </div> */}
 
             <button
               className="w-[7rem] cursor-pointer font-semibold transition duration-300 hover:bg-secondary bg-slate-600 rounded-xl p-2"

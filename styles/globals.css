@@ -12,4 +12,7 @@
   .track-primary {
     @apply cursor-pointer hover:bg-slate-400 hover:opacity-50 transition-transform duration-1000 bg-slate-600 rounded-lg p-1 w-[15rem] truncate;
   }
+  .default-button {
+    @apply bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 cursor-pointer mt-2 sm:px-[4rem] hover:bg-slate-600 transition duration-100 ease-in-out;
+  }
 }
