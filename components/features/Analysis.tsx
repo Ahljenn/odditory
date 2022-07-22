@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface MusicData {
@@ -16,30 +16,56 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
    * @param genres - the genres of the user's top tracks
    * @interface MusicData
    */
+
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const MAX_INDEX = 2; //Max number of "slides"
+
+  const handleLeftClick = (): void => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(MAX_INDEX);
+    }
+  };
+
+  const handleRightClick = (): void => {
+    if (currentIndex < MAX_INDEX) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
+
+  console.log(currentIndex);
+
   return (
     <>
       <div className="flex flex-row justify-center items-center gap-8">
         <ChevronLeftIcon
-          className="mt-5 cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full opacity-50"
-          width={50}
-          height={50}
+          className="mt-5 cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full opacity-50 transition-opacity duration-200"
+          width={30}
+          height={30}
+          onClick={handleLeftClick}
         />
         <div>
-          <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
+          <h1 className="text-center font-bold text-xl mt-5">Your listening habits</h1>
         </div>
         <ChevronRightIcon
-          className="mt-5 cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full opacity-50"
-          width={50}
-          height={50}
+          className="mt-5 cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full opacity-50 transition-opacity duration-200"
+          width={30}
+          height={30}
+          onClick={handleRightClick}
         />
       </div>
 
+      {/* Genre analysis - index = 0 */}
+      <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
       <p className="text-center">
         It seems that your most listened to genre is{' '}
         <b className="text-odd">{genres.entries().next().value[0]}</b>!
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-5 sm:mx-10 gap-5">
+      <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
         {Array.from(genres.entries()).map((result: [string, number], index: number) => {
           return (
             <div className="bg-secondary sm:rounded-xl p-5" key={index}>
@@ -56,8 +82,8 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
         })}
       </div>
 
-      {/* Playlist analysis */}
-      <section className="flex justify-center my-5 flex-col">
+      {/* Playlist analysis - index = 1 */}
+      {/* <section className="flex justify-center my-5 flex-col">
         <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
         <p className="text-center">So far here&apos;s what we have for your playlists...</p>
         <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5">
@@ -87,10 +113,10 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
             <p>Total number of tracks</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Next steps */}
-      <section>
+      {/* Next steps - index = 2*/}
+      {/* <section>
         <h1 className="text-center font-bold text-xl">Next steps</h1>
         <p className="text-center">Let&apos;s make a playlist catered for you.</p>
 
@@ -110,7 +136,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };

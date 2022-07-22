@@ -93,7 +93,11 @@ const Odditorium: React.FC = (): JSX.Element => {
                 ? 'bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 mt-2 sm:px-[4rem] cursor-not-allowed'
                 : 'default-button'
             }
-            onClick={() => setClicked(true)}
+            onClick={() => {
+              if (loadedTracks && genres.size !== 0) {
+                setClicked(true);
+              }
+            }}
           >
             Let&apos;s go
           </div>
