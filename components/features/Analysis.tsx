@@ -36,7 +36,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
     }
   };
 
-  console.log(currentIndex);
+  console.log(playlists);
 
   return (
     <>
@@ -48,7 +48,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
           onClick={handleLeftClick}
         />
         <div>
-          <h1 className="text-center font-bold text-xl mt-5">Your listening habits</h1>
+          <h1 className="text-center font-bold text-xl mt-5 text-odd">Your listening habits</h1>
         </div>
         <ChevronRightIcon
           className="mt-5 cursor-pointer hover:opacity-100 hover:bg-slate-400 bg-black rounded-full opacity-50 transition-opacity duration-200"
@@ -98,31 +98,48 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
             <div className="flex justify-center">
               <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5 sm:w-[30rem] sm:rounded-xl">
                 <div>
-                  <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
+                  <b className="inline text-odd text-xl">
+                    {playlists.reduce(
+                      (total: number, playlist: any) => total + playlist.tracks.total,
+                      0
+                    )}
+                  </b>
+                  <p>Total number of tracks</p>
+                </div>
+
+                <div>
+                  <b className="inline text-odd text-xl">{playlists.length} </b>
                   <p>Total playlists</p>
                 </div>
 
                 <div>
                   <b className="inline text-odd text-xl">
-                    {playlists &&
-                      playlists
-                        .filter(
-                          (playlist: any) => playlist.owner.display_name === session?.user?.name
-                        )
-                        .reduce((total: number) => total + 1, 0)}
+                    {playlists
+                      .filter(
+                        (playlist: any) => playlist.owner.display_name === session?.user?.name
+                      )
+                      .reduce((total: number) => total + 1, 0)}
                   </b>
                   <p>Total playlist created</p>
                 </div>
 
-                <div>
-                  <b className="inline text-odd text-xl">
-                    {playlists &&
-                      playlists.reduce(
-                        (total: number, playlist: any) => total + playlist.tracks.total,
-                        0
-                      )}
-                  </b>
-                  <p>Total number of tracks</p>
+                <div className="flex flex-row justify-center gap-5">
+                  <div>
+                    <b className="inline text-odd text-xl">
+                      {playlists
+                        .filter((playlist: any) => playlist.public)
+                        .reduce((total: number) => total + 1, 0)}
+                    </b>
+                    <p>Total public playlists</p>
+                  </div>
+                  <div>
+                    <b className="inline text-odd text-xl">
+                      {playlists
+                        .filter((playlist: any) => !playlist.public)
+                        .reduce((total: number) => total + 1, 0)}
+                    </b>
+                    <p>Total private playlists</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,16 +156,16 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
 
             <div className="flex justify-center">
               <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
-                <button className="default-button bg-secondary border-solid border-2 border-red-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-red-800">
                   Discover new music.
                 </button>
-                <button className="default-button bg-secondary border-solid border-2 border-blue-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-blue-800">
                   More of what I like.
                 </button>
-                <button className="default-button bg-secondary border-solid border-2 border-purple-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-purple-800">
                   A little bit of both.
                 </button>
-                <button className="default-button bg-secondary border-solid border-2">
+                <button className="default-button bg-secondary border-solid border-[1px]">
                   Suprise me!
                 </button>
               </div>
