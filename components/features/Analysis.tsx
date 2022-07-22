@@ -71,7 +71,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
               return (
                 <div
-                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95]"
+                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl"
                   key={index}
                 >
                   <p>
@@ -95,33 +95,35 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
           <section className="flex justify-center my-5 flex-col">
             <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
             <p className="text-center">So far here&apos;s what we have for your playlists...</p>
-            <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5">
-              <div>
-                <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
-                <p>Total playlists</p>
-              </div>
+            <div className="flex justify-center">
+              <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5 sm:w-[30rem] sm:rounded-xl">
+                <div>
+                  <b className="inline text-odd text-xl">{playlists && playlists.length} </b>
+                  <p>Total playlists</p>
+                </div>
 
-              <div>
-                <b className="inline text-odd text-xl">
-                  {playlists &&
-                    playlists
-                      .filter(
-                        (playlist: any) => playlist.owner.display_name === session?.user?.name
-                      )
-                      .reduce((total: number) => total + 1, 0)}
-                </b>
-                <p>Total playlist created</p>
-              </div>
+                <div>
+                  <b className="inline text-odd text-xl">
+                    {playlists &&
+                      playlists
+                        .filter(
+                          (playlist: any) => playlist.owner.display_name === session?.user?.name
+                        )
+                        .reduce((total: number) => total + 1, 0)}
+                  </b>
+                  <p>Total playlist created</p>
+                </div>
 
-              <div>
-                <b className="inline text-odd text-xl">
-                  {playlists &&
-                    playlists.reduce(
-                      (total: number, playlist: any) => total + playlist.tracks.total,
-                      0
-                    )}
-                </b>
-                <p>Total number of tracks</p>
+                <div>
+                  <b className="inline text-odd text-xl">
+                    {playlists &&
+                      playlists.reduce(
+                        (total: number, playlist: any) => total + playlist.tracks.total,
+                        0
+                      )}
+                  </b>
+                  <p>Total number of tracks</p>
+                </div>
               </div>
             </div>
           </section>
@@ -137,16 +139,16 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
 
             <div className="flex justify-center">
               <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
-                <button className="default-button bg-secondary border-double border-2 border-red-600">
+                <button className="default-button bg-secondary border-solid border-2 border-red-800">
                   Discover new music.
                 </button>
-                <button className="default-button bg-secondary border-double border-2 border-blue-800">
+                <button className="default-button bg-secondary border-solid border-2 border-blue-800">
                   More of what I like.
                 </button>
-                <button className="default-button bg-secondary border-double border-2 border-purple-800">
+                <button className="default-button bg-secondary border-solid border-2 border-purple-800">
                   A little bit of both.
                 </button>
-                <button className="default-button bg-secondary border-double border-2">
+                <button className="default-button bg-secondary border-solid border-2">
                   Suprise me!
                 </button>
               </div>
