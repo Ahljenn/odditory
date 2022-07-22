@@ -1,7 +1,21 @@
 import React from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
-const Analysis: React.FC = ({ genres, playlists, session }: any): JSX.Element => {
+interface MusicData {
+  genres: Map<string, number>;
+  playlists: any[];
+  session: any;
+}
+/**
+ * This component renders the analysis portion of the Odditorium page containing user data and analytics.
+ * Utilizes the fetched data from the Spotify API.
+ */
+const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData): JSX.Element => {
+  /**
+   * @returns JSX.Element - renders the analysis section of the Odditorium page.
+   * @param genres - the genres of the user's top tracks
+   * @interface MusicData
+   */
   return (
     <>
       <div className="flex flex-row justify-center items-center gap-8">

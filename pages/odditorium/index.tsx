@@ -8,6 +8,7 @@ import Analysis from '../../components/features/Analysis';
 /**
  * This component renders the Odditorium page containing user data and analytics.
  */
+
 const Odditorium: React.FC = (): JSX.Element => {
   /**
    * @returns JSX.Element - renders the Odditorium page.
