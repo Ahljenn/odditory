@@ -62,10 +62,21 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
       {currentIndex === 0 ? (
         <>
           <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
-          <p className="text-center">
-            It seems that your most listened to genre is{' '}
-            <b className="text-odd">{genres.entries().next().value[0]}</b>!
-          </p>
+          <div className="flex justify-center">
+            <div className="bg-secondary w-full sm:rounded-xl sm:w-[30rem] p-5 mt-5">
+              <p>
+                Based on your top <b className="text-odd">50</b> tracks...
+              </p>
+              <p>
+                Your top tracks consist of <b className="text-odd">{genres.size}</b> different
+                genres.
+              </p>
+              <p>
+                It seems that your most listened to genre is{' '}
+                <b className="text-odd capitalize">{genres.entries().next().value[0]}</b>!
+              </p>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
             {Array.from(genres.entries()).map((result: [string, number], index: number) => {
@@ -75,7 +86,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
                   key={index}
                 >
                   <p>
-                    <b className="text-odd">{result[0]}</b>
+                    <b className="text-odd capitalize">{result[0]}</b>
                   </p>
                   <p>
                     <b>{result[1]}</b>
@@ -94,7 +105,9 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
         <>
           <section className="flex justify-center my-5 flex-col">
             <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
-            <p className="text-center">So far here&apos;s what we have for your playlists...</p>
+            <p className="text-center">
+              So far here&apos;s what we have for <b>all</b> your playlists...
+            </p>
             <div className="flex justify-center">
               <div className="w-full bg-secondary p-8 text-center flex flex-col gap-5 mt-5 sm:w-[30rem] sm:rounded-xl">
                 <div>
