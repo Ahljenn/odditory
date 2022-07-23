@@ -34,7 +34,7 @@ const GuestRecs: React.FC = (): JSX.Element => {
   return (
     <section className="flex flex-col items-center">
       <h1 className="text-2xl m-5 mb-0 text-center">Tracks For You</h1>
-      <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-7 max-w-screen-4xl justify-center">
+      <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-7">
         {staticRecTracks.map((track: any, index: number) => (
           <div
             className={index === 0 || index == 11 ? 'col-span-1 xl:col-span-2 xl:row-span-2' : ''}
