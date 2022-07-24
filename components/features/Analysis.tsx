@@ -83,51 +83,8 @@ const Analysis: React.FC<MusicData> = ({
           onClick={handleRightClick}
         />
       </div>
-
-      {/* Genre analysis - index = 0 */}
+      {/* Top tracks analysis - index = 0 */}
       {currentIndex === 0 ? (
-        <>
-          <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
-          <div className="flex justify-center">
-            <div className="bg-secondary w-full sm:rounded-xl sm:w-[30rem] p-5 mt-5">
-              <p>
-                Based on your top <b className="text-odd">50</b> tracks...
-              </p>
-              <p>
-                Your top tracks consist of <b className="text-odd">{genres.size}</b> different
-                genres.
-              </p>
-              <p>
-                It seems that your most listened to genre is{' '}
-                <b className="text-odd capitalize">{genres.entries().next().value[0]}</b>!
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
-            {Array.from(genres.entries()).map((result: [string, number], index: number) => {
-              return (
-                <div
-                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl"
-                  key={index}
-                >
-                  <p>
-                    <b className="text-odd capitalize">{result[0]}</b>
-                  </p>
-                  <p>
-                    <b>{result[1]}</b>
-                    {result[1] > 1 ? ' of your top tracks ' : ' track '}
-                    is {result[0]} music.
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      ) : null}
-
-      {/* Top tracks analysis - index = 1 */}
-      {currentIndex === 1 ? (
         <>
           <h1 className="text-center font-bold text-xl mt-5">Top Tracks Analysis</h1>
           <div className="flex justify-center">
@@ -150,8 +107,11 @@ const Analysis: React.FC<MusicData> = ({
             {Array.from(artists.entries()).map((result: [string, number], index: number) => {
               return (
                 <div
-                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl"
+                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl cursor-pointer"
                   key={index}
+                  onClick={() => {
+                    window.open(`https://open.spotify.com/search/results/artist:${result[0]}`);
+                  }}
                 >
                   <p>
                     <b className="text-odd capitalize">{result[0]}</b>
@@ -160,6 +120,45 @@ const Analysis: React.FC<MusicData> = ({
                     <b>{result[1]}</b>
                     {result[1] > 1 ? ' of your top tracks ' : ' track '}
                     is by {result[0]}.
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      ) : null}
+
+      {/* Genre analysis - index =1 */}
+      {currentIndex === 1 ? (
+        <>
+          <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
+          <div className="flex justify-center">
+            <div className="bg-secondary w-full sm:rounded-xl sm:w-[30rem] p-5 mt-5">
+              <p>
+                Based on your top <b className="text-odd">50</b> tracks...
+              </p>
+              <p>
+                Your top tracks consist of <b className="text-odd">{genres.size}</b> different
+                genres.
+              </p>
+              <p>
+                It seems that your most listened to genre is{' '}
+                <b className="text-odd capitalize">{genres.entries().next().value[0]}</b>!
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
+            {Array.from(genres.entries()).map((result: [string, number], index: number) => {
+              return (
+                <div className="bg-secondary sm:rounded-xl p-5 " key={index}>
+                  <p>
+                    <b className="text-odd capitalize">{result[0]}</b>
+                  </p>
+                  <p>
+                    <b>{result[1]}</b>
+                    {result[1] > 1 ? ' of your top tracks ' : ' track '}
+                    is {result[0]} music.
                   </p>
                 </div>
               );
