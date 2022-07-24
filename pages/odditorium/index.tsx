@@ -69,8 +69,6 @@ const Odditorium: React.FC = (): JSX.Element => {
     }
   }, [loadedTracks]);
 
-  console.log(topTracks);
-
   return (
     <div>
       <Head>

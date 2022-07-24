@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface MusicData {
@@ -25,6 +25,25 @@ const Analysis: React.FC<MusicData> = ({
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const MAX_INDEX = 3; //Max number of "slides"
+  const [artists, setArtist] = useState<Map<string, number>>(new Map());
+
+  // Parse artist count on component load
+  useEffect(() => {
+    const artistCount: Map<string, number> = new Map();
+    if (topTracks.length > 0) {
+      topTracks.forEach((track: any) => {
+        track.artists.forEach((artist: any) => {
+          if (artistCount.has(artist.name)) {
+            // @ts-ignore - since we deal with the case that the object does not exist in the else block, we can safely ignore the error
+            artistCount.set(artist.name, artistCount.get(artist.name) + 1); // Increment artist count
+          } else {
+            artistCount.set(artist.name, 1); // Set artist count to 1
+          }
+        });
+      });
+    }
+    setArtist(artistCount);
+  }, []);
 
   const handleLeftClick = (): void => {
     if (currentIndex > 0) {
@@ -107,8 +126,50 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Playlist analysis - index = 1 */}
+      {/* Top tracks analysis - index = 1 */}
       {currentIndex === 1 ? (
+        <>
+          <h1 className="text-center font-bold text-xl mt-5">Top Tracks Analysis</h1>
+          <div className="flex justify-center">
+            <div className="bg-secondary w-full sm:rounded-xl sm:w-[30rem] p-5 mt-5">
+              <p>
+                Based on your top <b className="text-odd">50</b> tracks...
+              </p>
+              <p>
+                Your top tracks consist of <b className="text-odd">{artists.size}</b> different
+                artists.
+              </p>
+              <p>
+                It seems that your most listened to artist is{' '}
+                <b className="text-odd capitalize">{topTracks[0].artists[0]?.name}</b>!
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
+            {Array.from(artists.entries()).map((result: [string, number], index: number) => {
+              return (
+                <div
+                  className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl"
+                  key={index}
+                >
+                  <p>
+                    <b className="text-odd capitalize">{result[0]}</b>
+                  </p>
+                  <p>
+                    <b>{result[1]}</b>
+                    {result[1] > 1 ? ' of your top tracks ' : ' track '}
+                    is by {result[0]}.
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      ) : null}
+
+      {/* Playlist analysis - index = 2 */}
+      {currentIndex === 2 ? (
         <>
           <section className="flex justify-center my-5 flex-col">
             <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
@@ -167,14 +228,6 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Top tracks analysis - index = 2 */}
-      {currentIndex === 2 ? (
-        <>
-          <h1 className="text-center font-bold text-xl mt-5">Top Tracks Analysis</h1>
-          <p></p>
-        </>
-      ) : null}
-
       {/* Next steps - index = 3*/}
       {currentIndex === 3 ? (
         <>
@@ -184,16 +237,16 @@ const Analysis: React.FC<MusicData> = ({
 
             <div className="flex justify-center">
               <div className="grid grid-cols-1 2xl:grid-cols-2 mx-5 mb-10 gap-2 w-1/2">
-                <button className="default-button bg-secondary border-solid border-[1px] hover:border-red-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-red-800 rounded-full">
                   Discover new music.
                 </button>
-                <button className="default-button bg-secondary border-solid border-[1px] hover:border-blue-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-blue-800 rounded-full">
                   More of what I like.
                 </button>
-                <button className="default-button bg-secondary border-solid border-[1px] hover:border-purple-800">
+                <button className="default-button bg-secondary border-solid border-[1px] hover:border-purple-800 rounded-full">
                   A little bit of both.
                 </button>
-                <button className="default-button bg-secondary border-solid border-[1px]">
+                <button className="default-button bg-secondary border-solid border-[1px] rounded-full">
                   Suprise me!
                 </button>
               </div>
