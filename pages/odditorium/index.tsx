@@ -69,6 +69,8 @@ const Odditorium: React.FC = (): JSX.Element => {
     }
   }, [loadedTracks]);
 
+  console.log(topTracks);
+
   return (
     <div>
       <Head>
@@ -91,7 +93,7 @@ const Odditorium: React.FC = (): JSX.Element => {
             className={
               isClicked
                 ? 'bg-primary py-2 justify-center rounded flex flex-row items-center gap-2 mt-2 sm:px-[4rem] cursor-not-allowed'
-                : 'default-button'
+                : `default-button ${loadedTracks && genres.size !== 0 ? '' : 'cursor-wait'}`
             }
             onClick={() => {
               if (loadedTracks && genres.size !== 0) {
@@ -105,7 +107,7 @@ const Odditorium: React.FC = (): JSX.Element => {
       </div>
 
       {isClicked && loadedTracks && genres ? (
-        <Analysis genres={genres} playlists={playlists} session={session} />
+        <Analysis genres={genres} playlists={playlists} topTracks={topTracks} session={session} />
       ) : (
         <></>
       )}

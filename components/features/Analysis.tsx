@@ -4,13 +4,19 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 interface MusicData {
   genres: Map<string, number>;
   playlists: any[];
+  topTracks: any[];
   session: any;
 }
 /**
  * This component renders the analysis portion of the Odditorium page containing user data and analytics.
  * Utilizes the fetched data from the Spotify API.
  */
-const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData): JSX.Element => {
+const Analysis: React.FC<MusicData> = ({
+  genres,
+  playlists,
+  session,
+  topTracks,
+}: MusicData): JSX.Element => {
   /**
    * @returns JSX.Element - renders the analysis section of the Odditorium page.
    * @param genres - the genres of the user's top tracks
@@ -18,7 +24,7 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
    */
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const MAX_INDEX = 2; //Max number of "slides"
+  const MAX_INDEX = 3; //Max number of "slides"
 
   const handleLeftClick = (): void => {
     if (currentIndex > 0) {
@@ -36,7 +42,8 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
     }
   };
 
-  console.log(playlists);
+  // console.log('playlists: ', playlists);
+  // console.log('genres: ', genres);
 
   return (
     <>
@@ -160,8 +167,16 @@ const Analysis: React.FC<MusicData> = ({ genres, playlists, session }: MusicData
         </>
       ) : null}
 
-      {/* Next steps - index = 2*/}
+      {/* Top tracks analysis - index = 2 */}
       {currentIndex === 2 ? (
+        <>
+          <h1 className="text-center font-bold text-xl mt-5">Top Tracks Analysis</h1>
+          <p></p>
+        </>
+      ) : null}
+
+      {/* Next steps - index = 3*/}
+      {currentIndex === 3 ? (
         <>
           <section>
             <h1 className="text-center font-bold text-xl mt-5">Next steps</h1>
