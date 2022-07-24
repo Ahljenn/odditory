@@ -66,9 +66,9 @@ const Analysis: React.FC<MusicData> = ({
     }
   };
 
-  // console.log('playlists: ', playlists);
+  console.log('playlists: ', playlists);
   // console.log('genres: ', genres);
-  console.log(topTracks);
+  // console.log(topTracks);
 
   return (
     <>
@@ -103,7 +103,16 @@ const Analysis: React.FC<MusicData> = ({
                 Your top tracks consist of <b className="text-odd">{artists.size}</b> different
                 artists.
               </p>
+
               <p>
+                Including{' '}
+                <b className="text-odd">
+                  {topTracks.filter((track: any) => track.explicit).length}
+                </b>{' '}
+                explicit tracks.
+              </p>
+
+              <p className="mt-5">
                 It seems that your most listened to artist is{' '}
                 <b className="text-odd capitalize">{topTracks[0].artists[0]?.name}</b>!
               </p>
@@ -196,39 +205,50 @@ const Analysis: React.FC<MusicData> = ({
                   </b>
                   <p>Total number of tracks</p>
                 </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <b className="inline text-odd text-xl">{playlists.length} </b>
+                    <p>Overall playlists</p>
+                  </div>
 
-                <div>
-                  <b className="inline text-odd text-xl">{playlists.length} </b>
-                  <p>Total playlists</p>
-                </div>
-
-                <div>
-                  <b className="inline text-odd text-xl">
-                    {playlists
-                      .filter(
-                        (playlist: any) => playlist.owner.display_name === session?.user?.name
-                      )
-                      .reduce((total: number) => total + 1, 0)}
-                  </b>
-                  <p>Total playlist created</p>
-                </div>
-
-                <div className="flex flex-row justify-center gap-5">
                   <div>
                     <b className="inline text-odd text-xl">
-                      {playlists
-                        .filter((playlist: any) => playlist.public)
-                        .reduce((total: number) => total + 1, 0)}
+                      {
+                        playlists.filter(
+                          (playlist: any) => playlist.owner.display_name === session?.user?.name
+                        ).length
+                      }
                     </b>
-                    <p>Total public playlists</p>
+                    <p>Created playlists</p>
+                  </div>
+
+                  <div>
+                    <b className="inline text-odd text-xl">
+                      {playlists.filter((playlist: any) => playlist.public).length}
+                    </b>
+                    <p>Public playlists</p>
                   </div>
                   <div>
                     <b className="inline text-odd text-xl">
-                      {playlists
-                        .filter((playlist: any) => !playlist.public)
-                        .reduce((total: number) => total + 1, 0)}
+                      {playlists.filter((playlist: any) => !playlist.public).length}
                     </b>
-                    <p>Total private playlists</p>
+                    <p>Private playlists</p>
+                  </div>
+                  <div>
+                    <b className="inline text-odd text-xl">
+                      {playlists.filter((playlist: any) => playlist.collaborative).length}
+                    </b>
+                    <p>Collaborations</p>
+                  </div>
+                  <div>
+                    <b className="inline text-odd text-xl">
+                      {
+                        playlists.filter(
+                          (playlist: any) => playlist.owner.display_name === 'Spotify'
+                        ).length
+                      }
+                    </b>
+                    <p>Spotify Created</p>
                   </div>
                 </div>
 
