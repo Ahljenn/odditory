@@ -24,6 +24,8 @@ const Analysis: React.FC<MusicData> = ({
    * @interface MusicData
    */
 
+  // Try react-transition-group for animation toggling
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [artists, setArtist] = useState<Map<string, number>>(new Map());
   const MAX_INDEX = 4; //Max number of "slides"
@@ -90,8 +92,37 @@ const Analysis: React.FC<MusicData> = ({
         />
       </div>
 
-      {/* Top tracks analysis - index = 0 */}
+      {/* The top tracks */}
       {currentIndex === 0 ? (
+        <>
+          <h1 className="text-center font-bold text-xl mt-5">Top Tracks</h1>
+          <p className="text-center my-5">
+            Here are the top <b className="text-odd">50</b> tracks (in-order) you&apos;ve listened
+            to so far...
+          </p>
+
+          <div className="flex justify-center mb-5">
+            <div className="grid gap-5 mx-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 max-w-screen-2xl">
+              {topTracks.map((track: any, index: number) => {
+                return (
+                  <div className="bg-secondary p-5 rounded-xl text-center" key={index}>
+                    <img className="w-[30rem] mb-5" src={track.album.images[0].url} alt="album" />
+                    <p>
+                      <b className="text-odd capitalize text-ellipsis">{track.name}</b>
+                    </p>
+                    <p className="text-ellipsis">
+                      <b>{track.artists[0]?.name}</b>
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {/* Top tracks analysis */}
+      {currentIndex === 1 ? (
         <>
           <h1 className="text-center font-bold text-xl mt-5">Top Tracks Analysis</h1>
           <div className="flex justify-center">
@@ -147,8 +178,8 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Genre analysis - index =1 */}
-      {currentIndex === 1 ? (
+      {/* Genre analysis */}
+      {currentIndex === 2 ? (
         <>
           <h1 className="text-center font-bold text-xl mt-5">Genre Analysis</h1>
           <div className="flex justify-center">
@@ -185,35 +216,8 @@ const Analysis: React.FC<MusicData> = ({
           </div>
         </>
       ) : null}
-      {/* The top tracks - index = 2 */}
-      {currentIndex === 2 ? (
-        <>
-          <h1 className="text-center font-bold text-xl mt-5">Top Tracks</h1>
-          <p className="text-center my-5">
-            Here are the top 50 tracks you've listened to in order so far...
-          </p>
 
-          <div className="flex justify-center mb-5">
-            <div className="grid gap-5 mx-5 grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 max-w-screen-2xl">
-              {topTracks.map((track: any, index: number) => {
-                return (
-                  <div className="bg-secondary p-5 rounded-xl" key={index}>
-                    <img className="w-[30rem] mb-5" src={track.album.images[0].url} alt="album" />
-                    <p>
-                      <b className="text-odd capitalize text-ellipsis">{track.name}</b>
-                    </p>
-                    <p className="text-ellipsis">
-                      <b>{track.artists[0]?.name}</b>
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </>
-      ) : null}
-
-      {/* Playlist analysis - index = 3 */}
+      {/* Playlist analysis */}
       {currentIndex === 3 ? (
         <>
           <section className="flex justify-center my-5 flex-col">
@@ -293,7 +297,7 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Next steps - index = 4*/}
+      {/* Next steps */}
       {currentIndex === 4 ? (
         <>
           <section>
