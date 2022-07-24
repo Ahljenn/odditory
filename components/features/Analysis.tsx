@@ -33,11 +33,15 @@ const Analysis: React.FC<MusicData> = ({
     if (topTracks.length > 0) {
       topTracks.forEach((track: any) => {
         track.artists.forEach((artist: any) => {
-          if (artistCount.has(artist.name)) {
-            // @ts-ignore - since we deal with the case that the object does not exist in the else block, we can safely ignore the error
-            artistCount.set(artist.name, artistCount.get(artist.name) + 1); // Increment artist count
+          let artistNameId = artist.name + '~' + artist.id;
+          if (artistCount.has(artistNameId)) {
+            console.log('x');
+            artistCount.set(
+              artistNameId, // @ts-ignore - since we deal with the case that the object does not exist in the else block, we can safely ignore the error
+              artistCount.get(artistNameId) + 1
+            ); // Increment artist count
           } else {
-            artistCount.set(artist.name, 1); // Set artist count to 1
+            artistCount.set(artistNameId, 1); // Set artist count to 1
           }
         });
       });
@@ -63,6 +67,7 @@ const Analysis: React.FC<MusicData> = ({
 
   // console.log('playlists: ', playlists);
   // console.log('genres: ', genres);
+  console.log(topTracks);
 
   return (
     <>
@@ -83,6 +88,7 @@ const Analysis: React.FC<MusicData> = ({
           onClick={handleRightClick}
         />
       </div>
+
       {/* Top tracks analysis - index = 0 */}
       {currentIndex === 0 ? (
         <>
@@ -105,21 +111,24 @@ const Analysis: React.FC<MusicData> = ({
 
           <div className="grid grid-cols-1 my-5 gap-5 sm:grid-cols-2 2xl:grid-cols-4 sm:mx-10">
             {Array.from(artists.entries()).map((result: [string, number], index: number) => {
+              let artist = result[0].split('~')[0];
+              let artistId = result[0].split('~')[1];
+
               return (
                 <div
                   className="bg-secondary sm:rounded-xl p-5 hover:transition transition-transform duration-200 hover:scale-[0.95] hover:rounded-xl cursor-pointer"
                   key={index}
                   onClick={() => {
-                    window.open(`https://open.spotify.com/search/results/artist:${result[0]}`);
+                    window.open(`https://open.spotify.com/artist/${artistId}`);
                   }}
                 >
                   <p>
-                    <b className="text-odd capitalize">{result[0]}</b>
+                    <b className="text-odd capitalize">{artist}</b>
                   </p>
                   <p>
                     <b>{result[1]}</b>
                     {result[1] > 1 ? ' of your top tracks ' : ' track '}
-                    is by {result[0]}.
+                    is by {artist}.
                   </p>
                 </div>
               );
