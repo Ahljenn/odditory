@@ -72,23 +72,27 @@ const Odditorium: React.FC = (): JSX.Element => {
   console.log(topTracks);
 
   return (
-    <div>
+    <>
       <Head>
         <title>Odditory | Odditorium</title>
         <link rel="icon" href="/logofav.png" />
       </Head>
-      <SubpageHeader pageName="Odditorium" />
+      <section className="bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full pb-10">
+        <SubpageHeader pageName="Odditorium" />
+        <h1 className="text-center text-[40px] sm:text-[45px] 2xl:text-[60px] font-bold">
+          The Place to Discover More
+        </h1>
+        <div className="flex justify-center">
+          <p className="text-center w-5/6 sm:w-[40rem] text-gray-400">
+            <b className="text-odd">Odditory</b> presents to you the <b>Odditorium</b>. The central
+            location to analyze the music you love. We use your Spotify activity to tailor an
+            experience suited for you.
+          </p>
+        </div>
+      </section>
 
-      <div className="flex justify-center">
+      <div className={isClicked ? 'hidden' : 'mt-10 flex justify-center'}>
         <div className="w-full sm:w-[30rem] bg-secondary sm:rounded-xl p-8">
-          <p>
-            What is the <b className="text-odd">Odditorium?</b>
-          </p>
-          <p>
-            The Odditorium is a the central location to analyze the music you listen to! It uses
-            your Spotify activity to analyze the music you love the most.
-          </p>
-
           <div
             className={
               isClicked
@@ -101,7 +105,7 @@ const Odditorium: React.FC = (): JSX.Element => {
               }
             }}
           >
-            Let&apos;s go
+            Get Started
           </div>
         </div>
       </div>
@@ -111,7 +115,7 @@ const Odditorium: React.FC = (): JSX.Element => {
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 };
 
