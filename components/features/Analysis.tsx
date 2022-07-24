@@ -26,7 +26,7 @@ const Analysis: React.FC<MusicData> = ({
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [artists, setArtist] = useState<Map<string, number>>(new Map());
-  const MAX_INDEX = 3; //Max number of "slides"
+  const MAX_INDEX = 4; //Max number of "slides"
 
   // Parse artist count on component load
   useEffect(() => {
@@ -185,9 +185,36 @@ const Analysis: React.FC<MusicData> = ({
           </div>
         </>
       ) : null}
-
-      {/* Playlist analysis - index = 2 */}
+      {/* The top tracks - index = 2 */}
       {currentIndex === 2 ? (
+        <>
+          <h1 className="text-center font-bold text-xl mt-5">Top Tracks</h1>
+          <p className="text-center my-5">
+            Here are the top 50 tracks you've listened to in order so far...
+          </p>
+
+          <div className="flex justify-center mb-5">
+            <div className="grid gap-5 mx-5 grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 max-w-screen-2xl">
+              {topTracks.map((track: any, index: number) => {
+                return (
+                  <div className="bg-secondary p-5 rounded-xl" key={index}>
+                    <img className="w-[30rem] mb-5" src={track.album.images[0].url} alt="album" />
+                    <p>
+                      <b className="text-odd capitalize text-ellipsis">{track.name}</b>
+                    </p>
+                    <p className="text-ellipsis">
+                      <b>{track.artists[0]?.name}</b>
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {/* Playlist analysis - index = 3 */}
+      {currentIndex === 3 ? (
         <>
           <section className="flex justify-center my-5 flex-col">
             <h1 className="text-center font-bold text-xl">Playlist Analysis</h1>
@@ -266,8 +293,8 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Next steps - index = 3*/}
-      {currentIndex === 3 ? (
+      {/* Next steps - index = 4*/}
+      {currentIndex === 4 ? (
         <>
           <section>
             <h1 className="text-center font-bold text-xl mt-5">Next steps</h1>

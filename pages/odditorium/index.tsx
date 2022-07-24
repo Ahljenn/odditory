@@ -69,14 +69,13 @@ const Odditorium: React.FC = (): JSX.Element => {
     }
   }, [loadedTracks]);
 
-  console.log(topTracks);
-
   return (
     <>
       <Head>
         <title>Odditory | Odditorium</title>
         <link rel="icon" href="/logofav.png" />
       </Head>
+
       <section className="bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full pb-10">
         <SubpageHeader pageName="Odditorium" />
         <h1 className="text-center text-[40px] sm:text-[45px] 2xl:text-[60px] font-bold">
