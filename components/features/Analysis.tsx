@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import Router from 'next/router';
 
 interface MusicData {
   genres: Map<string, number>;
@@ -24,8 +25,8 @@ const Analysis: React.FC<MusicData> = ({
    */
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const MAX_INDEX = 3; //Max number of "slides"
   const [artists, setArtist] = useState<Map<string, number>>(new Map());
+  const MAX_INDEX = 3; //Max number of "slides"
 
   // Parse artist count on component load
   useEffect(() => {
@@ -230,6 +231,15 @@ const Analysis: React.FC<MusicData> = ({
                     <p>Total private playlists</p>
                   </div>
                 </div>
+
+                <button
+                  className="default-button"
+                  onClick={() => {
+                    Router.push('/playlist');
+                  }}
+                >
+                  Go to your playlists
+                </button>
               </div>
             </div>
           </section>
