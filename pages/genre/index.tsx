@@ -75,7 +75,7 @@ const Genre: React.FC = (): JSX.Element => {
                   });
                 }}
               >
-                <p className="sm:text-2xl m-5">{genreName[0].toUpperCase() + genreName.slice(1)}</p>
+                <p className="sm:text-2xl m-5 capitalize">{genreName}</p>
               </div>
             );
           })}
