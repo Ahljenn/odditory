@@ -83,9 +83,11 @@ const Odditorium: React.FC = (): JSX.Element => {
         </h1>
         <div className="flex justify-center">
           <p className="text-center w-5/6 sm:w-[40rem] text-gray-400">
-            <b className="text-odd">Odditory</b> presents to you the <b>Odditorium</b>. By clicking
-            to continue, you agree to allow Odditory to analyze your spotify activity to enhance
-            your music insight.
+            <b className="text-odd">Odditory</b> presents to you the <b>Odditorium</b>.
+            <p className="mt-5">
+              By clicking to continue, you agree to allow Odditory to analyze your spotify activity
+              to enhance your music insight.
+            </p>
           </p>
         </div>
       </section>
