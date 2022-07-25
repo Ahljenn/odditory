@@ -19,8 +19,8 @@ const TopTracks: React.FC<TrackData> = ({ tracks, isLoaded }: TrackData): JSX.El
 
   return (
     <>
-      <h1 className="text-2xl m-5 mb-0 text-center">Your Top Tracks</h1>
-      <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full ">
+      <h1 className="text-xl font-bold m-5 mb-0 self-center">Your Top Tracks</h1>
+      <section className="flex w-full ">
         {isLoaded ? (
           <Slider tracks={tracks} id="top-tracks-slider" typeTrack="top-tracks" />
         ) : (

@@ -97,8 +97,7 @@ const Analysis: React.FC<MusicData> = ({
         <>
           <h1 className="text-center font-bold text-xl mt-5">Top Tracks</h1>
           <p className="text-center my-5">
-            Here are the top <b className="text-odd">50</b> tracks (in-order) you&apos;ve listened
-            to so far...
+            Here are the top <b className="text-odd">50</b> tracks you&apos;ve listened to so far...
           </p>
 
           <div className="flex justify-center mb-5">
