@@ -12,7 +12,7 @@ const GuestDashboard: React.FC = (): JSX.Element => {
         <link rel="icon" href="/logofav.png" />
       </Head>
       <Header pageType="guest" />
-      <IntroContainer />
+      <IntroContainer type={'Guest'} />
       <GuestMain />
     </>
   );
