@@ -37,10 +37,10 @@ const Main: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <TopTracks tracks={tracks} isLoaded={isLoaded} />
       {isLoaded ? (
         <section className="flex flex-col items-center">
           <RecTracks spotifyApi={spotifyApi} tracks={tracks} />
+          <TopTracks tracks={tracks} isLoaded={isLoaded} />
           <NewReleases spotifyApi={spotifyApi} />
           <OddPicks />
         </section>

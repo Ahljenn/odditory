@@ -11,7 +11,6 @@ const Dashboard: NextPage = (): JSX.Element => {
         <link rel="icon" href="/logofav.png" />
       </Head>
       <Header pageType="user" />
-      <h1 className="text-2xl m-5 mb-0 text-center">Your Top Tracks</h1>
       <Main />
     </div>
   );
