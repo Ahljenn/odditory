@@ -55,7 +55,7 @@ const RecTracks: React.FC<SessionData> = ({ spotifyApi, tracks }: SessionData): 
 
   return (
     <>
-      <h1 className="text-2xl m-5 mb-0 self-center">Tracks For You</h1>
+      <h1 className="text-xl font-bold m-5 mb-0 self-center">Tracks For You</h1>
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-7">
         {isLoaded
           ? recs.map((track: any, index: number) => (

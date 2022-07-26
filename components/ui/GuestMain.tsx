@@ -14,7 +14,8 @@ const GuestMain: React.FC = (): JSX.Element => {
    */
   return (
     <>
-      <section className="flex bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full ">
+      <h1 className="text-xl font-bold m-5 mb-0 text-center">New Releases</h1>
+      <section className="flex w-full ">
         <Slider tracks={staticNewReleases} id="top-slider-guest" typeTrack="new-release" />
       </section>
       <GuestRecs />
@@ -33,7 +34,7 @@ const GuestRecs: React.FC = (): JSX.Element => {
    */
   return (
     <section className="flex flex-col items-center">
-      <h1 className="text-2xl m-5 mb-0 text-center">Tracks For You</h1>
+      <h1 className="text-xl font-bold m-5 mb-0 text-center">Tracks For You</h1>
       <section className="mt-5 mx-5 grid grid-cols-2 sm:grid-cols-3 gap-4 md:grid-cols-4 xl:gap-7">
         {staticRecTracks.map((track: any, index: number) => (
           <div

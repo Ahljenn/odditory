@@ -79,14 +79,16 @@ const Odditorium: React.FC = (): JSX.Element => {
       <section className="bg-gradient-to-b to-[#181b20] from-[#282b30] padding-8 w-full pb-10">
         <SubpageHeader pageName="Odditorium" />
         <h1 className="text-center text-[40px] sm:text-[45px] 2xl:text-[60px] font-bold">
-          The Place to Discover More
+          Insight and Inspection
         </h1>
         <div className="flex justify-center">
-          <p className="text-center w-5/6 sm:w-[40rem] text-gray-400">
-            <b className="text-odd">Odditory</b> presents to you the <b>Odditorium</b>. The central
-            location to analyze the music you love. We use your Spotify activity to tailor an
-            experience suited for you.
-          </p>
+          <div className="text-center w-5/6 sm:w-[40rem] text-gray-400">
+            <b className="text-odd">Odditory</b> presents to you the <b>Odditorium</b>.
+            <p className="mt-5">
+              By clicking to continue, you agree to allow Odditory to analyze your spotify activity
+              to enhance your music insight.
+            </p>
+          </div>
         </div>
       </section>
 

@@ -38,7 +38,6 @@ const Analysis: React.FC<MusicData> = ({
         track.artists.forEach((artist: any) => {
           let artistNameId = artist.name + '~' + artist.id;
           if (artistCount.has(artistNameId)) {
-            console.log('x');
             artistCount.set(
               artistNameId, // @ts-ignore - since we deal with the case that the object does not exist in the else block, we can safely ignore the error
               artistCount.get(artistNameId) + 1
@@ -68,10 +67,6 @@ const Analysis: React.FC<MusicData> = ({
     }
   };
 
-  console.log('playlists: ', playlists);
-  // console.log('genres: ', genres);
-  // console.log(topTracks);
-
   return (
     <>
       <div className="flex flex-row justify-center items-center gap-8">
@@ -97,8 +92,7 @@ const Analysis: React.FC<MusicData> = ({
         <>
           <h1 className="text-center font-bold text-xl mt-5">Top Tracks</h1>
           <p className="text-center my-5">
-            Here are the top <b className="text-odd">50</b> tracks (in-order) you&apos;ve listened
-            to so far...
+            Here are the top <b className="text-odd">50</b> tracks you&apos;ve listened to so far...
           </p>
 
           <div className="flex justify-center mb-5">

@@ -5,6 +5,8 @@ import RecTracks from '../features/RecTracks';
 import NewReleases from '../features/NewReleases';
 import { useSession } from 'next-auth/react';
 import OddPicks from '../features/OddPicks';
+import IntroContainer from './IntroContainer';
+import Loading from './Loading';
 
 /**
  * This component is used to display the user's top tracks, recommended tracks, and new releases.
@@ -37,15 +39,16 @@ const Main: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <TopTracks tracks={tracks} isLoaded={isLoaded} />
+      <IntroContainer />
       {isLoaded ? (
         <section className="flex flex-col items-center">
           <RecTracks spotifyApi={spotifyApi} tracks={tracks} />
+          <TopTracks tracks={tracks} isLoaded={isLoaded} />
           <NewReleases spotifyApi={spotifyApi} />
           <OddPicks />
         </section>
       ) : (
-        <></>
+        <Loading />
       )}
     </>
   );
