@@ -3,7 +3,14 @@ import Head from 'next/head';
 import Header from '../../components/ui/Header';
 import Main from '../../components/ui/Main';
 
+/**
+ * This component renders the account page
+ * Provides information for info and account type
+ **/
 const Dashboard: NextPage = (): JSX.Element => {
+  /**
+   * @returns JSX.Element
+   */
   return (
     <div>
       <Head>

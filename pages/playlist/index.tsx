@@ -7,7 +7,14 @@ import Loading from '../../components/ui/Loading';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import Head from 'next/head';
 
+/**
+ * Renders the playlists page containing user info on Spotify playlists
+ * Contains a search feature to search for playlists
+ **/
 const Playlists: React.FC = (): JSX.Element => {
+  /**
+   * @returns JSX.Element - renders the Odditorium page.
+   */
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState<any[]>([]);
