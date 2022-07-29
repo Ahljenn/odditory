@@ -3,7 +3,14 @@ import { useSession } from 'next-auth/react';
 import SubpageHeader from '../../components/ui/SubpageHeader';
 import Head from 'next/head';
 
+/**
+ * This component renders the account page for the end-user
+ * Contains user data such as account type, Spotify username, and email
+ */
 const Account: React.FC = (): JSX.Element => {
+  /*
+   * @returns JSX.Element - renders the account page.
+   */
   const { data: session } = useSession();
 
   return (

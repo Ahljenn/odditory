@@ -5,7 +5,14 @@ import { UserIcon } from '@heroicons/react/outline';
 import Router from 'next/router';
 import Head from 'next/head';
 
+/**
+ * This component renders the login page.
+ * Contains a Spotify Provider login as well as a guest option
+ */
 const Login = ({ providers }: any) => {
+  /**
+   * @returns JSX.Element - returns the login page
+   */
   return (
     <>
       <Head>
