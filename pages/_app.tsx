@@ -8,6 +8,10 @@ const variants = {
   pageAnimate: { opacity: 1 },
 };
 
+/**
+ * This component renders the entire app and provides the session to all components.
+ * Provides the motion animations for the page.
+ */
 const MyApp = ({
   Component,
   router,

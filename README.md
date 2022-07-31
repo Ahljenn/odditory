@@ -16,14 +16,18 @@ Deployed using [Vercel](https://vercel.com/), check out the demo here: [`Odditor
 - Heroicons
 - Framer Motion
 
-#### Current Work
+#### Current Features
 
 - Odditorium: Analytics for music - separate page
-- Build playlist based on results
+- Playlists: Show list of all playlists and search feature
+- Genres: Search genres and show list of all genres, routing to dynamic genre page
+- Dashboard: Show top tracks, recommended tracks, Odd picks, and new releases. Page varies depending on user's top tracks
+- Guest: Guest view (dash board only)
 
 #### Future Work
 
 - Odd picks for under-the-radar songs for user's most listened to genres
+- Build playlist based on results
 
 #### Misc
 
