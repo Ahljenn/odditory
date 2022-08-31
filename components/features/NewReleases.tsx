@@ -39,6 +39,8 @@ const NewReleases: React.FC<SessionData> = ({ spotifyApi }: SessionData): JSX.El
     }
   }, [spotifyApi]);
 
+  console.log(newTracks);
+
   return (
     <>
       <h1 className="text-xl font-bold m-5 mb-0 self-center">New Releases</h1>

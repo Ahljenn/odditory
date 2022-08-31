@@ -28,7 +28,7 @@ const Analysis: React.FC<MusicData> = ({
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [artists, setArtist] = useState<Map<string, number>>(new Map());
-  const MAX_INDEX = 4; //Max number of "slides"
+  const MAX_INDEX = 3; //Max number of "slides"
 
   // Parse artist count on component load
   useEffect(() => {
@@ -291,9 +291,7 @@ const Analysis: React.FC<MusicData> = ({
         </>
       ) : null}
 
-      {/* Next steps */}
-      {currentIndex === 4 ? (
-        <>
+      {/* <>
           <section>
             <h1 className="text-center font-bold text-xl mt-5">Next steps</h1>
             <p className="text-center">Let&apos;s make a playlist catered for you.</p>
@@ -315,8 +313,7 @@ const Analysis: React.FC<MusicData> = ({
               </div>
             </div>
           </section>
-        </>
-      ) : null}
+        </> */}
     </>
   );
 };
